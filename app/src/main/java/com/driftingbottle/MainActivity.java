@@ -127,6 +127,9 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         updataView();
     }
 
+    /**
+     * 根据时间修改背景，以6点作为分界
+     */
     private void updataView(){
         container.removeAllViews();
         int hour = CommonUtils.getHour();
@@ -152,6 +155,9 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
             animationDrawable.start();
             lanimationDrawable.start();
             ranimationDrawable.start();
+            if(App.strMoonUrl.isEmpty()){
+                // TODO: 2018/6/19 获取月亮图标
+            }
 
         }
         iCurrentHour  = hour;
@@ -207,17 +213,28 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         }
 
     }
+
+    /**
+     * 该点击事件没有操作
+     */
     private void processOne(){
         ll_dialog.setVisibility(View.VISIBLE);
     }
+
+    /**
+     * 群发信息 文本和图片
+     */
     private void processTwo(){
         if(bStart){
             initShare("","").showShareView();
-
         }else {
             ToastUtils.show("请点击标题启动服务");
         }
     }
+
+    /**
+     * 获取我的瓶子信息
+     */
     private void processThree(){
         if(bStart){
             stop();
@@ -227,8 +244,12 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         }
 
     }
+
+    /**
+     * 数据重置
+     */
     private void stopService(){
-        // TODO: 18-6-12 http
+        // TODO: 18-6-12 http 情况数据
         ToastUtils.show("停止服务");
         tv_activity_index_count.setVisibility(View.GONE);
         bStart = false;
@@ -236,6 +257,10 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         App.bottleIds.clear();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
     }
+
+    /**
+     * 开始服务
+     */
     private void startService(){
         if(bStart){
             ToastUtils.show("服务已启动");
@@ -243,7 +268,6 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         }
         ToastUtils.show("服务启动成功");
         bStart = true;
-        iTotalCount = 100;
 
     }
 
@@ -276,6 +300,9 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, filter);
     }
 
+    /**
+     * 接收服务端推送的消息
+     */
     public class MessageReceiver extends BroadcastReceiver {
 
         @Override

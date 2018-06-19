@@ -28,6 +28,7 @@ import butterknife.BindView;
 
 /**
  * Created by jidan on 18-6-12.
+ * 获取瓶子列表 （包含最后一条信息）
  */
 
 public class DriftinBottleListActivity extends BaseActivity  implements CommonAdapter.OnItemClickListener{
