@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tv_right_time"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/time_bg"
+        android:gravity="center_vertical"
+        android:padding="2dp"
+        android:text="2015"
+        android:textColor="@color/write"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/iv_owner_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/daiban"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_10dp"
+            android:scaleType="fitXY" />
+        <TextView
+            android:id="@+id/tv_right_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_10dp"
+            android:layout_toLeftOf="@id/iv_owner_img"
+            android:autoLink="all"
+            android:background="@drawable/r"
+            android:gravity="center_vertical"
+            android:letterSpacing="0.05"
+            android:lineSpacingExtra="3dp"
+            android:paddingRight="@dimen/_10dp"
+            android:paddingLeft="@dimen/_10dp"
+            android:text="aa"
+            android:textColor="#000000"
+            android:textColorLink="@color/blue"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_right_img"
+            android:layout_width="@dimen/_150dp"
+            android:layout_height="@dimen/_150dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@id/iv_owner_img"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>
+

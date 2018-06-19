@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.imnjh.imagepicker"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="25" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true" >
+
+        <!-- <provider -->
+        <!-- android:name="android.support.v4.content.FileProvider" -->
+        <!-- android:authorities="${applicationId}.provider" -->
+        <!-- android:exported="false" -->
+        <!-- android:grantUriPermissions="true"> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.support.FILE_PROVIDER_PATHS" -->
+        <!-- android:resource="@xml/provider_paths"/> -->
+        <!-- </provider> -->
+
+        <activity
+            android:name="com.imnjh.imagepicker.activity.PhotoPickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Popup" />
+        <activity
+            android:name="com.imnjh.imagepicker.activity.PickerPreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Picture" />
+        <activity
+            android:name="com.imnjh.imagepicker.activity.CaptureConfirmActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Picture" />
+        <activity
+            android:name="com.imnjh.imagepicker.activity.CropImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Picture" />
+        <activity
+            android:name="com.imnjh.imagepicker.activity.CaptureTempActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Picture" />
+    </application>
+
+</manifest>

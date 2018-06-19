@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/pop_menu"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:orientation="vertical"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@color/gray_bb">
+
+    <LinearLayout
+        android:id="@+id/ll_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_wenben"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/btnWxFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/yiban" />
+
+            <TextView
+                android:id="@+id/tv_wxTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_5dp"
+                android:gravity="center"
+                android:text="文本格式"
+                android:textSize="@dimen/_12sp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_xinlang_weibo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/yiyue"/>
+
+            <TextView
+                android:id="@+id/iv_xinlang_weibo_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_5dp"
+                android:gravity="center"
+                android:textSize="@dimen/_12sp"
+                android:text= "图片格式"/>
+        </LinearLayout>
+    </LinearLayout>
+    <EditText
+        android:visibility="gone"
+        android:id="@+id/et_msg_tle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/btn_send"
+        android:layout_marginRight="@dimen/_10dp"
+        android:layout_centerVertical="true"
+        android:textSize="14sp"
+        android:gravity="top"
+        android:background="@null"
+        android:autoLink="all"
+        android:hint="请输入"
+        android:padding="@dimen/_10dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/balck"/>
+    <ImageView
+        android:id="@+id/iv_img"
+        android:visibility="visible"
+        android:layout_width="@dimen/_100dp"
+        android:layout_height="@dimen/_100dp"
+        android:layout_marginLeft="@dimen/_10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"/>
+    <Button
+        android:id="@+id/btn_send"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/_10dp"
+        android:text="群发"/>
+</RelativeLayout>
+</FrameLayout>
+
+

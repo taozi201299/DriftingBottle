@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_index"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bb"
+    android:orientation="vertical">
+    <include layout="@layout/action_bar_layout"
+        android:id="@+id/action_bar"></include>
+    <TextView
+        android:id="@+id/tv_emtry_message"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="100dp"
+        android:text="你还没有收到任何一个瓶子。何不扔一个？"
+        android:textColor="#9c9c9c"
+        android:textSize="16sp"
+        android:visibility="gone" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/bottleRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"/>
+
+
+</LinearLayout>
+

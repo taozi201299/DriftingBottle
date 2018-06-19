@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tv_left_time"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/time_bg"
+        android:gravity="center_vertical"
+        android:padding="2dp"
+        android:text="2015"
+        android:textColor="@color/write"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/iv_owner_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/yiyue"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/_10dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/tv_left_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/iv_owner_img"
+            android:layout_marginRight="@dimen/_10dp"
+            android:autoLink="all"
+            android:background="@drawable/l"
+            android:gravity="center_vertical"
+            android:letterSpacing="0.05"
+            android:lineSpacingExtra="3dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="@dimen/_10dp"
+            android:text="a11111111111111111111111111111111111"
+            android:textColor="#000000"
+            android:textColorLink="@color/blue"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:id="@+id/iv_left_img"
+            android:layout_width="@dimen/_150dp"
+            android:layout_height="@dimen/_150dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/iv_owner_img"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="gone" />
+        <ImageView
+            android:id="@+id/iv_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_left_img"
+            android:src="@mipmap/error_img"
+            android:layout_centerVertical="true"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+</LinearLayout>

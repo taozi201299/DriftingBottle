@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="write">#FFFFFF</color>
+    <color name="statusbar">#303135</color>
+    <color name="viewcolor">#D0D0D0</color>
+    <color name="viewback">#F4F4F4</color>
+    <color name="hinecolor">#DADADA</color>
+    <color name="background">#F5F5F5</color>
+    <color name="balck">#474B4C</color>
+    <color name="baclk">#000000</color>
+    <color name="red">#E20000</color>
+    <color name="bule">#336EEc</color>
+    <color name="F4F4F4">#F4F4F4</color>
+    <color name="blue">#3399ff</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray_bb">#bbbbbb</color><!--灰色bb -->
+</resources>
