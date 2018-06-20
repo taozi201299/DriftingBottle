@@ -60,12 +60,19 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
 
     @Override
     public void initData() {
+
         showDataLoadingDialog();
         Bundle bundle = getIntent().getBundleExtra(DEFAULT_BUNDLE_NAME);
         bottleBean = (BottleBean) bundle.getSerializable("key");
-        showTitle(bottleBean.getBottleName());
         chatAdapter.setMyImage(bottleBean.getBottleImg());
-        getMessage();
+        showTitle(bottleBean.getBottleName());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getMessage();
+            }
+        }).start();
+
     }
     private void getMessage(){
         String url = "http://192.168.1.8:8080/wcsps-supervision/v1/att/ad/base/attAdBases/";
@@ -102,22 +109,26 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                         "}\n" +
                         "]\n" +
                         "}\n";
-                closeDataDialog();
-                xRefreshView.stopRefresh();
-                Gson gson = new Gson();
-                messageBean = gson.fromJson(result,MessageBean.class);
-                if(messageBean.result.size() == 0){
-                    ToastUtils.show("没有更多数据了");
-                    return;
-                }
-                refresh();
-
+                final String finalResult = result;
+                ((DriftinBottleMessageActivity)mContext).
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        closeDataDialog();
+                        xRefreshView.stopRefresh();
+                        Gson gson = new Gson();
+                        messageBean = gson.fromJson(finalResult,MessageBean.class);
+                        if(messageBean.result.size() == 0){
+                            ToastUtils.show("没有更多数据了");
+                            return;
+                        }
+                        refresh();
+                    };
+                });
             }
             @Override
             public void onFailure(ErrorInfo.ErrorCode errorInfo) {
-                closeDataDialog();
-                xRefreshView.stopRefresh(false);
-                String result = " {\n" +
+                final String result = " {\n" +
                         "  \"code\": 0,\n" +
                         "  \"msg\": \"请求正常返回\",\n" +
                         " \"totalCount\": 0,\n" +
@@ -145,15 +156,21 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                         "}\n" +
                         "]\n" +
                         "}\n";
-                closeDataDialog();
-                xRefreshView.stopRefresh();
-                Gson gson = new Gson();
-                messageBean = gson.fromJson(result,MessageBean.class);
-                if(messageBean.result.size() == 0){
-                    ToastUtils.show("没有更多数据了");
-                    return;
-                }
-                refresh();
+                ((DriftinBottleMessageActivity)mContext).
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                closeDataDialog();
+                                xRefreshView.stopRefresh(false);
+                                Gson gson = new Gson();
+                                messageBean = gson.fromJson(result,MessageBean.class);
+                                if(messageBean.result.size() == 0){
+                                    ToastUtils.show("没有更多数据了");
+                                    return;
+                                }
+                                refresh();
+                            };
+                        });
 
             }
         }, CacheMode.DEFAULT);

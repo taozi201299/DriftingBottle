@@ -52,7 +52,13 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
 
     @Override
     public void initData() {
-        getBottle();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getBottle();
+            }
+        }).start();
+
     }
 
     @Override
@@ -154,23 +160,29 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
                         "\n" +
                         "]\n" +
                         "}\n";
-                closeDataDialog();
-                Gson gson = new Gson();
-                bottleBean = gson.fromJson(result,BottleBean.class);
-                if(bottleBean == null){
-                    ToastUtils.show(ErrorInfo.ErrorCode.valueOf(-5).getMessage());
-                    return;
-                }else {
-                    refreshUI();
-                }
+                final String finalResult = result;
+                ((DriftinBottleListActivity)mContext).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //此时已在主线程中，可以更新UI了
+                        closeDataDialog();
+                        Gson gson = new Gson();
+                        bottleBean = gson.fromJson(finalResult,BottleBean.class);
+                        if(bottleBean == null){
+                            ToastUtils.show(ErrorInfo.ErrorCode.valueOf(-5).getMessage());
+                            return;
+                        }else {
+                            refreshUI();
+                        }
+
+                    }
+                });
 
             }
 
             @Override
-            public void onFailure(ErrorInfo.ErrorCode errorInfo) {
-                closeDataDialog();
-                ToastUtils.show(errorInfo.getMessage());
-                String result ="{\n" +
+            public void onFailure(final ErrorInfo.ErrorCode errorInfo) {
+                final String result ="{\n" +
                         "  \"code\": 0,\n" +
                         "  \"msg\": \"请求正常返回\",\n" +
                         "  \"totalCount\": 3479,\n" +
@@ -250,15 +262,23 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
                         "\n" +
                         "]\n" +
                         "}\n";
-                closeDataDialog();
-                Gson gson = new Gson();
-                bottleBean = gson.fromJson(result,BottleBean.class);
-                if(bottleBean == null){
-                    ToastUtils.show(ErrorInfo.ErrorCode.valueOf(-5).getMessage());
-                    return;
-                }else {
-                    refreshUI();
-                }
+                ((DriftinBottleListActivity)mContext).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //此时已在主线程中，可以更新UI了
+                        closeDataDialog();
+                        ToastUtils.show(errorInfo.getMessage());
+                        Gson gson = new Gson();
+                        bottleBean = gson.fromJson(result,BottleBean.class);
+                        if(bottleBean == null){
+                            ToastUtils.show(ErrorInfo.ErrorCode.valueOf(-5).getMessage());
+                            return;
+                        }else {
+                            refreshUI();
+                        }
+
+                    }
+                });
 
             }
         }, CacheMode.DEFAULT);
@@ -280,9 +300,6 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         BottleBean item = bottleBean.result.get(position);
         if(!App.bottleIds.contains(item.getBottleId())) {
             App.bottleIds.add(item.getBottleId());
-        }
-        for(int i = 0; i< App.bottleIds.size() ; i++){
-            Log.d("111111111111111111111",App.bottleIds.get(i));
         }
         Bundle bundle = new Bundle();
         bundle.putSerializable("key",item);

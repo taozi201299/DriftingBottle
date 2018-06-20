@@ -99,8 +99,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         initData();
-    }
 
+    }
     @Override
     protected void onPause() {
         super.onPause();
