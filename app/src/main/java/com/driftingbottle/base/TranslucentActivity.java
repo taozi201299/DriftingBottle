@@ -46,6 +46,7 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
     EditText emojiconEditText ;
     ImageView iv_img;
     Button btn_send;
+    LinearLayout ll_msg;
     LinearLayout ll_choice;
     private static final int RC_CAMERA_PERM = 100;
     private static final int PICKER_RESULT= 101;
@@ -75,6 +76,7 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
         emojiconEditText = (EditText) v.findViewById(R.id.et_msg_tle);
         iv_img = (ImageView)v.findViewById(R.id.iv_img);
         btn_send = (Button)v.findViewById(R.id.btn_send);
+        ll_msg = (LinearLayout)v.findViewById(R.id.ll_msg);
         ll_wenben.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +85,7 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
                 iv_img.setVisibility(View.GONE);
                 emojiconEditText.setVisibility(View.VISIBLE);
                 btn_send.setVisibility(View.VISIBLE);
+                ll_msg.setVisibility(View.VISIBLE);
 
             }
         });
@@ -182,6 +185,7 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
             }
             ll_choice.setVisibility(View.GONE);
             emojiconEditText.setVisibility(View.GONE);
+            ll_msg.setVisibility(View.GONE);
             iv_img.setVisibility(View.VISIBLE);
             btn_send.setVisibility(View.VISIBLE);
             Glide.with(this).load(photos.get(0)).placeholder(R.mipmap.loading)
