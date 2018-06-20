@@ -23,7 +23,8 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 
-import static com.driftingbottle.utils.Strings.DEFAULT_BUNDLE_NAME;
+import static com.driftingbottle.utils.Constant.DEFAULT_BUNDLE_NAME;
+
 
 /**
  * Created by jidan on 18-6-12.

@@ -49,18 +49,6 @@ public class NetworkUtil {
         }
         return false;
     }
-
-    /**
-     * Gps是否打开
-     *
-     * @return
-     */
-    public static final boolean isGpsEnabled() {
-        LocationManager locationManager =
-                ((LocationManager) App.globalContext().getSystemService(Context.LOCATION_SERVICE));
-        List<String> accessibleProviders = locationManager.getProviders(true);
-        return accessibleProviders != null && accessibleProviders.size() > 0;
-    }
     /**
      * 获取网络状态，wifi,wap,2g,3g.
      *

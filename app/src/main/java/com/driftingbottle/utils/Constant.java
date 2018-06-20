@@ -6,4 +6,5 @@ package com.driftingbottle.utils;
 
 public class Constant {
     public static String URL = "";
+    public static final String DEFAULT_BUNDLE_NAME = "bundle";
 }

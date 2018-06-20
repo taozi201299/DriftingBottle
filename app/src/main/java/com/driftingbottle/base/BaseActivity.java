@@ -3,29 +3,23 @@ package com.driftingbottle.base;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.tu.loadingdialog.LoadingDialog;
 import com.driftingbottle.R;
+import com.driftingbottle.utils.Constant;
 import com.driftingbottle.utils.ScreenManager;
-import com.driftingbottle.utils.Strings;
 import com.driftingbottle.utils.ToastUtils;
 
 import butterknife.ButterKnife;
@@ -262,7 +256,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public void intentActivity(Activity activity,Class<? extends Activity> targetActivity,boolean isfinish,Bundle bundle,int requestCode){
         Intent intent = new Intent(activity,targetActivity);
-        intent.putExtra(Strings.DEFAULT_BUNDLE_NAME, bundle);
+        intent.putExtra(Constant.DEFAULT_BUNDLE_NAME, bundle);
         activity.startActivityForResult(intent, requestCode);
         overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
         if(isfinish){
@@ -278,7 +272,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public void intentActivity(Activity activity,Class<? extends Activity> targetActivity,boolean isfinish,Bundle bundle){
         Intent intent = new Intent(activity,targetActivity);
-        intent.putExtra(Strings.DEFAULT_BUNDLE_NAME, bundle);
+        intent.putExtra(Constant.DEFAULT_BUNDLE_NAME, bundle);
         activity.startActivity(intent);
         overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
         if(isfinish){
@@ -294,7 +288,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public void intentActivity(Activity activity,Class<? extends Activity> targetActivity,boolean isfinish,int flag,Bundle bundle){
         Intent intent = new Intent(activity,targetActivity);
-        intent.putExtra(Strings.DEFAULT_BUNDLE_NAME, bundle);
+        intent.putExtra(Constant.DEFAULT_BUNDLE_NAME, bundle);
         intent.setFlags(flag);
         activity.startActivity(intent);
         overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);

@@ -13,9 +13,7 @@ import java.io.File;
 
 public class FileOperate {
     public final int iLogFolder = 0;
-    public final int iDBFolder = 1;
-    public final int iCrashFolder = 2;
-    public final int iMediaFolder = 3;
+    public final int iCrashFolder = 1;
     public static String createFolder(int type){
         String strFolder ="";
         switch (type){
@@ -23,11 +21,7 @@ public class FileOperate {
                strFolder =  "/data/data/" +  App.globalContext().getPackageName() + "/log";
                 break;
             case 1:
-                strFolder =  "/data/data/" +  App.globalContext().getPackageName() + "/databases";
-                break;
-            case 2:
-             //   strFolder =  "/data/data/" +  App.globalContext().getPackageName() + "/crash";
-                strFolder = "/sdcard/";
+                strFolder = "/sdcard/crash/";
                 break;
             case 3:
                 strFolder =  "/data/data/" +  App.globalContext().getPackageName() + "/media";

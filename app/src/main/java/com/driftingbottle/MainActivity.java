@@ -185,8 +185,6 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         stopService();
 
     }
-    public void stop() {
-    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -238,7 +236,6 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
      */
     private void processThree(){
         if(bStart){
-            stop();
             intentActivity(this, DriftinBottleListActivity.class,false,true);
         }else {
             ToastUtils.show("请点击标题启动服务");
@@ -283,7 +280,7 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         @Override
         public void run() {
             TranslateAnimation alphaAnimation = new TranslateAnimation(0f, 550f, 350, 100);
-            alphaAnimation.setDuration(15000);
+            alphaAnimation.setDuration(11000);
             alphaAnimation.setRepeatCount(1);
             alphaAnimation.setRepeatMode(Animation.REVERSE);
             alphaAnimation.setFillAfter(true);
