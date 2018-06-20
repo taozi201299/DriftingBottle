@@ -46,7 +46,8 @@ public class MyReceiver extends BroadcastReceiver {
             if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
                 String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
                 Intent msgIntent = new Intent(MainActivity.MESSAGE_REGISTRATION_ID);
-                context.sendBroadcast(msgIntent);
+                msgIntent.putExtra(MainActivity.REGISTERID,regId);
+                LocalBroadcastManager.getInstance(context).sendBroadcast(msgIntent);
                 Log.d(TAG, "[MyReceiver] 接收Registration Id : " + regId);
                 //send the Registration Id to your server...
 

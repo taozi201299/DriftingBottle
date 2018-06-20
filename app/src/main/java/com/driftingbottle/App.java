@@ -15,12 +15,12 @@ import cn.jpush.android.api.JPushInterface;
 public class  App extends Application {
 
     private static final String TAG = App.class.getSimpleName();
-    public static App app;
     private static Context context;
     public static final boolean bDebug = false;
     public static String content = "┗(＾0＾)┓\uD83D\uDE35\uD83D\uDE35";
     public static String strMoonUrl = "";
     public static int count = 0;
+    public static String registerId = "";
     /**
      * 记录已读的bottleId
      */
@@ -37,7 +37,6 @@ public class  App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        app = this;
         context = getApplicationContext();
         OkHttpUtils.init(this);
         OkHttpUtils.getInstance().setConnectTimeout(1000);

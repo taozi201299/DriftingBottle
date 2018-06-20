@@ -81,6 +81,7 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
     private MessageReceiver mMessageReceiver;
     public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
     public static final String MESSAGE_REGISTRATION_ID = "com.example.jpushdemo.MESSAGE_REGISTRATION_ID";
+    public static final String REGISTERID = "registerID";
     public static final String KEY_TITLE = "title";
     public static final String KEY_MESSAGE = "message";
     public static final String KEY_EXTRAS = "extras";
@@ -281,13 +282,13 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
 
         @Override
         public void run() {
-            TranslateAnimation alphaAnimation2 = new TranslateAnimation(0f, 550f, 350, 100);
-            alphaAnimation2.setDuration(15000);
-            alphaAnimation2.setRepeatCount(1);
-            alphaAnimation2.setRepeatMode(Animation.REVERSE);
-            alphaAnimation2.setFillAfter(true);
-            iv_baloon.setAnimation(alphaAnimation2);
-            alphaAnimation2.start();
+            TranslateAnimation alphaAnimation = new TranslateAnimation(0f, 550f, 350, 100);
+            alphaAnimation.setDuration(15000);
+            alphaAnimation.setRepeatCount(1);
+            alphaAnimation.setRepeatMode(Animation.REVERSE);
+            alphaAnimation.setFillAfter(true);
+            iv_baloon.setAnimation(alphaAnimation);
+            alphaAnimation.start();
         }
     }
 
@@ -297,6 +298,7 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         IntentFilter filter = new IntentFilter();
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         filter.addAction(MESSAGE_RECEIVED_ACTION);
+        filter.addAction(MESSAGE_REGISTRATION_ID);
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, filter);
     }
 
@@ -317,6 +319,10 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
                     message.what = messageCount;
                     mHandler.sendEmptyMessage(message.what);
                 }
+            }else if(MESSAGE_REGISTRATION_ID.equals(intent.getAction())){
+                String msg = intent.getStringExtra(REGISTERID);
+                App.registerId = msg== null ?"":msg;
+
             }
         }
     }
