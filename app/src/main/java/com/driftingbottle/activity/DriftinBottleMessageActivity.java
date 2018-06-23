@@ -61,7 +61,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     @Override
     public void initData() {
 
-        showDataLoadingDialog();
+
         Bundle bundle = getIntent().getBundleExtra(DEFAULT_BUNDLE_NAME);
         bottleBean = (BottleBean) bundle.getSerializable("key");
         chatAdapter.setMyImage(bottleBean.getBottleImg());
@@ -177,6 +177,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     }
     @Override
     public void initView() {
+        showDataLoadingDialog();
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         chatRecyclerView.setLayoutManager(layoutmanager);

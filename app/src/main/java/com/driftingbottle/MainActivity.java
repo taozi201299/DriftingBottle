@@ -11,6 +11,12 @@ import android.os.Message;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +24,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,13 +34,20 @@ import android.widget.Toast;
 import com.driftingbottle.activity.DriftinBottleListActivity;
 import com.driftingbottle.activity.DriftinBottleMessageActivity;
 import com.driftingbottle.activity.SettingActivity;
+import com.driftingbottle.activity.TestActivity;
 import com.driftingbottle.base.TranslucentActivity;
 import com.driftingbottle.bean.MessageBean;
 import com.driftingbottle.utils.CommonUtils;
+import com.driftingbottle.utils.EmojiUtil;
 import com.driftingbottle.utils.ToastUtils;
+
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.rockerhieu.emojicon.EmojiconsFragment;
 import io.github.rockerhieu.emojicon.emoji.Emojicon;
 
 public class MainActivity extends TranslucentActivity implements View.OnClickListener,TranslucentActivity.IbtnClicked {
@@ -67,6 +81,14 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
     LinearLayout ll_baloon;
     @BindView(R.id.iv_baloon)
     ImageView iv_baloon;
+    @BindView(R.id.rl_msg)
+    RelativeLayout rl_msg;
+    @BindView(R.id.et_msg_tle)
+    EditText emojiconEditText;
+    @BindView(R.id.iv_img)
+    ImageView iv_img;
+    @BindView(R.id.btn_send)
+    Button btn_send;
     private ImageView iv_shape;
     private ImageView iv_shape_center;
     private ImageView iv_shape_right;
@@ -75,6 +97,115 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
     private int iCurrentHour = 0;
     public static boolean isForeground = false;
     private boolean bStart = false;
+
+    private boolean bFinish = false;
+
+    HashMap<String,Integer> emojisMap = new HashMap<String, Integer>(){
+        {
+            put("[微笑]", R.drawable.emoji_1f0078);
+            put("[撇嘴]", R.drawable.emoji_1f0079);
+            put("[色]", R.drawable.emoji_1f0080);
+            put("[发呆]", R.drawable.emoji_1f0081);
+            put("[得意]", R.drawable.emoji_1f0082);
+            put("[流泪]", R.drawable.emoji_1f0083);
+            put("[害羞]", R.drawable.emoji_1f0084);
+//2
+            put("[闭嘴]", R.drawable.emoji_1f0085);
+            put("[睡]", R.drawable.emoji_1f0095);
+            put("[大哭]", R.drawable.emoji_1f0096);
+            put("[尴尬]", R.drawable.emoji_1f0097);
+            put("[发怒]", R.drawable.emoji_1f0098);
+            put("[调皮]", R.drawable.emoji_1f0099);
+            put("[呲牙]", R.drawable.emoji_1f0088);
+
+            //3
+            put("[惊讶]", R.drawable.emoji_1f0087);
+            put("[难过]", R.drawable.emoji_1f0086);
+            put("[囧]", R.drawable.emoji_1f0094);
+            put("[抓狂]", R.drawable.emoji_1f0093);
+            put("[吐]", R.drawable.emoji_1f0092);
+            put("[偷笑]", R.drawable.emoji_1f0091);
+
+            //4
+            put("[愉快]", R.drawable.emoji_1f0090);
+            put("[白眼]", R.drawable.emoji_1f0089);
+            put("[傲慢]", R.drawable.emoji_1f00100);
+            put("[困]", R.drawable.emoji_1f00101);
+            put("[惊恐]", R.drawable.emoji_1f00102);
+            put("[流汗]", R.drawable.emoji_1f00103);
+            put("[憨笑]", R.drawable.emoji_1f00104);
+
+            //5
+            put("[悠闲]", R.drawable.emoji_1f00105);
+            put("[奋斗]", R.drawable.emoji_1f00106);
+            put("[咒骂]", R.drawable.emoji_1f00107);
+            put("[疑问]", R.drawable.emoji_1f00108);
+            put("[嘘]", R.drawable.emoji_1f00116);
+            put("[晕]", R.drawable.emoji_1f00117);
+            put("[衰]", R.drawable.emoji_1f00118);
+            //6
+
+
+            put("[骷髅]", R.drawable.emoji_1f00119);
+            put("[敲打]", R.drawable.emoji_1f00120);
+            put("[再见]", R.drawable.emoji_1f00121);
+            put("[擦汗]", R.drawable.emoji_1f00110);
+            put("[抠鼻]", R.drawable.emoji_1f00109);
+            put("[鼓掌]", R.drawable.emoji_1f00115);
+
+            //7
+            put("[坏笑]", R.drawable.emoji_1f00114);
+            put("[左哼哼]", R.drawable.emoji_1f00113);
+            put("[右哼哼]", R.drawable.emoji_1f00112);
+            put("[哈欠]", R.drawable.emoji_1f00111);
+            put("[鄙视]", R.drawable.emoji_1f00122);
+            put("[哈欠]", R.drawable.emoji_1f00123);
+            put("[快哭了]", R.drawable.emoji_1f00124);
+
+
+            //8
+            put("[阴险]", R.drawable.emoji_1f00125);
+            put("[亲亲]", R.drawable.emoji_1f00126);
+            put("[可怜]", R.drawable.emoji_1f00127);
+            put("[菜刀]", R.drawable.emoji_1f00128);
+            put("[西瓜]", R.drawable.emoji_1f00129);
+            put("[啤酒]", R.drawable.emoji_1f00130);
+            put("[咖啡]", R.drawable.emoji_1f00131);
+
+
+            //9
+            put("[猪头]", R.drawable.emoji_1f00137);
+            put("[玫瑰]", R.drawable.emoji_1f00138);
+            put("[凋谢]", R.drawable.emoji_1f00139);
+            put("[嘴唇]", R.drawable.emoji_1f00140);
+            put("[爱心]", R.drawable.emoji_1f00141);
+            put("[心碎]", R.drawable.emoji_1f00142);
+
+            //10
+
+            put("[蛋糕]", R.drawable.emoji_1f00143);
+            put("[炸弹]", R.drawable.emoji_1f00132);
+            put("[便便]", R.drawable.emoji_1f00136);
+            put("[月亮]", R.drawable.emoji_1f00135);
+            put("[太阳]", R.drawable.emoji_1f00134);
+            put("[拥抱]", R.drawable.emoji_1f00133);
+            put("[强]", R.drawable.emoji_1f00144);
+
+            //11
+            put("[弱]", R.drawable.emoji_1f00145);
+            put("[握手]", R.drawable.emoji_1f00146);
+            put("[胜利]", R.drawable.emoji_1f00147);
+            put("[抱拳]", R.drawable.emoji_1f00148);
+            put("[勾引]", R.drawable.emoji_1f00149);
+            put("[拳头]", R.drawable.emoji_1f00150);
+            put("[OK]", R.drawable.emoji_1f00151);
+
+            //12
+            put("[跳跳]", R.drawable.emoji_1f00152);
+            put("[发抖]", R.drawable.emoji_1f00153);
+            put("[转圈]", R.drawable.emoji_1f00154);
+        }
+    };
 
 
     //for receive customer msg from jpush server
@@ -115,6 +246,77 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         rl_three.setOnClickListener(this);
         tv_dialog_ok.setOnClickListener(this);
         setbtnClicked(this);
+        emojiconEditText.addTextChangedListener(new MyTextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                SpannableString endStr = null;
+//                if(!bFinish) {
+//                    String text = s.toString();
+//                    SpannableStringBuilder builder = new SpannableStringBuilder(
+//                            text);
+//                    for (String key : emojisMap.keySet()) {
+//                        String rexgString = "";
+//                        if (text.contains(key)) {
+//                            text.replace(key,"~");
+//                            rexgString = "~";
+//                            Pattern pattern = Pattern.compile(rexgString);
+//                            endStr = EmojiUtil.getExpressionString(mContext,emojisMap.get(key),text,rexgString,s.length());
+////                            Matcher matcher = pattern.matcher(text);
+////                            while (matcher.find()) {
+////                                //找到指定的字符后 setSpan的参数分别为（指定的图片，字符的开始位置，字符的结束位置）
+////                                builder.setSpan(new ImageSpan(MainActivity.this,
+////                                                emojisMap.get(key)), matcher.start(), matcher.end(),
+////                                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+////                            }
+//                            endStr.toString().replace("[","");
+//                            endStr.toString().replace("]","");
+//                        }
+//                    }
+//                    bFinish = true;
+//                    emojiconEditText.setText(endStr);
+//
+//                    //需要替换的字符
+//
+//                }
+                if(!bFinish){
+                    String text = s.toString();
+                    String replaceText ;
+                    SpannableStringBuilder builder = new SpannableStringBuilder(
+                            text);
+                    for(String key :emojisMap.keySet()){
+                        if(text.contains(key)){
+                            //需要替换的字符
+                            String rexgString = key.replace("[","");
+                            rexgString = rexgString.replace("]","");
+                            rexgString = "\\["+rexgString +"\\]";
+                            Pattern pattern = Pattern.compile(rexgString);
+                            Matcher matcher = pattern.matcher(text);
+                            while (matcher.find()) {
+                                //找到指定的字符后 setSpan的参数分别为（指定的图片，字符的开始位置，字符的结束位置）
+                                builder.setSpan(new ImageSpan(MainActivity.this,
+                                                emojisMap.get(key)), matcher.start(), matcher.end(),
+                                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            }
+                        }
+                    }
+
+                    bFinish = true;
+                    emojiconEditText.setText(builder);
+                    emojiconEditText.setSelection(text.length());
+                }
+
+            }
+        });
     }
     @Override
     public void initView(){
@@ -275,6 +477,21 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         App.content = content;
 
     }
+
+    @Override
+    public void onBtnClicked(int type) {
+        switch (type){
+            case 0:
+                sendMessage();
+                break;
+        }
+    }
+    private void sendMessage(){
+        rl_msg.setVisibility(View.VISIBLE);
+        iv_img.setVisibility(View.GONE);
+        setEmojiconFragment(false);
+    }
+
     class BollenAnimRunnable implements Runnable{
 
         @Override
@@ -322,6 +539,33 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
 
             }
         }
+    }
+    private void setEmojiconFragment(boolean useSystemDefault) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.emojicons, EmojiconsFragment.newInstance(useSystemDefault))
+                .commit();
+    }
+
+    @Override
+    public void onEmojiconClicked(Emojicon emojicon) {
+        EmojiconsFragment.input(emojiconEditText, emojicon);
+    }
+
+    @Override
+    public void onEmojiconBackspaceClicked(View v) {
+        EmojiconsFragment.backspace(emojiconEditText);
+    }
+
+    private class MyTextWatcher implements TextWatcher
+    {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+        @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
+        @Override public void afterTextChanged(Editable s){
+
+        }
+
     }
 }
 

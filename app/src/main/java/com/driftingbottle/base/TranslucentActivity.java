@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.driftingbottle.R;
+import com.driftingbottle.utils.EmojiUtil;
 import com.driftingbottle.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -27,7 +30,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import io.github.rockerhieu.emojicon.EmojiconEditText;
+import io.github.rockerhieu.emojicon.EmojiconGridFragment;
 import io.github.rockerhieu.emojicon.EmojiconTextView;
+import io.github.rockerhieu.emojicon.EmojiconsFragment;
+import io.github.rockerhieu.emojicon.EmojiconsFragment.OnEmojiconBackspaceClickedListener;
+import io.github.rockerhieu.emojicon.emoji.Emojicon;
 import me.iwf.photopicker.PhotoPickerActivity;
 import me.iwf.photopicker.utils.PhotoPickerIntent;
 import pub.devrel.easypermissions.AfterPermissionGranted;
@@ -37,17 +44,12 @@ import pub.devrel.easypermissions.EasyPermissions;
  * Created by jidan on 18-3-12.
  */
 
-public abstract class TranslucentActivity extends BaseFragmentActivity implements EasyPermissions.PermissionCallbacks{
+public abstract class TranslucentActivity extends BaseFragmentActivity implements EasyPermissions.PermissionCallbacks, EmojiconGridFragment.OnEmojiconClickedListener, OnEmojiconBackspaceClickedListener{
 
     private IbtnClicked m_btnClicked;
     private Dialog shareDialog;
     LinearLayout ll_wenben;
     LinearLayout ll_image;
-    EditText emojiconEditText ;
-    ImageView iv_img;
-    Button btn_send;
-    LinearLayout ll_msg;
-    LinearLayout ll_choice;
     private static final int RC_CAMERA_PERM = 100;
     private static final int PICKER_RESULT= 101;
     List<String> photos = new ArrayList<String>();
@@ -72,20 +74,12 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
         dialogWindow.setBackgroundDrawableResource(R.drawable.pop_dialog_shape);
         ll_wenben = (LinearLayout)v.findViewById(R.id.ll_wenben);
         ll_image = (LinearLayout)v.findViewById(R.id.ll_image);
-        ll_choice = (LinearLayout)v.findViewById(R.id.ll_choice);
-        emojiconEditText = (EditText) v.findViewById(R.id.et_msg_tle);
-        iv_img = (ImageView)v.findViewById(R.id.iv_img);
-        btn_send = (Button)v.findViewById(R.id.btn_send);
-        ll_msg = (LinearLayout)v.findViewById(R.id.ll_msg);
         ll_wenben.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 type = 0;
-                ll_choice.setVisibility(View.GONE);
-                iv_img.setVisibility(View.GONE);
-                emojiconEditText.setVisibility(View.VISIBLE);
-                btn_send.setVisibility(View.VISIBLE);
-                ll_msg.setVisibility(View.VISIBLE);
+                m_btnClicked.onBtnClicked(type);
+                shareDialog.dismiss();
 
             }
         });
@@ -96,28 +90,9 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
                requestCameraPermission();
             }
         });
-        btn_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String content = "";
-                switch (type){
-                    case 0:
-                        content = emojiconEditText.getText().toString();
-                        break;
-                    case 1:
-                        content = photos.get(0);
-                        break;
-                }
-                if(content == null || content.isEmpty()){
-                    ToastUtils.show("内容为空");
-                    return;
-                }
-                shareDialog.dismiss();
-                m_btnClicked.onBtnClicked(type,content);
-            }
-        });
         return this;
     }
+
     /**
      * 显示分享的view
      */
@@ -127,6 +102,7 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
 
     public interface IbtnClicked{
         void onBtnClicked(int type,String content);
+        void onBtnClicked(int type);
     }
     public void setbtnClicked(IbtnClicked ibtnClicked){
         if(ibtnClicked != null){
@@ -178,18 +154,19 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICKER_RESULT && resultCode == RESULT_OK) {
-            photos = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
-            if(photos == null || photos.size() == 0){
-                ToastUtils.show("未选择图片");
-                return;
-            }
-            ll_choice.setVisibility(View.GONE);
-            emojiconEditText.setVisibility(View.GONE);
-            ll_msg.setVisibility(View.GONE);
-            iv_img.setVisibility(View.VISIBLE);
-            btn_send.setVisibility(View.VISIBLE);
-            Glide.with(this).load(photos.get(0)).placeholder(R.mipmap.loading)
-                    .error(R.mipmap.error_img).into(iv_img);
+//            photos = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
+//            if(photos == null || photos.size() == 0){
+//                ToastUtils.show("未选择图片");
+//                return;
+//            }
+//            ll_choice.setVisibility(View.GONE);
+//            emojiconEditText.setVisibility(View.GONE);
+//            ll_msg.setVisibility(View.GONE);
+//            iv_img.setVisibility(View.VISIBLE);
+//            btn_send.setVisibility(View.VISIBLE);
+//            Glide.with(this).load(photos.get(0)).placeholder(R.mipmap.loading)
+//                    .error(R.mipmap.error_img).into(iv_img);
         }
     }
+
 }

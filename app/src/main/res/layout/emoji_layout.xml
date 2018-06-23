@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/ll_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/_10dp"
+        android:layout_marginLeft="@dimen/_10dp"
+        android:orientation="vertical"
+        >
+        <EditText
+
+            android:id="@+id/et_msg_tle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_10dp"
+            android:textSize="14sp"
+            android:background="@null"
+            android:hint="请输入"
+            android:padding="@dimen/_10dp"
+            android:layout_gravity="center_vertical"
+            android:textCursorDrawable="@drawable/edit_text_cursor"
+            android:textColor="@color/balck"/>
+
+        <EditText
+
+            android:id="@+id/et_msg_tle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_10dp"
+            android:textSize="14sp"
+            android:autoLink="all"
+            android:hint="请输入"
+            android:padding="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_15dp"
+            android:layout_gravity="center_vertical"
+            android:textCursorDrawable="@drawable/edit_text_cursor"
+            android:textColor="@color/balck"/>
+
+        <Button
+            android:id="@+id/btn_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"/>
+
+        <io.github.rockerhieu.emojicon.EmojiconEditText
+            android:id="@+id/et_msg_tle2"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="14sp"
+            android:gravity="top"
+            android:background="@null"
+            android:hint="标题"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_weight="1"
+            android:paddingBottom="10dp"
+            android:paddingTop="13dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/balck"
+            emojicon:emojiconAlignment="baseline"
+            emojicon:emojiconSize="18sp"/>
+    </LinearLayout>
+
+</LinearLayout>
