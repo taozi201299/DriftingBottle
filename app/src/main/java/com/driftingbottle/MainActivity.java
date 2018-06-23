@@ -8,6 +8,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PowerManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
@@ -216,6 +218,25 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
     public static final String KEY_TITLE = "title";
     public static final String KEY_MESSAGE = "message";
     public static final String KEY_EXTRAS = "extras";
+    private PowerManager.WakeLock mWakeLock;
+
+    private void acquireWakeLock() {
+        if(mWakeLock == null) {
+            PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
+            mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP,
+                    this.getClass().getCanonicalName());
+            mWakeLock.acquire();
+
+        }
+
+    }
+
+    private void releaseWakeLock() {
+        if(mWakeLock != null) {
+            mWakeLock.release();
+            mWakeLock = null;
+        }
+    }
 
     private Handler mHandler = new Handler(){
         @Override
@@ -237,6 +258,7 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
 
     @Override
     public void initListener() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         registerMessageReceiver();
         iv_action_bar2_left.setOnClickListener(this);
         iv_setting.setOnClickListener(this);
@@ -320,8 +342,11 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
     }
     @Override
     public void initView(){
+        acquireWakeLock();
         iv_setting.setVisibility(View.VISIBLE);
     }
+
+
 
     @Override
     protected void onResume() {
@@ -384,6 +409,7 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        releaseWakeLock();
         stopService();
 
     }
@@ -468,6 +494,7 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         }
         ToastUtils.show("服务启动成功");
         bStart = true;
+        new Thread(new MyRunnable()).start();
 
     }
 
@@ -566,6 +593,21 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
 
         }
 
+    }
+    class MyRunnable implements Runnable{
+
+        @Override
+        public void run() {
+            while (true) {
+                iTotalCount++;
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Log.d("1111111111111111111111111", String.valueOf(iTotalCount));
+            }
+        }
     }
 }
 
