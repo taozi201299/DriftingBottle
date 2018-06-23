@@ -66,7 +66,6 @@ public class EmojiconEditText extends AppCompatEditText {
      */
     public void setEmojiconSize(int pixels) {
         mEmojiconSize = pixels;
-
         updateText();
     }
 

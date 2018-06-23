@@ -68,42 +68,20 @@
 
     <RelativeLayout
         android:id="@+id/rl_msg"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/action_bar"
         android:layout_marginTop="@dimen/_15dp"
-        android:visibility="visible"
+        android:background="@color/hinecolor"
+        android:visibility="gone"
         >
-        <LinearLayout
-            android:id="@+id/ll_msg"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_200dp"
-            android:paddingLeft="@dimen/_10dp"
-            android:layout_marginLeft="@dimen/_10dp"
-            >
-            <EditText
-                android:id="@+id/et_msg_tle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/btn_send"
-                android:layout_marginRight="@dimen/_50dp"
-                android:layout_centerVertical="true"
-                android:textSize="14sp"
-                android:gravity="top"
-                android:background="@null"
-                android:autoLink="all"
-                android:hint="请输入"
-                android:text="”222222222222222222222222222222222222222222222222222"
-                android:padding="@dimen/_10dp"
-                android:layout_gravity="center_vertical"
-                android:textCursorDrawable="@drawable/edit_text_cursor"
-                android:textColor="@color/balck"/>
-        </LinearLayout>
+        <include layout="@layout/dialog_message_send"></include>
         <ImageView
             android:id="@+id/iv_img"
             android:layout_width="@dimen/_100dp"
             android:layout_height="@dimen/_100dp"
             android:src="@mipmap/yiyue"
+            android:visibility="gone"
             android:layout_marginLeft="@dimen/_10dp"
             android:layout_centerVertical="true"/>
         <Button
@@ -113,6 +91,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/_10dp"
+            android:visibility="gone"
             android:text="群发"/>
     </RelativeLayout>
 

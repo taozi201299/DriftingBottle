@@ -49,6 +49,8 @@ import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.rockerhieu.emojicon.EmojiconEditText;
+import io.github.rockerhieu.emojicon.EmojiconSpan;
 import io.github.rockerhieu.emojicon.EmojiconsFragment;
 import io.github.rockerhieu.emojicon.emoji.Emojicon;
 
@@ -85,8 +87,10 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
     ImageView iv_baloon;
     @BindView(R.id.rl_msg)
     RelativeLayout rl_msg;
-    @BindView(R.id.et_msg_tle)
-    EditText emojiconEditText;
+    @BindView(R.id.et_title)
+    EmojiconEditText et_title;
+    @BindView(R.id.et_content)
+    EmojiconEditText et_content;
     @BindView(R.id.iv_img)
     ImageView iv_img;
     @BindView(R.id.btn_send)
@@ -268,7 +272,7 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         rl_three.setOnClickListener(this);
         tv_dialog_ok.setOnClickListener(this);
         setbtnClicked(this);
-        emojiconEditText.addTextChangedListener(new MyTextWatcher() {
+        et_content.addTextChangedListener(new MyTextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -310,6 +314,8 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
 //                    //需要替换的字符
 //
 //                }
+                int  mEmojiconSize = (int) et_content.getTextSize();
+                int mEmojiconTextSize = (int) et_content.getTextSize();
                 if(!bFinish){
                     String text = s.toString();
                     String replaceText ;
@@ -326,16 +332,17 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
                             while (matcher.find()) {
                                 //找到指定的字符后 setSpan的参数分别为（指定的图片，字符的开始位置，字符的结束位置）
                                 builder.setSpan(new ImageSpan(MainActivity.this,
-                                                emojisMap.get(key)), matcher.start(), matcher.end(),
+                                                emojisMap.get(key), mEmojiconSize),matcher.start(), matcher.end(),
                                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                             }
                         }
                     }
 
                     bFinish = true;
-                    emojiconEditText.setText(builder);
-                    emojiconEditText.setSelection(text.length());
+                    et_content.setText(builder);
+                    et_content.setSelection(text.length());
                 }
+                bFinish = false;
 
             }
         });
@@ -515,7 +522,6 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
     }
     private void sendMessage(){
         rl_msg.setVisibility(View.VISIBLE);
-        iv_img.setVisibility(View.GONE);
         setEmojiconFragment(false);
     }
 
@@ -576,12 +582,12 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
 
     @Override
     public void onEmojiconClicked(Emojicon emojicon) {
-        EmojiconsFragment.input(emojiconEditText, emojicon);
+        EmojiconsFragment.input(et_content, emojicon);
     }
 
     @Override
     public void onEmojiconBackspaceClicked(View v) {
-        EmojiconsFragment.backspace(emojiconEditText);
+        EmojiconsFragment.backspace(et_content);
     }
 
     private class MyTextWatcher implements TextWatcher
@@ -605,7 +611,7 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Log.d("1111111111111111111111111", String.valueOf(iTotalCount));
+                Log.d("111", String.valueOf(iTotalCount));
             }
         }
     }

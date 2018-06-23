@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/pop_menu"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_margin="@dimen/_15dp"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/ll_bg"
+        android:background="@drawable/bg_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_300dp"
+        android:gravity="center"
+        >
+        <LinearLayout
+            android:id="@+id/ll_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/_10dp"
+            android:layout_marginRight="@dimen/_10dp">
+
+            <io.github.rockerhieu.emojicon.EmojiconEditText
+                android:id="@+id/et_title"
+                android:layout_width="@dimen/_300dp"
+                android:layout_height ="wrap_content"
+                android:gravity="left|top"
+                android:layout_margin="@dimen/_10dp"
+                android:background="@null"
+                android:singleLine="true"
+                android:textSize="@dimen/_14sp"
+                android:hint="请填写标题"/>
+
+        </LinearLayout>
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1dp"
+            android:background="@color/gray_bb"
+            android:layout_below="@+id/ll_title">
+        </View>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/line"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/_10dp"
+            android:layout_marginRight="@dimen/_10dp">
+
+            <io.github.rockerhieu.emojicon.EmojiconEditText
+                android:id="@+id/et_content"
+                android:layout_width="@dimen/_300dp"
+                android:layout_height ="@dimen/_100dp"
+                android:layout_margin="@dimen/_10dp"
+                android:background="@null"
+                android:textSize="@dimen/_14sp"
+                android:hint="请输入消息"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bg_edit_text"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_send"
+                android:layout_width="@dimen/_120dp"
+                android:layout_height="wrap_content"
+                android:text="发送"
+                />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
+

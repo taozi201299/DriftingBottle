@@ -78,8 +78,8 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
             @Override
             public void onClick(View v) {
                 type = 0;
-                m_btnClicked.onBtnClicked(type);
                 shareDialog.dismiss();
+                m_btnClicked.onBtnClicked(type);
 
             }
         });
@@ -167,6 +167,32 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
 //            Glide.with(this).load(photos.get(0)).placeholder(R.mipmap.loading)
 //                    .error(R.mipmap.error_img).into(iv_img);
         }
+    }
+    public TranslucentActivity showSendDialog(int resId){
+        shareDialog = new Dialog(this);
+        View v = LayoutInflater.from(this).inflate(resId, null);
+        shareDialog.setContentView(v);
+        Window dialogWindow = shareDialog.getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.gravity = Gravity.CENTER;
+        shareDialog.setCancelable(false);
+        dialogWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.dialog_bg_shape));
+        dialogWindow.setAttributes(lp);
+        Button bt_send = (Button)v.findViewById(R.id.btn_send);
+        bt_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(m_btnClicked != null){
+                    m_btnClicked.onBtnClicked(1);
+                    shareDialog.dismiss();
+                }
+
+            }
+        });
+        return this;
     }
 
 }
