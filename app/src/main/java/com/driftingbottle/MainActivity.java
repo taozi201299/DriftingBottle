@@ -42,6 +42,7 @@ import com.driftingbottle.bean.MessageBean;
 import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.EmojiUtil;
 import com.driftingbottle.utils.ToastUtils;
+import com.driftingbottle.view.CustomImageSpan;
 
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -330,9 +331,10 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
                             Pattern pattern = Pattern.compile(rexgString);
                             Matcher matcher = pattern.matcher(text);
                             while (matcher.find()) {
+
+                                CustomImageSpan imageSpan = new CustomImageSpan(MainActivity.this, emojisMap.get(key), 2);
                                 //找到指定的字符后 setSpan的参数分别为（指定的图片，字符的开始位置，字符的结束位置）
-                                builder.setSpan(new ImageSpan(MainActivity.this,
-                                                emojisMap.get(key), mEmojiconSize),matcher.start(), matcher.end(),
+                                builder.setSpan(imageSpan,matcher.start(), matcher.end(),
                                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                             }
                         }
