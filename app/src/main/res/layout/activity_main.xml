@@ -76,23 +76,17 @@
         android:visibility="gone"
         >
         <include layout="@layout/dialog_message_send"></include>
-        <ImageView
-            android:id="@+id/iv_img"
-            android:layout_width="@dimen/_100dp"
-            android:layout_height="@dimen/_100dp"
-            android:src="@mipmap/yiyue"
-            android:visibility="gone"
-            android:layout_marginLeft="@dimen/_10dp"
-            android:layout_centerVertical="true"/>
-        <Button
-            android:id="@+id/btn_send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/_10dp"
-            android:visibility="gone"
-            android:text="群发"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_image_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/action_bar"
+        android:layout_marginTop="@dimen/_15dp"
+        android:background="@color/hinecolor"
+        android:visibility="gone"
+        >
+        <include layout="@layout/dialog_image_send_layout"></include>
     </RelativeLayout>
 
     <FrameLayout

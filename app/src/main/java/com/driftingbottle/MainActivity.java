@@ -1,5 +1,6 @@
 package com.driftingbottle;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +34,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.driftingbottle.activity.DriftinBottleListActivity;
 import com.driftingbottle.activity.DriftinBottleMessageActivity;
 import com.driftingbottle.activity.SettingActivity;
@@ -44,6 +46,7 @@ import com.driftingbottle.utils.EmojiUtil;
 import com.driftingbottle.utils.ToastUtils;
 import com.driftingbottle.view.CustomImageSpan;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,6 +57,7 @@ import io.github.rockerhieu.emojicon.EmojiconEditText;
 import io.github.rockerhieu.emojicon.EmojiconSpan;
 import io.github.rockerhieu.emojicon.EmojiconsFragment;
 import io.github.rockerhieu.emojicon.emoji.Emojicon;
+import me.iwf.photopicker.PhotoPickerActivity;
 
 public class MainActivity extends TranslucentActivity implements View.OnClickListener,TranslucentActivity.IbtnClicked {
 
@@ -86,16 +90,26 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
     LinearLayout ll_baloon;
     @BindView(R.id.iv_baloon)
     ImageView iv_baloon;
+
+    /**
+     * 文本消息
+     */
     @BindView(R.id.rl_msg)
     RelativeLayout rl_msg;
     @BindView(R.id.et_title)
     EmojiconEditText et_title;
     @BindView(R.id.et_content)
     EmojiconEditText et_content;
-    @BindView(R.id.iv_img)
-    ImageView iv_img;
-    @BindView(R.id.btn_send)
-    Button btn_send;
+    /**
+     * 图片消息
+     */
+    @BindView(R.id.rl_image_msg)
+    RelativeLayout rl_image_msg;
+    @BindView(R.id.iv_send)
+    ImageView iv_send;
+    @BindView(R.id.btn_iv_send)
+    Button btn_iv_send;
+
     private ImageView iv_shape;
     private ImageView iv_shape_center;
     private ImageView iv_shape_right;
@@ -508,19 +522,28 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
     }
 
     @Override
-    public void onBtnClicked(int type,String content) {
-        // TODO: 2018/6/13 send
-        App.content = content;
-
-    }
-
-    @Override
-    public void onBtnClicked(int type) {
+    public void onBtnClicked(int type,Intent data) {
         switch (type){
             case 0:
                 sendMessage();
                 break;
+            case 1:
+                rl_msg.setVisibility(View.GONE);
+                rl_image_msg.setVisibility(View.VISIBLE);
+                sendImageMessage(data);
+                break;
         }
+    }
+    private void sendImageMessage(Intent data){
+        ArrayList<String>photos = null;
+        photos = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
+            if(photos == null || photos.size() == 0){
+                ToastUtils.show("未选择图片");
+                return;
+            }
+
+            Glide.with(this).load(photos.get(0)).placeholder(R.mipmap.loading)
+                    .error(R.mipmap.error_img).into(iv_send);
     }
     private void sendMessage(){
         rl_msg.setVisibility(View.VISIBLE);

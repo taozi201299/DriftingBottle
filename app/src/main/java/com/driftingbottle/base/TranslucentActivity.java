@@ -79,7 +79,7 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
             public void onClick(View v) {
                 type = 0;
                 shareDialog.dismiss();
-                m_btnClicked.onBtnClicked(type);
+                m_btnClicked.onBtnClicked(type,null);
 
             }
         });
@@ -101,8 +101,7 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
     }
 
     public interface IbtnClicked{
-        void onBtnClicked(int type,String content);
-        void onBtnClicked(int type);
+        void onBtnClicked(int type,Intent data);
     }
     public void setbtnClicked(IbtnClicked ibtnClicked){
         if(ibtnClicked != null){
@@ -154,45 +153,9 @@ public abstract class TranslucentActivity extends BaseFragmentActivity implement
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICKER_RESULT && resultCode == RESULT_OK) {
-//            photos = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
-//            if(photos == null || photos.size() == 0){
-//                ToastUtils.show("未选择图片");
-//                return;
-//            }
-//            ll_choice.setVisibility(View.GONE);
-//            emojiconEditText.setVisibility(View.GONE);
-//            ll_msg.setVisibility(View.GONE);
-//            iv_img.setVisibility(View.VISIBLE);
-//            btn_send.setVisibility(View.VISIBLE);
-//            Glide.with(this).load(photos.get(0)).placeholder(R.mipmap.loading)
-//                    .error(R.mipmap.error_img).into(iv_img);
+            m_btnClicked.onBtnClicked(1,data);
+
         }
-    }
-    public TranslucentActivity showSendDialog(int resId){
-        shareDialog = new Dialog(this);
-        View v = LayoutInflater.from(this).inflate(resId, null);
-        shareDialog.setContentView(v);
-        Window dialogWindow = shareDialog.getWindow();
-        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-
-        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        lp.gravity = Gravity.CENTER;
-        shareDialog.setCancelable(false);
-        dialogWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.dialog_bg_shape));
-        dialogWindow.setAttributes(lp);
-        Button bt_send = (Button)v.findViewById(R.id.btn_send);
-        bt_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(m_btnClicked != null){
-                    m_btnClicked.onBtnClicked(1);
-                    shareDialog.dismiss();
-                }
-
-            }
-        });
-        return this;
     }
 
 }
