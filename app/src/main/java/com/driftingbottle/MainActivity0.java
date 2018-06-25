@@ -4,12 +4,14 @@ import android.*;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -22,10 +24,12 @@ import com.bumptech.glide.Glide;
 import com.driftingbottle.activity.SettingActivity;
 import com.driftingbottle.base.BaseActivity;
 import com.driftingbottle.utils.CommonUtils;
+import com.driftingbottle.utils.EmojiUtil;
 import com.driftingbottle.utils.ToastUtils;
 import com.driftingbottle.view.CustomImageSpan;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -296,6 +300,7 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
             return;
         }else {
             ToastUtils.show("服务启动");
+            bStart = true;
         }
     }
     private void go2SettingActivity(){
@@ -313,6 +318,10 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
      * 检一个的处理
      */
     private void processTwo(){
+        if(!bStart){
+            ToastUtils.show("请点击标题开启服务");
+            return;
+        }
         ll_dialog_select.setVisibility(View.VISIBLE);
         ll_activity_index_wenben.setVisibility(View.VISIBLE);
         ll_activity_index_photo.setVisibility(View.VISIBLE);
@@ -325,6 +334,8 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
 
     }
     private void sendMessage(){
+        String title = et_msg_tle.getText().toString();
+        String msg = et_msg.getText().toString();
 
     }
 
@@ -391,8 +402,8 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
             ToastUtils.show("未选择图片");
             return;
         }
-        Glide.with(this).load(photos.get(0)).placeholder(R.mipmap.loading)
-                .error(R.mipmap.error_img).into(iv_activity_index_photo);
+        Glide.with(this).load(photos.get(0)).placeholder(R.mipmap.dialog_loading_img)
+                .error(R.mipmap.dialog_loading_img).into(iv_activity_index_photo);
     }
 
     private SpannableStringBuilder  replaceStr2Emoji(String content){

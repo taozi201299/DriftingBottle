@@ -11,7 +11,7 @@
         android:layout_below="@+id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/bg_index"
+        android:background="@mipmap/bg"
         android:orientation="vertical"
         >
     </LinearLayout>
@@ -26,8 +26,7 @@
             android:id="@+id/iv_baloon"
             android:layout_width="@dimen/_100dp"
             android:layout_height="@dimen/_100dp"
-            android:paddingLeft="@dimen/_20dp"
-            android:src="@mipmap/bollen"/>
+            android:paddingLeft="@dimen/_20dp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_dialog"
@@ -51,7 +50,7 @@
             android:text="今天的瓶子已经用完啦。"/>
 
         <Button
-            android:background="@mipmap/button"
+            android:background="@drawable/button"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
@@ -98,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="bottom"
-            android:background="@mipmap/wz">
+            android:background="@drawable/wz">
 
         </LinearLayout>
 
@@ -144,7 +143,7 @@
 
 
                 <ImageView
-                    android:src="@mipmap/two"
+                    android:src="@drawable/two"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="@dimen/_21dp"
                     android:id="@+id/iv_two"

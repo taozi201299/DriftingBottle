@@ -50,7 +50,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutId());
        // getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         ButterKnife.bind(this);
-        setStatusBar();
+      //  setStatusBar();
         initView();
         initListener();
         if (mInitActionBar) {

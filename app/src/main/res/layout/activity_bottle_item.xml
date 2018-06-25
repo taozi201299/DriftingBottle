@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="20dp"
-        android:src="@mipmap/hard"
+        android:src="@drawable/hard"
         android:scaleType="fitXY" />
 
     <LinearLayout

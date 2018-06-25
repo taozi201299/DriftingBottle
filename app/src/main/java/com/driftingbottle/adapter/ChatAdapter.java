@@ -80,7 +80,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ((ChatLeftViewHolder) holder).mTvLeftTime.setText(time);
             if(!urlImage.isEmpty())
                 Glide.with(mContext).load(urlImage)
-                        .error(R.mipmap.zl).into(((ChatLeftViewHolder) holder).iv_owner_img);
+                        .error(R.drawable.zl).into(((ChatLeftViewHolder) holder).iv_owner_img);
 
             ((ChatLeftViewHolder) holder).mTvMsgLeft.setVisibility(View.GONE);
             ((ChatLeftViewHolder) holder).iv_left_img.setVisibility(View.GONE);
@@ -93,8 +93,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 ((ChatLeftViewHolder) holder).iv_left_img.setVisibility(View.VISIBLE);
                 Glide.with(mContext)
                         .load(content)
-                        .placeholder(R.mipmap.loading)
-                        .error(R.mipmap.error_img)
+                        .placeholder(R.drawable.emoji_00a9)
+                        .error(R.drawable.emoji_00a9)
                         .listener(new RequestListener<String, GlideDrawable>() {
                             @Override
                             public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
@@ -115,7 +115,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ((ChatRightViewHolder) holder).mTvRightTime.setText(time);
             if(imgUrl != null && !imgUrl.isEmpty()) {
                 Glide.with(mContext).load(imgUrl)
-                        .error(R.mipmap.zl)
+                        .error(R.drawable.zl)
                         .into(((ChatRightViewHolder) holder).iv_owner_img);
             }
             if("0".equals(type)) {  // 文本
@@ -124,8 +124,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }else if("1".equals(type)){
                 ((ChatRightViewHolder) holder).iv_right_img.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(App.content)
-                        .placeholder(R.mipmap.loading)
-                        .error(R.mipmap.error_img)
+                        .placeholder(R.mipmap.dialog_loading_img)
+                        .error(R.mipmap.dialog_loading_img)
                         .into(((ChatRightViewHolder) holder).iv_right_img);
             };
         }

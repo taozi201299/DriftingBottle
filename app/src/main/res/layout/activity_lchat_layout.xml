@@ -41,7 +41,7 @@
             android:layout_toRightOf="@id/iv_owner_img"
             android:layout_marginRight="@dimen/_10dp"
             android:autoLink="all"
-            android:background="@drawable/l"
+            android:background="@drawable/qp"
             android:gravity="center_vertical"
             android:letterSpacing="0.05"
             android:lineSpacingExtra="3dp"
@@ -72,7 +72,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/iv_left_img"
-            android:src="@mipmap/error_img"
             android:layout_centerVertical="true"
             android:visibility="gone"/>
     </RelativeLayout>

@@ -151,6 +151,38 @@ public class EmojiUtil {
         }
         return sb.toString();
     }
+    /**
+     * 把中文字符串转换为十六进制Unicode编码字符串
+     */
+    public static String stringToUnicode(String s) {
+        String str = "";
+        for (int i = 0; i < s.length(); i++) {
+            int ch = (int) s.charAt(i);
+            if (ch > 255)
+                str += "\\u" + Integer.toHexString(ch);
+            else
+                str += "\\" + Integer.toHexString(ch);
+
+        }
+        return str;
+    }
+    /**
+     * 将unicode的汉字码转换成utf-8格式的汉字
+     * @param unicode
+     * @return
+     */
+    public static String unicodeToString(String unicode) {
+
+        String str = unicode.replace("0x", "\\");
+
+        StringBuffer string = new StringBuffer();
+        String[] hex = str.split("\\\\u");
+        for (int i = 1; i < hex.length; i++) {
+            int data = Integer.parseInt(hex[i], 16);
+            string.append((char) data);
+        }
+        return string.toString();
+    }
 
     /**
      * 将emoji替换为unicode
@@ -215,7 +247,7 @@ public class EmojiUtil {
      * @return 如果不包含 返回false,包含 则返回true
      */
 
-    private static boolean isEmojiCharacter(char codePoint) {
+    public static boolean isEmojiCharacter(char codePoint) {
         return !((codePoint == 0x0) || (codePoint == 0x9) || (codePoint == 0xA)
                 || (codePoint == 0xD)
                 || ((codePoint >= 0x20) && (codePoint <= 0xD7FF))

@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:background="@mipmap/uj"/>
+            android:background="@drawable/uj"/>
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"
@@ -39,7 +39,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:background="@mipmap/shezhi"/>
+            android:background="@drawable/shezhi"/>
     </RelativeLayout>
 
 </LinearLayout>

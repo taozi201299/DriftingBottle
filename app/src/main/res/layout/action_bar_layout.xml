@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_action_bar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#393A3E"
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:src="@mipmap/back"
+        android:src="@drawable/uj"
         android:layout_marginStart="@dimen/_10dp"/>
     <LinearLayout
         android:layout_width="@dimen/_1dp"

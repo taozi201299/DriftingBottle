@@ -387,7 +387,7 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         View view = null;
         if(hour <18) {
             ll_baloon.setVisibility(View.VISIBLE);
-            container.setBackgroundResource(R.mipmap.bg_day);
+            container.setBackgroundResource(R.mipmap.bg);
             view = LayoutInflater.from(this).inflate(R.layout.activity_day, null);
             if(iCurrentHour == 0) {
                 Thread thread = new Thread(new BollenAnimRunnable());
@@ -396,7 +396,7 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
         }else {
             ll_baloon.setVisibility(View.GONE);
             view = LayoutInflater.from(this).inflate(R.layout.activity_night,null);
-            container.setBackgroundResource(R.mipmap.bg_index);
+            container.setBackgroundResource(R.mipmap.bg);
             iv_shape = (ImageView)view.findViewById(R.id.iv_shape);
             iv_shape_center = (ImageView)view.findViewById(R.id.iv_shape_center);
             iv_shape_right  =(ImageView)view.findViewById(R.id.iv_shape_right);
@@ -542,8 +542,8 @@ public class MainActivity extends TranslucentActivity implements View.OnClickLis
                 return;
             }
 
-            Glide.with(this).load(photos.get(0)).placeholder(R.mipmap.loading)
-                    .error(R.mipmap.error_img).into(iv_send);
+            Glide.with(this).load(photos.get(0)).placeholder(R.mipmap.dialog_loading_img)
+                    .error(R.mipmap.dialog_loading_img).into(iv_send);
     }
     private void sendMessage(){
         rl_msg.setVisibility(View.VISIBLE);

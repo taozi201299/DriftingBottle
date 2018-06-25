@@ -18,7 +18,7 @@
             android:layout_margin="8dp"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@mipmap/hard"/>
+            android:src="@drawable/hard"/>
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_gravity="center_vertical"
