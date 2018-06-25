@@ -13,6 +13,7 @@ import com.driftingbottle.adapter.ChatAdapter;
 import com.driftingbottle.base.BaseActivity;
 import com.driftingbottle.bean.BottleBean;
 import com.driftingbottle.bean.MessageBean;
+import com.driftingbottle.bean.MessageBean0;
 import com.driftingbottle.utils.ToastUtils;
 import com.driftingbottle.view.PullRecyclerView;
 import com.google.gson.Gson;
@@ -37,8 +38,8 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     XRefreshView xRefreshView;
     ChatAdapter chatAdapter;
     private BottleBean  bottleBean;
-    private MessageBean messageBean;
-    ArrayList<MessageBean>datas = new ArrayList<>();
+    private MessageBean0 messageBean;
+    ArrayList<MessageBean0>datas = new ArrayList<>();
     int iPageIndex = 0;
     boolean bFinish = false;
     @Override
@@ -117,7 +118,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                         closeDataDialog();
                         xRefreshView.stopRefresh();
                         Gson gson = new Gson();
-                        messageBean = gson.fromJson(finalResult,MessageBean.class);
+                        messageBean = gson.fromJson(finalResult,MessageBean0.class);
                         if(messageBean.result.size() == 0){
                             ToastUtils.show("没有更多数据了");
                             return;
@@ -163,7 +164,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                                 closeDataDialog();
                                 xRefreshView.stopRefresh(false);
                                 Gson gson = new Gson();
-                                messageBean = gson.fromJson(result,MessageBean.class);
+                                messageBean = gson.fromJson(result,MessageBean0.class);
                                 if(messageBean.result.size() == 0){
                                     ToastUtils.show("没有更多数据了");
                                     return;
@@ -231,5 +232,8 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         datas.addAll(messageBean.result);
         chatAdapter.setData(datas);
         chatAdapter.notifyDataSetChanged();
+    }
+    private void processResult(){
+
     }
 }

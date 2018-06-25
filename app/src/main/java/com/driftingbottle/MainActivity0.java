@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.os.PowerManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
@@ -21,12 +23,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.driftinbottle.callback.ErrorInfo;
+import com.driftinbottle.callback.RequestCallback;
+import com.driftinbottle.httputils.HttpUtils;
 import com.driftingbottle.activity.SettingActivity;
 import com.driftingbottle.base.BaseActivity;
+import com.driftingbottle.bean.BottleBean;
+import com.driftingbottle.bean.BottleCountBean;
+import com.driftingbottle.bean.MoonBean;
 import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.EmojiUtil;
 import com.driftingbottle.utils.ToastUtils;
 import com.driftingbottle.view.CustomImageSpan;
+import com.google.gson.Gson;
+import com.lzy.okhttputils.cache.CacheMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,6 +76,8 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
      */
     @BindView(R.id.rl_right_layout)
     RelativeLayout rl_right_layout;
+    @BindView(R.id.iv_activity_index_moon)
+    ImageView iv_activity_index_moon;
 
     /**
      * 白天背景布局
@@ -82,6 +94,8 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
     ImageView iv_two;
     @BindView(R.id.iv_three)
     ImageView iv_three;
+    @BindView(R.id.tv_activity_index_count)
+    TextView tv_activity_index_count;
     /**
      * dialog for iv_one click
      */
@@ -131,8 +145,35 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
     private boolean bFinish = false;
     private boolean bEmojiVisible = false;
     private int iEmojiEditText = 0 ; // 0 title 1 msg
+    private boolean bWorking = true;
+    private int iTotalCount = 0;
+    private int iCurrentCount = 0;
+    private long interval;
+    /**
+     * 消息类型 0 文本 1 图片
+     */
+    private int messageType = 0;
+    /**
+     * 图片list
+     */
+    ArrayList<String> photos = null;
     private static final int RC_CAMERA_PERM = 100;
     private static final int PICKER_RESULT= 101;
+
+    private Handler mHandler = new Handler(Looper.getMainLooper()){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    if(iCurrentCount > 0) {
+                        tv_activity_index_count.setVisibility(View.VISIBLE);
+                        tv_activity_index_count.setText(String.valueOf(iCurrentCount));
+                    }
+                    break;
+            }
+        }
+    };
 
     @Override
     public int getLayoutId() {
@@ -174,7 +215,6 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
     public void initData() {
 
     }
-
     @Override
     public void initView() {
         setInitActionBar(false);
@@ -184,16 +224,14 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
          */
         int hour = CommonUtils.getHour();
         if(hour >= 18){
-
+            getMoon();
         }
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         updateBackGround();
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -275,9 +313,11 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
                 sendMessage();
                 break;
             case R.id.iv_activity_index_photo:
+                messageType = 1;
                 requestCameraPermission();
                 break;
             case R.id.ll_activity_index_wenben:
+                messageType = 0;
                 ll_dialog_select.setVisibility(View.GONE);
                 ll_dialog_send_message.setVisibility(View.VISIBLE);
                 break;
@@ -290,8 +330,23 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
     }
     private void stopService(){
         ToastUtils.show("服务停止");
-        bStart = false;
-        bFinish = false;
+        String url = "";
+        HashMap<String,String>param = new HashMap<>();
+        param.put("clientID ",CommonUtils.getUniqueId(mContext));
+        HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
+            @Override
+            public void onResponse(String result) {
+                bStart = false;
+                bFinish = false;
+                iTotalCount = 0;
+            }
+
+            @Override
+            public void onFailure(ErrorInfo.ErrorCode errorInfo) {
+                ToastUtils.show("网络错误，服务停止失败");
+
+            }
+        },CacheMode.DEFAULT);
 
     }
     private void startService(){
@@ -302,11 +357,55 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
             ToastUtils.show("服务启动");
             bStart = true;
         }
+        String url = "http://www.baidu.com";
+        HashMap<String,String> param = new HashMap<>();
+        param.put("clientID ",CommonUtils.getUniqueId(mContext));
+        HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
+            @Override
+            public void onResponse(String result) {
+//                BottleCountBean bottleCountBean ;
+//                Gson gson = new Gson();
+//                bottleCountBean = gson.fromJson(result,BottleCountBean.class);
+//                if(bottleCountBean != null && bottleCountBean.result!= null){
+//                    int count = Integer.valueOf(bottleCountBean.bottleCount);
+//                    iTotalCount  = count;
+//                    int time = Integer.valueOf(bottleCountBean.buildMinutes);
+//                    interval = (time * 60 *1000 ) /(count -1);
+//                    Thread thread = new Thread(new BottleRunnable());
+//                    thread.start();
+//                }
+            }
+
+            @Override
+            public void onFailure(ErrorInfo.ErrorCode errorInfo) {
+                bStart = false;
+                ToastUtils.show("网络错误，服务启动失败");
+
+            }
+        },CacheMode.DEFAULT);
     }
     private void go2SettingActivity(){
         intentActivity(this, SettingActivity.class,false,true);
     }
 
+    private void getMoon(){
+        String url = "http://www.baidu.com";
+        HashMap<String,String>param = new HashMap<>();
+        HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
+            @Override
+            public void onResponse(String result) {
+                Gson gson = new Gson();
+                MoonBean moonBean = gson.fromJson(result,MoonBean.class);
+                if(moonBean != null && moonBean.result != null ){
+                    Glide.with(MainActivity0.this).load(moonBean.moomUrl).into(iv_activity_index_moon);
+                }
+            }
+
+            @Override
+            public void onFailure(ErrorInfo.ErrorCode errorInfo) {
+            }
+        }, CacheMode.DEFAULT);
+    }
     /**
      * 扔瓶子的处理
      */
@@ -334,9 +433,41 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
 
     }
     private void sendMessage(){
-        String title = et_msg_tle.getText().toString();
-        String msg = et_msg.getText().toString();
+        if(messageType == 0) {
+            String title = et_msg_tle.getText().toString();
+            String msg = et_msg.getText().toString();
+            if (title == null || title.isEmpty()) {
+                ToastUtils.show("标题不能为空");
+                return;
+            }
+            if (msg == null || msg.isEmpty()) {
+                ToastUtils.show("消息不能为空");
+                return;
+            }
+        }
+        String url = "";
+        HashMap<String,String>param = new HashMap<>();
+        param.put("clientID",CommonUtils.getUniqueId(mContext));
+        param.put("answerType","1");
+        param.put("dateType",String.valueOf(messageType));
+        if(messageType == 0) {
+            param.put("title", et_msg_tle.getText().toString());
+            param.put("content", et_msg.getText().toString());
+        }else if(messageType == 1){
+            param.put("title","");
+            param.put("content",photos.get(0));
+        }
+        HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
+            @Override
+            public void onResponse(String result) {
+                ToastUtils.show("群发成功");
+            }
 
+            @Override
+            public void onFailure(ErrorInfo.ErrorCode errorInfo) {
+                ToastUtils.show("网络错误，群发失败");
+            }
+        }, CacheMode.DEFAULT);
     }
 
 
@@ -396,7 +527,6 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
         startActivityForResult(photo, PICKER_RESULT);
     }
     private void ProcessImageMessage(Intent data){
-        ArrayList<String> photos = null;
         photos = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
         if(photos == null || photos.size() == 0){
             ToastUtils.show("未选择图片");
@@ -468,6 +598,35 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
                 }
             }
             bFinish = false;
+        }
+    }
+
+    private void postMessage(){
+        Message message = new Message();
+        message.what = 0;
+        mHandler.sendMessage(message);
+    }
+    class BottleRunnable implements Runnable{
+
+        @Override
+        public void run() {
+            while (bWorking){
+                if(iTotalCount == 0){
+                    iCurrentCount ++;
+                    postMessage();
+                    continue;
+                }
+                try {
+                    Thread.sleep(interval);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                iCurrentCount ++;
+                postMessage();
+                if(iCurrentCount == iTotalCount){
+                    bWorking = false;
+                }
+            }
         }
     }
 

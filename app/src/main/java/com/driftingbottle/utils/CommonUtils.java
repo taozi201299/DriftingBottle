@@ -25,6 +25,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
@@ -93,7 +94,8 @@ import javax.net.ssl.TrustManagerFactory;
 
 public class CommonUtils {
     private static final String TAG = CommonUtils.class.getName();
-    public static int  getHour(){
+
+    public static int getHour() {
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
@@ -102,11 +104,13 @@ public class CommonUtils {
         int week = calendar.get(Calendar.DAY_OF_WEEK);
         return hour;
     }
-    public static String getCurrentDate(){
+
+    public static String getCurrentDate() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date curDate = new Date(System.currentTimeMillis());
-        return  formatter.format(curDate);
+        return formatter.format(curDate);
     }
+
     public static Date stringToDate(String strTime)
             throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-M-d");
@@ -114,6 +118,7 @@ public class CommonUtils {
         date = formatter.parse(strTime);
         return date;
     }
+
     //字符串转指定格式时间
     public static String getMyDate(String str) {
         return StringToDate(str, "yyyy-MM-dd", "yyyy-M-d");
@@ -126,6 +131,7 @@ public class CommonUtils {
 
     /**
      * 根据对应日期格式转成相应格式
+     *
      * @param dateStr
      * @param dateFormatStr
      * @param formatStr
@@ -134,15 +140,16 @@ public class CommonUtils {
     public static String StringToDate(String dateStr, String dateFormatStr, String formatStr) {
         DateFormat sdf = new SimpleDateFormat(dateFormatStr);
         Date date = null;
-        try{
+        try {
             date = sdf.parse(dateStr);
-        } catch (ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         SimpleDateFormat s = new SimpleDateFormat(formatStr);
 
         return s.format(date);
     }
+
     /**
      * unicode 转换成 utf-8
      *
@@ -225,6 +232,7 @@ public class CommonUtils {
             return file[file.length - 1];
         }
     }
+
     /**
      * 时间格式化
      *
@@ -264,6 +272,7 @@ public class CommonUtils {
             retStr = "" + i;
         return retStr;
     }
+
     public static String getSDPath() {
         File sdDir = null;
         boolean sdCardExist = Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED); //判断sd卡是否存在
@@ -272,6 +281,7 @@ public class CommonUtils {
         }
         return sdDir.toString();
     }
+
     /**
      * 检测是否有emoji表情
      *
@@ -288,6 +298,7 @@ public class CommonUtils {
         }
         return false;
     }
+
     /**
      * 判断是否是Emoji
      *
@@ -300,6 +311,7 @@ public class CommonUtils {
                 ((codePoint >= 0xE000) && (codePoint <= 0xFFFD)) || ((codePoint >= 0x10000)
                 && (codePoint <= 0x10FFFF));
     }
+
     /**
      * 获取手机IMEI
      *
@@ -327,13 +339,13 @@ public class CommonUtils {
     /**
      * 获取手机IMSI
      */
-    public static String getIMSI(Context context){
+    public static String getIMSI(Context context) {
         try {
-            TelephonyManager telephonyManager=(TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             //获取IMSI号
-            String imsi=telephonyManager.getSubscriberId();
-            if(null==imsi){
-                imsi="";
+            String imsi = telephonyManager.getSubscriberId();
+            if (null == imsi) {
+                imsi = "";
             }
             return imsi;
         } catch (Exception e) {
@@ -341,9 +353,10 @@ public class CommonUtils {
             return "";
         }
     }
-    public static int getIntInterval(String afterTime,String lastTime){
+
+    public static int getIntInterval(String afterTime, String lastTime) {
         int m = 0;
-        if(afterTime.length()!=19){
+        if (afterTime.length() != 19) {
             return 0;
         }
         try {
@@ -352,11 +365,11 @@ public class CommonUtils {
             ParsePosition pos = new ParsePosition(0);
             ParsePosition pos1 = new ParsePosition(0);
             Date d1 = (Date) sd1.parse(afterTime, pos);
-            Date last = (Date)sd2.parse(lastTime,pos1);
+            Date last = (Date) sd2.parse(lastTime, pos1);
             // 用现在距离1970年的时间间隔new
 
             // Date().getTime()减去以前的时间距离1970年的时间间隔d1.getTime()得出的就是以前的时间与现在时间的时间间隔
-            long time = d1.getTime() -last.getTime();// 得出的时间间隔是毫秒
+            long time = d1.getTime() - last.getTime();// 得出的时间间隔是毫秒
             m = (int) ((time % 3600000) / 60000);// 得出的时间间隔的单位是分钟
         } catch (Exception e) {
             return 0;
@@ -364,13 +377,14 @@ public class CommonUtils {
         return m;
 
     }
-    public static String getInterval(String inputTime,String lastTime) {
 
-        if(inputTime.length()!=19){
+    public static String getInterval(String inputTime, String lastTime) {
+
+        if (inputTime.length() != 19) {
 
             return inputTime;
         }
-        String result= null;
+        String result = null;
 
         try {
 
@@ -379,91 +393,90 @@ public class CommonUtils {
             ParsePosition pos = new ParsePosition(0);
 
             Date d1 = (Date) sd.parse(inputTime, pos);
-            Date last = (Date)sd.parse(lastTime,pos);
+            Date last = (Date) sd.parse(lastTime, pos);
 
             // 用现在距离1970年的时间间隔new
 
             // Date().getTime()减去以前的时间距离1970年的时间间隔d1.getTime()得出的就是以前的时间与现在时间的时间间隔
 
-            long time = d1.getTime() -last.getTime();// 得出的时间间隔是毫秒
+            long time = d1.getTime() - last.getTime();// 得出的时间间隔是毫秒
 
-            if (time / 1000 <= 0 ) {
+            if (time / 1000 <= 0) {
 
                 // 如果时间间隔小于等于0秒则显示“刚刚”time/10得出的时间间隔的单位是秒
 
-                result= "刚刚";
+                result = "刚刚";
 
-            } else if (time / 1000 < 60 ) {
+            } else if (time / 1000 < 60) {
 
                 // 如果时间间隔小于60秒则显示多少秒前
 
                 int se = (int) ((time % 60000) / 1000);
 
-                result= se + "秒前";
+                result = se + "秒前";
 
-            } else if (time / 60000 < 60 ) {
+            } else if (time / 60000 < 60) {
 
                 // 如果时间间隔小于60分钟则显示多少分钟前
 
                 int m = (int) ((time % 3600000) / 60000);// 得出的时间间隔的单位是分钟
 
-                result= m + "分钟前";
+                result = m + "分钟前";
 
-            } else if (time / 3600000 < 24 ) {
+            } else if (time / 3600000 < 24) {
 
                 // 如果时间间隔小于24小时则显示多少小时前
 
                 int h = (int) (time / 3600000);// 得出的时间间隔的单位是小时
 
-                result= h + "小时前";
+                result = h + "小时前";
 
-            }else if (time / 86400000 < 2 ) {
+            } else if (time / 86400000 < 2) {
 
                 // 如果时间间隔小于2天则显示昨天
 
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
-                result= sdf.format(d1.getTime());
+                result = sdf.format(d1.getTime());
 
-                result= "昨天" +
+                result = "昨天" +
                         result;
 
-            }else if (time / 86400000 < 3 ) {
+            } else if (time / 86400000 < 3) {
 
                 // 如果时间间隔小于3天则显示前天
 
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
-                result= sdf.format(d1.getTime());
+                result = sdf.format(d1.getTime());
 
-                result= "前天" +
+                result = "前天" +
                         result;
 
-            }else if (time / 86400000 < 30 ) {
+            } else if (time / 86400000 < 30) {
 
                 // 如果时间间隔小于30天则显示多少天前
 
                 SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日 HH:mm");
 
-                result= sdf.format(d1.getTime());
+                result = sdf.format(d1.getTime());
 
-            } else if (time / 2592000000l < 12 ) {
+            } else if (time / 2592000000l < 12) {
 
                 // 如果时间间隔小于12个月则显示多少月前
 
                 SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日");
 
-                result= sdf.format(d1.getTime());
+                result = sdf.format(d1.getTime());
 
 
-
-            }else {
+            } else {
 
 //                // 大于1年，显示年月日时间
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
 
-                result= sdf.format(d1.getTime());
+                result = sdf.format(d1.getTime());
 
             }
 
@@ -477,4 +490,9 @@ public class CommonUtils {
 
     }
 
+    public static String getUniqueId(Context context) {
+        String androidID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        String id = androidID + Build.SERIAL;
+        return id;
+    }
 }

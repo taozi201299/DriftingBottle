@@ -14,6 +14,5 @@ public class BaseBeanOne<T> implements Serializable {
     @SerializedName("msg")
     public String msg;
     @SerializedName("data")
-    T result;
-
+    public T result;
 }

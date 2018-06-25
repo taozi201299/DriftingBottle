@@ -16,6 +16,7 @@ import com.driftingbottle.adapter.BottleAdatper;
 import com.driftingbottle.adapter.CommonAdapter;
 import com.driftingbottle.base.BaseActivity;
 import com.driftingbottle.bean.BottleBean;
+import com.driftingbottle.bean.BottleBean0;
 import com.driftingbottle.utils.ToastUtils;
 import com.driftingbottle.view.PullRecyclerView;
 import com.google.gson.Gson;
@@ -37,7 +38,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     RecyclerView bottleRecyclerView;
     @BindView(R.id.tv_emtry_message)
     TextView tv_emtry_message;
-    private BottleBean bottleBean ;
+    private BottleBean0 bottleBean ;
     private BottleAdatper bottleAdatper;
 
     @Override
@@ -167,7 +168,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
                         //此时已在主线程中，可以更新UI了
                         closeDataDialog();
                         Gson gson = new Gson();
-                        bottleBean = gson.fromJson(finalResult,BottleBean.class);
+                        bottleBean = gson.fromJson(finalResult,BottleBean0.class);
                         if(bottleBean == null){
                             ToastUtils.show(ErrorInfo.ErrorCode.valueOf(-5).getMessage());
                             return;
@@ -269,7 +270,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
                         closeDataDialog();
                         ToastUtils.show(errorInfo.getMessage());
                         Gson gson = new Gson();
-                        bottleBean = gson.fromJson(result,BottleBean.class);
+                        bottleBean = gson.fromJson(result,BottleBean0.class);
                         if(bottleBean == null){
                             ToastUtils.show(ErrorInfo.ErrorCode.valueOf(-5).getMessage());
                             return;
@@ -285,9 +286,9 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     }
 
     private void refreshUI(){
-        for(BottleBean item : bottleBean.result){
-            if(App.bottleIds.contains(item.getBottleId())){
-                item.setbIsRead(true);
+        for(BottleBean0 item : bottleBean.result){
+            if(App.bottleIds.contains(item.reginonID)){
+                item.bIsRead = true;
             }
         }
         bottleAdatper.setData(bottleBean.result);
@@ -297,9 +298,9 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
 
     @Override
     public void onItemClick(int position) {
-        BottleBean item = bottleBean.result.get(position);
-        if(!App.bottleIds.contains(item.getBottleId())) {
-            App.bottleIds.add(item.getBottleId());
+        BottleBean0 item = bottleBean.result.get(position);
+        if(!App.bottleIds.contains(item.reginonID)) {
+            App.bottleIds.add(item.reginonID);
         }
         Bundle bundle = new Bundle();
         bundle.putSerializable("key",item);

@@ -15,6 +15,7 @@ import com.bumptech.glide.request.target.Target;
 import com.driftingbottle.App;
 import com.driftingbottle.R;
 import com.driftingbottle.bean.MessageBean;
+import com.driftingbottle.bean.MessageBean0;
 import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.SPUtils;
 
@@ -30,7 +31,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private LayoutInflater mLayoutInflater;
     private Context mContext;
-    private List<MessageBean> mDatas = new ArrayList<>();
+    private List<MessageBean0> mDatas = new ArrayList<>();
     private String urlImage;
     private String  lastLMin ="";
 
@@ -43,7 +44,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public  void setMyImage(String image){
         urlImage = image;
     }
-    public void setData(ArrayList<MessageBean>mDatas){
+    public void setData(ArrayList<MessageBean0>mDatas){
         this.mDatas= mDatas;
         notifyDataSetChanged();
     }
@@ -61,10 +62,17 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
-        MessageBean msg = mDatas.get(position);
-        String time = msg.getMessageDisplayTime();
-        String content = msg.getMessageContent();
-        String type = msg.getMessageType();
+        MessageBean0 msg = mDatas.get(position);
+        String time = msg.CreatedDate;
+        String content = "" ;
+        String type = msg.dateType;
+        if(type.equals("0")){
+            content = msg.textData;
+        }else if(type.equals("1")){
+            content = msg.imageData;
+        }else if(type.equals("2")){
+            content = msg.voiceNumber;
+        }
         String imgUrl = (String) SPUtils.get("user_head","");
 
         if(holder instanceof ChatLeftViewHolder){
@@ -133,7 +141,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        return mDatas.get(position).getMessageOwner();
+        return Integer.valueOf(mDatas.get(position).answerType);
     }
 
     @Override

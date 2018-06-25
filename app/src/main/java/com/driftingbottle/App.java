@@ -40,8 +40,8 @@ public class  App extends Application {
         context = getApplicationContext();
         OkHttpUtils.init(this);
         OkHttpUtils.getInstance().setConnectTimeout(1000);
-     JPushInterface.setDebugMode(true);
-        JPushInterface.init(this);
+//     JPushInterface.setDebugMode(true);
+//        JPushInterface.init(this);
 
     }
 
