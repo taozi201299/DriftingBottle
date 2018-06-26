@@ -2,21 +2,23 @@ package com.driftingbottle.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.driftingbottle.App;
 import com.driftingbottle.R;
 import com.driftingbottle.bean.MessageBean;
 import com.driftingbottle.bean.MessageBean0;
 import com.driftingbottle.utils.CommonUtils;
+import com.driftingbottle.utils.EmojiUtil;
 import com.driftingbottle.utils.SPUtils;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import butterknife.ButterKnife;
 import io.github.rockerhieu.emojicon.EmojiconTextView;
 
 
+
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private LayoutInflater mLayoutInflater;
@@ -34,6 +37,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<MessageBean0> mDatas = new ArrayList<>();
     private String urlImage;
     private String  lastLMin ="";
+    boolean bFinish = false;
+    boolean bLeftEmoji = true;
 
     public ChatAdapter(Context context) {
         mContext = context;
@@ -76,6 +81,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         String imgUrl = (String) SPUtils.get("user_head","");
 
         if(holder instanceof ChatLeftViewHolder){
+            bLeftEmoji = true;
             if(!lastLMin.isEmpty()){
                 int interval = CommonUtils.getIntInterval(time,lastLMin);
                 if(interval < 3){
@@ -92,32 +98,28 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             ((ChatLeftViewHolder) holder).mTvMsgLeft.setVisibility(View.GONE);
             ((ChatLeftViewHolder) holder).iv_left_img.setVisibility(View.GONE);
-            ((ChatLeftViewHolder) holder).iv_error.setVisibility(View.GONE);
 
             if("0".equals(type)) {  // 文本
                  ((ChatLeftViewHolder) holder).mTvMsgLeft.setVisibility(View.VISIBLE);
-                ((ChatLeftViewHolder) holder).mTvMsgLeft.setText(content);
+                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext);
+                ((ChatLeftViewHolder) holder).mTvMsgLeft.setText(builder);
             }else if("1".equals(type)){
                 ((ChatLeftViewHolder) holder).iv_left_img.setVisibility(View.VISIBLE);
                 Glide.with(mContext)
                         .load(content)
                         .placeholder(R.drawable.emoji_00a9)
                         .error(R.drawable.emoji_00a9)
-                        .listener(new RequestListener<String, GlideDrawable>() {
-                            @Override
-                            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                                ((ChatLeftViewHolder) holder).iv_error.setVisibility(View.VISIBLE);
-                                return false;
-                            }
-
-                            @Override
-                            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                                return false;
-                            }
-                        })
                         .into(((ChatLeftViewHolder) holder).iv_left_img);
+            }else if("2".equals(type)){
+                ((ChatLeftViewHolder) holder).ll_audio_left.setVisibility(View.VISIBLE);
+                ((ChatLeftViewHolder) holder).tv_audio_left_time.setText(msg.voiceNumber);
+                int len = Integer.valueOf(msg.voiceNumber);
+                for(int i = 0 ; i < len; i++){
+                    ((ChatLeftViewHolder) holder).tv_audio_left.append(String.valueOf(i));
+                }
             }
         }else if(holder instanceof ChatRightViewHolder){
+            bLeftEmoji = false;
             ((ChatRightViewHolder) holder).iv_right_img.setVisibility(View.GONE);
             ((ChatRightViewHolder) holder).mTvMsgRight.setVisibility(View.GONE);
             ((ChatRightViewHolder) holder).mTvRightTime.setText(time);
@@ -128,14 +130,24 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
             if("0".equals(type)) {  // 文本
                 ((ChatRightViewHolder) holder).mTvMsgRight.setVisibility(View.VISIBLE);
-                ((ChatRightViewHolder) holder).mTvMsgRight.setText(App.content);
+                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext);
+                ((ChatRightViewHolder) holder).mTvMsgRight.setText(builder);
             }else if("1".equals(type)){
                 ((ChatRightViewHolder) holder).iv_right_img.setVisibility(View.VISIBLE);
-                Glide.with(mContext).load(App.content)
+                Glide.with(mContext).load(content)
                         .placeholder(R.mipmap.dialog_loading_img)
                         .error(R.mipmap.dialog_loading_img)
                         .into(((ChatRightViewHolder) holder).iv_right_img);
-            };
+            }
+            else if("2".equals(type)){
+                ((ChatRightViewHolder) holder).ll_audio_right.setVisibility(View.VISIBLE);
+                ((ChatRightViewHolder) holder).tv_audio_right_time.setText(msg.voiceNumber);
+                int len = Integer.valueOf(msg.voiceNumber);
+                for(int i = 0 ; i < len; i++){
+                    ((ChatRightViewHolder) holder).tv_audio_right.append(String.valueOf(i));
+                }
+            }
+
         }
     }
 
@@ -157,9 +169,13 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @BindView(R.id.iv_owner_img)
         ImageView iv_owner_img;
         @BindView(R.id.tv_left_msg)
-        TextView mTvMsgLeft;
-        @BindView(R.id.iv_error)
-        ImageView iv_error;
+        EmojiconTextView mTvMsgLeft;
+        @BindView(R.id.ll_audio_left)
+        LinearLayout ll_audio_left;
+        @BindView(R.id.tv_audio_left)
+        TextView tv_audio_left;
+        @BindView(R.id.tv_audio_left_time)
+        TextView tv_audio_left_time;
 
         ChatLeftViewHolder(View view) {
             super(view);
@@ -175,11 +191,27 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @BindView(R.id.iv_owner_img)
         ImageView iv_owner_img;
         @BindView(R.id.tv_right_msg)
-        TextView mTvMsgRight;
+        EmojiconTextView mTvMsgRight;
+        @BindView(R.id.ll_audio_right)
+        LinearLayout ll_audio_right;
+        @BindView(R.id.tv_audio_right)
+        TextView tv_audio_right;
+        @BindView(R.id.tv_audio_right_time)
+        TextView tv_audio_right_time;
 
         ChatRightViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+        }
+    }
+
+    private class MyTextWatcher implements TextWatcher
+    {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+        @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
+        @Override public void afterTextChanged(Editable s){
+
         }
     }
 }

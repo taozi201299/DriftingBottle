@@ -12,8 +12,10 @@ import com.driftingbottle.R;
 import com.driftingbottle.adapter.ChatAdapter;
 import com.driftingbottle.base.BaseActivity;
 import com.driftingbottle.bean.BottleBean;
+import com.driftingbottle.bean.BottleBean0;
 import com.driftingbottle.bean.MessageBean;
 import com.driftingbottle.bean.MessageBean0;
+import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.ToastUtils;
 import com.driftingbottle.view.PullRecyclerView;
 import com.google.gson.Gson;
@@ -37,7 +39,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     @BindView(R.id.xRefreshView)
     XRefreshView xRefreshView;
     ChatAdapter chatAdapter;
-    private BottleBean  bottleBean;
+    private BottleBean0 bottleBean;
     private MessageBean0 messageBean;
     ArrayList<MessageBean0>datas = new ArrayList<>();
     int iPageIndex = 0;
@@ -61,52 +63,56 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
 
     @Override
     public void initData() {
-
-
         Bundle bundle = getIntent().getBundleExtra(DEFAULT_BUNDLE_NAME);
-        bottleBean = (BottleBean) bundle.getSerializable("key");
-        chatAdapter.setMyImage(bottleBean.getBottleImg());
-        showTitle(bottleBean.getBottleName());
+        bottleBean = (BottleBean0) bundle.getSerializable("key");
+        chatAdapter.setMyImage(bottleBean.headimage);
+        showTitle(bottleBean.bottleName);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 getMessage();
             }
         }).start();
-
     }
     private void getMessage(){
         String url = "http://192.168.1.8:8080/wcsps-supervision/v1/att/ad/base/attAdBases/";
         HashMap<String,String> params = new HashMap<>();
-        params.put("clientId", "dd");
+        params.put("clientID", CommonUtils.getUniqueId(mContext));
+        params.put("regionID",bottleBean.reginonID);
+        params.put("pageIndex",String.valueOf(iPageIndex));
+        params.put("pageCount","9");
         HttpUtils.getInstance().requestGet(url, params, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
+                iPageIndex ++;
                 result = " {\n" +
                         "  \"code\": 0,\n" +
                         "  \"msg\": \"请求正常返回\",\n" +
                         " \"totalCount\": 0,\n" +
                         "  \"data\": [\n" +
                         "    {\n" +
-                        "      \"messageId\": \"100\",\n" +
-                        "      \"messageOwner\": \"0\",   \n" +
-                        "      \"messageDisplayTime\": \"2018-06-15 18:49:00\",  \n" +
-                        "      \"messageContent\": \"000000000000000\",  \n" +
-                        "      \"messageType\": \"0\"   \n" +
+                        "      \"dateType\": \"2\",   \n" +
+                        "      \"CreatedDate\": \"2018-06-15 18:49:00\",  \n" +
+                        "      \"textData\": \"000000000000000\",  \n" +
+                        "      \"imageData\": \"\",  \n" +
+                        "      \"voiceNumber\": \"10\",  \n" +
+                        "      \"answerType\": \"0\"   \n" +
                         "},\n" +
                         "    {\n" +
-                        "       \"messageId\": \"100\",\n" +
-                        "      \"messageOwner\": \"0\",   \n" +
-                        "      \"messageDisplayTime\": \"2018-06-19 18:49:06\",  \n" +
-                        "      \"messageContent\": \"啦啦啦啦啦啦啦啦(～￣▽￣)～\",  \n" +
-                        "      \"messageType\": \"0\"   \n" +
+                        "      \"dateType\": \"3\",   \n" +
+                        "      \"CreatedDate\": \"2018-06-15 18:49:00\",  \n" +
+                        "      \"textData\": \"\uD83D\uDE01\uD83D\uDE02\uD83C\uDC01\uD83C\uDD05\uD83C\uDD06\uD83C\uDD04\uD83C\uDD03\",  \n" +
+                        "      \"imageData\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",  \n" +
+                        "      \"voiceNumber\": \"\",  \n" +
+                        "      \"answerType\": \"0\"   \n" +
                         "},\n" +
                         "    {\n" +
-                        "       \"messageId\": \"100\",\n" +
-                        "      \"messageOwner\": \"1\",   \n" +
-                        "      \"messageDisplayTime\": \"2018-06-15 18:49:06\",  \n" +
-                        "      \"messageContent\": \"哇哇哇哇^(*￣(oo)￣)^\",  \n" +
-                        "      \"messageType\": \"1\"   \n" +
+                        "      \"dateType\": \"0\",   \n" +
+                        "      \"CreatedDate\": \"2018-06-15 18:49:00\",  \n" +
+                        "      \"textData\": \"不辛苦睡觉睡觉[调皮][发怒][大哭][尴尬][大哭]\uD83D\uDE04\",  \n" +
+                        "      \"imageData\": \"\",  \n" +
+                        "      \"voiceNumber\": \"\",  \n" +
+                        "      \"answerType\": \"1\"   \n" +
                         "}\n" +
                         "]\n" +
                         "}\n";
@@ -129,31 +135,34 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
             }
             @Override
             public void onFailure(ErrorInfo.ErrorCode errorInfo) {
-                final String result = " {\n" +
+               final String  result = " {\n" +
                         "  \"code\": 0,\n" +
                         "  \"msg\": \"请求正常返回\",\n" +
                         " \"totalCount\": 0,\n" +
                         "  \"data\": [\n" +
                         "    {\n" +
-                        "      \"messageId\": \"100\",\n" +
-                        "      \"messageOwner\": \"0\",   \n" +
-                        "      \"messageDisplayTime\": \"2018-06-15 18:49:00\",  \n" +
-                        "      \"messageContent\": \"000000000000000\",  \n" +
-                        "      \"messageType\": \"0\"   \n" +
+                        "      \"dateType\": \"2\",   \n" +
+                        "      \"CreatedDate\": \"2018-06-15 18:49:00\",  \n" +
+                        "      \"textData\": \"000000000000000\",  \n" +
+                        "      \"imageData\": \"\",  \n" +
+                        "      \"voiceNumber\": \"10\",  \n" +
+                        "      \"answerType\": \"0\"   \n" +
                         "},\n" +
                         "    {\n" +
-                        "       \"messageId\": \"100\",\n" +
-                        "      \"messageOwner\": \"0\",   \n" +
-                        "      \"messageDisplayTime\": \"2018-06-16 15:49:06\",  \n" +
-                        "      \"messageContent\": \"啦啦啦啦啦啦啦啦(～￣▽￣)～\",  \n" +
-                        "      \"messageType\": \"0\"   \n" +
+                        "      \"dateType\": \"3\",   \n" +
+                        "      \"CreatedDate\": \"2018-06-15 18:49:00\",  \n" +
+                        "      \"textData\": \"不辛苦睡觉睡觉[调皮][发怒][大哭][尴尬][大哭]\uD83D\uDE04\",  \n" +
+                        "      \"imageData\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",  \n" +
+                        "      \"voiceNumber\": \"\",  \n" +
+                        "      \"answerType\": \"0\"   \n" +
                         "},\n" +
                         "    {\n" +
-                        "       \"messageId\": \"100\",\n" +
-                        "      \"messageOwner\": \"1\",   \n" +
-                        "      \"messageDisplayTime\": \"2018-06-16 18:49:06\",  \n" +
-                        "      \"messageContent\": \"哇哇哇哇^(*￣(oo)￣)^\",  \n" +
-                        "      \"messageType\": \"0\"   \n" +
+                        "      \"dateType\": \"0\",   \n" +
+                        "      \"CreatedDate\": \"2018-06-15 18:49:00\",  \n" +
+                        "      \"textData\": \"不辛苦睡觉睡觉[调皮][发怒][大哭][尴尬][大哭]\uD83D\uDE04\",  \n" +
+                        "      \"imageData\": \"\",  \n" +
+                        "      \"voiceNumber\": \"\",  \n" +
+                        "      \"answerType\": \"1\"   \n" +
                         "}\n" +
                         "]\n" +
                         "}\n";
@@ -229,11 +238,26 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
 
     }
     private void refresh(){
+        processResult();
+        datas.clear();
         datas.addAll(messageBean.result);
         chatAdapter.setData(datas);
         chatAdapter.notifyDataSetChanged();
     }
     private void processResult(){
+        for(MessageBean0 item : messageBean.result){
+            if(item.dateType.equals("3")){
+                MessageBean0 messageBean = new MessageBean0();
+                messageBean.dateType = "1";
+                messageBean.answerType = item.answerType;
+                messageBean.CreatedDate = item.CreatedDate;
+                messageBean.imageData = item.imageData;
+                messageBean.voiceNumber = "";
+                messageBean.textData = "";
+                datas.add(messageBean);
+                item.dateType = "0";
+            }
+        }
 
     }
 }

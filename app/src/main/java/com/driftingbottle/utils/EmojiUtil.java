@@ -4,13 +4,16 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ImageSpan;
 import android.util.Log;
 
 import com.driftingbottle.R;
+import com.driftingbottle.view.CustomImageSpan;
 
 import java.lang.reflect.Field;
 import java.util.Formatter;
@@ -339,4 +342,28 @@ public class EmojiUtil {
             }
             return spannableString;
         }
+    public static SpannableStringBuilder replaceStr2Emoji(String content,Context context){
+        String text = content;
+        SpannableStringBuilder builder = new SpannableStringBuilder(
+                text);
+        for(String key :emojisMap.keySet()){
+            if(text.contains(key)){
+                //需要替换的字符
+                String rexgString = key.replace("[","");
+                rexgString = rexgString.replace("]","");
+                rexgString = "\\["+rexgString +"\\]";
+                Pattern pattern = Pattern.compile(rexgString);
+                Matcher matcher = pattern.matcher(text);
+                while (matcher.find()) {
+
+                    CustomImageSpan imageSpan = new CustomImageSpan(context, emojisMap.get(key), 1);
+                    //找到指定的字符后 setSpan的参数分别为（指定的图片，字符的开始位置，字符的结束位置）
+                    builder.setSpan(imageSpan,matcher.start(), matcher.end(),
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+            }
+        }
+        return builder;
+
+    }
 }

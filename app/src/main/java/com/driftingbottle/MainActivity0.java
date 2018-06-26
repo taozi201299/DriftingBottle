@@ -4,6 +4,7 @@ import android.*;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -26,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.driftinbottle.callback.ErrorInfo;
 import com.driftinbottle.callback.RequestCallback;
 import com.driftinbottle.httputils.HttpUtils;
+import com.driftingbottle.activity.DriftinBottleListActivity;
 import com.driftingbottle.activity.SettingActivity;
 import com.driftingbottle.base.BaseActivity;
 import com.driftingbottle.bean.BottleBean;
@@ -224,7 +226,7 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
          */
         int hour = CommonUtils.getHour();
         if(hour >= 18){
-            getMoon();
+           // getMoon();
         }
     }
     @Override
@@ -430,6 +432,11 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
      * 我的瓶子
      */
     private void processThree(){
+        if(!bStart){
+            ToastUtils.show("请点击标题开启服务");
+            return;
+        }
+        intentActivity(this, DriftinBottleListActivity.class,false, true);
 
     }
     private void sendMessage(){
@@ -445,7 +452,7 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
                 return;
             }
         }
-        String url = "";
+        String url = "http://www.baidu.com";
         HashMap<String,String>param = new HashMap<>();
         param.put("clientID",CommonUtils.getUniqueId(mContext));
         param.put("answerType","1");
@@ -460,6 +467,7 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
+                ll_dialog_send_message.setVisibility(View.GONE);
                 ToastUtils.show("群发成功");
             }
 
@@ -535,32 +543,6 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
         Glide.with(this).load(photos.get(0)).placeholder(R.mipmap.dialog_loading_img)
                 .error(R.mipmap.dialog_loading_img).into(iv_activity_index_photo);
     }
-
-    private SpannableStringBuilder  replaceStr2Emoji(String content){
-        String text = content;
-        SpannableStringBuilder builder = new SpannableStringBuilder(
-                text);
-        for(String key :emojisMap.keySet()){
-            if(text.contains(key)){
-                //需要替换的字符
-                String rexgString = key.replace("[","");
-                rexgString = rexgString.replace("]","");
-                rexgString = "\\["+rexgString +"\\]";
-                Pattern pattern = Pattern.compile(rexgString);
-                Matcher matcher = pattern.matcher(text);
-                while (matcher.find()) {
-
-                    CustomImageSpan imageSpan = new CustomImageSpan(MainActivity0.this, emojisMap.get(key), 2);
-                    //找到指定的字符后 setSpan的参数分别为（指定的图片，字符的开始位置，字符的结束位置）
-                    builder.setSpan(imageSpan,matcher.start(), matcher.end(),
-                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                }
-            }
-        }
-        return builder;
-
-    }
-
     @Override
     public void onEmojiconClicked(Emojicon emojicon) {
         if (iEmojiEditText == 1){
@@ -587,7 +569,7 @@ public class MainActivity0 extends BaseActivity implements View.OnClickListener 
         @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
         @Override public void afterTextChanged(Editable s){
             if(!bFinish){
-                SpannableStringBuilder builder = replaceStr2Emoji(s.toString());
+                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(s.toString(),mContext);
                 bFinish = true;
                 if(iEmojiEditText == 1) {
                     et_msg.setText(builder);

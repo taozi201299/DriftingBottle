@@ -34,7 +34,7 @@
             android:layout_marginLeft="@dimen/_10dp"
             android:scaleType="fitXY" />
 
-        <TextView
+        <io.github.rockerhieu.emojicon.EmojiconTextView
             android:id="@+id/tv_left_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:layout_toRightOf="@id/iv_owner_img"
             android:layout_marginRight="@dimen/_10dp"
             android:autoLink="all"
-            android:background="@drawable/qp"
+            android:background="@drawable/l"
             android:gravity="center_vertical"
             android:letterSpacing="0.05"
             android:lineSpacingExtra="3dp"
@@ -53,28 +53,35 @@
             android:textColorLink="@color/blue"
             android:textSize="16sp"
             android:visibility="gone"/>
-        <TextView
-            android:id="@+id/attachment_audio_text"
+        <LinearLayout
+            android:id="@+id/ll_audio_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/iv_owner_img"
-            android:layout_marginRight="@dimen/_10dp"
-            android:background="@drawable/l"
-            android:drawableLeft="@drawable/ic_audio_play_2"
-            android:gravity="right|center_vertical"
-            android:paddingLeft="25dp"
-            android:paddingRight="@dimen/_10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="?android:textColorPrimaryInverse"
             android:visibility="gone"
-            tools:visibility="visible" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/attachment_audio_text"
-            android:text = "10s"/>
+            tools:visibility="visible"
+            android:layout_marginRight="@dimen/_10dp">
+            <TextView
+                android:id="@+id/tv_audio_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/l"
+                android:drawableLeft="@drawable/ic_audio_play_2"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="25dp"
+                android:paddingRight="@dimen/_10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/transparent" />
+            <TextView
+                android:id="@+id/tv_audio_left_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_audio_left"
+                android:text = "10s"/>
+        </LinearLayout>
+
 
 
         <ImageView
@@ -91,13 +98,6 @@
             android:textSize="14sp"
             android:src="@mipmap/ic_launcher"
             android:visibility="gone" />
-        <ImageView
-            android:id="@+id/iv_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/iv_left_img"
-            android:layout_centerVertical="true"
-            android:visibility="gone"/>
     </RelativeLayout>
 
 </LinearLayout>

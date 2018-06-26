@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.driftingbottle.R;
 import com.driftingbottle.bean.BottleBean;
 import com.driftingbottle.bean.BottleBean0;
@@ -31,10 +32,8 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
         }else {
             wei_du_xiao_xi.setVisibility(View.VISIBLE);
         }
-//        Glide.with(mContext).load(Constant.URL +
-//              bottle.getBottle_img().toString())
-//                .into(iv_activity_bottle_item_img);
-        iv_activity_bottle_item_img.setImageResource(R.mipmap.daiyue);
+        Glide.with(mContext).load(bottleBean.headimage)
+                .into(iv_activity_bottle_item_img);
         tv_activity_bottle_item_area.setText(bottleBean.bottleName.toString());
         String type = "0";
         tv_activity_bottle_item_time.setText(bottleBean.creatdDate);
