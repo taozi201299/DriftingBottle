@@ -5,15 +5,10 @@
       <module fileurl="file://D:\jidan\waterConservancy\code\DriftingBottle\DriftinBottle.iml" filepath="D:\jidan\waterConservancy\code\DriftingBottle\DriftinBottle.iml" />
       <module fileurl="file://$PROJECT_DIR$/DriftingBottle.iml" filepath="$PROJECT_DIR$/DriftingBottle.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\jidan\waterConservancy\code\DriftingBottle\app\app.iml" filepath="D:\jidan\waterConservancy\code\DriftingBottle\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/callback/callback.iml" filepath="$PROJECT_DIR$/callback/callback.iml" />
-      <module fileurl="file://D:\jidan\waterConservancy\code\DriftingBottle\callback\callback.iml" filepath="D:\jidan\waterConservancy\code\DriftingBottle\callback\callback.iml" />
       <module fileurl="file://$PROJECT_DIR$/httputils/httputils.iml" filepath="$PROJECT_DIR$/httputils/httputils.iml" />
-      <module fileurl="file://D:\jidan\waterConservancy\code\DriftingBottle\httputils\httputils.iml" filepath="D:\jidan\waterConservancy\code\DriftingBottle\httputils\httputils.iml" />
       <module fileurl="file://$PROJECT_DIR$/imagepicker/imagepicker.iml" filepath="$PROJECT_DIR$/imagepicker/imagepicker.iml" />
-      <module fileurl="file://D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\imagepicker.iml" filepath="D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\imagepicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
-      <module fileurl="file://D:\jidan\waterConservancy\code\DriftingBottle\library\library.iml" filepath="D:\jidan\waterConservancy\code\DriftingBottle\library\library.iml" />
     </modules>
   </component>
 </project>

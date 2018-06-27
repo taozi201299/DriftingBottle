@@ -101,7 +101,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                         "    {\n" +
                         "      \"dateType\": \"3\",   \n" +
                         "      \"CreatedDate\": \"2018-06-15 18:49:00\",  \n" +
-                        "      \"textData\": \"\uD83D\uDE01\uD83D\uDE02\uD83C\uDC01\uD83C\uDD05\uD83C\uDD06\uD83C\uDD04\uD83C\uDD03\",  \n" +
+                        "      \"textData\": \"\uD83C\uDF89\uD83C\uDF81\uD83D\uDE37\uD83D\uDC7B\uD83D\uDE4F\uD83C\uDF4E\",  \n" +
                         "      \"imageData\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",  \n" +
                         "      \"voiceNumber\": \"\",  \n" +
                         "      \"answerType\": \"0\"   \n" +

@@ -3,7 +3,6 @@ package com.driftingbottle.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.driftinbottle.callback.ErrorInfo;
@@ -15,15 +14,12 @@ import com.driftingbottle.R;
 import com.driftingbottle.adapter.BottleAdatper;
 import com.driftingbottle.adapter.CommonAdapter;
 import com.driftingbottle.base.BaseActivity;
-import com.driftingbottle.bean.BottleBean;
 import com.driftingbottle.bean.BottleBean0;
 import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.ToastUtils;
-import com.driftingbottle.view.PullRecyclerView;
 import com.google.gson.Gson;
 import com.lzy.okhttputils.cache.CacheMode;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -66,7 +62,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     @Override
     public void initView() {
         showDataLoadingDialog();
-        showTitle("我的瓶子" +"("+ MainActivity.iTotalCount +")");
+        showTitle("我的瓶子" +"("+ "10" +")");
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         bottleRecyclerView.setLayoutManager(layoutManager);
