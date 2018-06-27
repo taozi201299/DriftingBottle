@@ -357,7 +357,7 @@ public class CommonUtils {
     public static int getIntInterval(String afterTime, String lastTime) {
         int m = 0;
         if (afterTime.length() != 19) {
-            return 0;
+            //return 0;
         }
         try {
             SimpleDateFormat sd1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

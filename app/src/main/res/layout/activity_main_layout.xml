@@ -54,6 +54,7 @@
         android:layout_height="match_parent"
         android:background="@mipmap/day"
         android:layout_below="@+id/action_bar"
+        android:scaleType = "fitXY"
         android:visibility="gone">
         <ImageView
             android:id="@+id/iv_bollen"
