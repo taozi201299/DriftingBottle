@@ -63,46 +63,6 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="100dp"/>
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="#393A3E">
-        <ImageView
-            android:id="@+id/iv_activity_index_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/uj"/>
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="13dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="13dp"
-            android:background="#322e2e"/>
-        <TextView
-            android:id="@+id/tv_activity_index_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="50dp"
-            android:text="漂流瓶"
-            android:textColor="@color/write"
-            android:textSize="18sp"/>
-        <Button
-            android:id="@+id/index_set"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/shezhi"/>
-    </RelativeLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"

@@ -72,7 +72,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         photo.setPhotoCount(1);
         startActivityForResult(photo, PICKER_RESULT);
     }
-    @AfterPermissionGranted(RC_CAMERA_PERM)
     private boolean requestCameraPermission() {
         String[]permissions = {Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE};
