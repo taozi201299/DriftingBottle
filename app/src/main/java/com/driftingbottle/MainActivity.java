@@ -373,7 +373,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     }
     private void stopService(){
         ToastUtils.show("服务停止");
-        String url = "";
+        String url = "http://www.baidu.com";
         HashMap<String,String>param = new HashMap<>();
         param.put("clientID ",CommonUtils.getUniqueId(mContext));
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
