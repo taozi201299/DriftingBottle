@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -29,6 +30,7 @@ import com.driftinbottle.httputils.HttpUtils;
 import com.driftingbottle.activity.DriftinBottleListActivity;
 import com.driftingbottle.activity.SettingActivity;
 import com.driftingbottle.base.BaseActivity;
+import com.driftingbottle.bean.BottleCountBean;
 import com.driftingbottle.bean.MoonBean;
 import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.EmojiUtil;
@@ -157,7 +159,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     private int iEmojiEditText = 0 ; // 0 title 1 msg
     private boolean bWorking = true;
     private int iTotalCount = 0;
-    private int iCurrentCount = 0;
+    public static int iCurrentCount = 0;
     private long interval;
     /**
      * 消息类型 0 文本 1 图片
@@ -177,6 +179,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             switch (msg.what){
                 case 0:
                     if(iCurrentCount > 0) {
+                        Log.d("1111111111",String.valueOf(iCurrentCount));
                         tv_activity_index_count.setVisibility(View.VISIBLE);
                         tv_activity_index_count.setText(String.valueOf(iCurrentCount));
                     }
@@ -403,9 +406,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
-//                BottleCountBean bottleCountBean ;
-//                Gson gson = new Gson();
-//                bottleCountBean = gson.fromJson(result,BottleCountBean.class);
+                String reponse ="{\n" +
+                        "  \"code\": 0,\n" +
+                        "  \"msg\": \"请求正常返回\",\n" +
+                        "  \"data\": [\n" +
+                        "    {\n" +
+                        "      \"bottleCount\": \"100\",\n" +
+                        "      \"buildMinutes\": \"8\"   \n" +
+                        "}\n" +
+                        "]\n" +
+                        "}\n";
+                BottleCountBean bottleCountBean ;
+                Gson gson = new Gson();
+                int count = Integer.valueOf("145");
+                iTotalCount  = count;
+                int time = Integer.valueOf("3");
+                interval = (time * 60 *1000 ) /(count -1);
+                Thread thread = new Thread(new BottleRunnable());
+                thread.start();
+//                bottleCountBean = gson.fromJson(reponse,BottleCountBean.class);
 //                if(bottleCountBean != null && bottleCountBean.result!= null){
 //                    int count = Integer.valueOf(bottleCountBean.bottleCount);
 //                    iTotalCount  = count;

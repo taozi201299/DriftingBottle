@@ -370,7 +370,8 @@ public class CommonUtils {
 
             // Date().getTime()减去以前的时间距离1970年的时间间隔d1.getTime()得出的就是以前的时间与现在时间的时间间隔
             long time = d1.getTime() - last.getTime();// 得出的时间间隔是毫秒
-            m = (int) ((time % 3600000) / 60000);// 得出的时间间隔的单位是分钟
+          //  m = (int) ((time % 3600000) / 60000);// 得出的时间间隔的单位是分钟
+            m = (int) (time / 60000);
         } catch (Exception e) {
             return 0;
         }

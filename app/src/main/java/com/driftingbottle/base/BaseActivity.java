@@ -62,6 +62,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
     protected void showTitle(String title){
+        ((TextView)findViewById(R.id.tv_activity_index_start)).setText(title);
     }
     public void setActionBarTitle(String title){
     }

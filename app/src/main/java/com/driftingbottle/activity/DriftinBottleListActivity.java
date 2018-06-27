@@ -62,7 +62,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     @Override
     public void initView() {
         showDataLoadingDialog();
-        showTitle("我的瓶子" +"("+ "10" +")");
+        showTitle("我的瓶子" +"("+ MainActivity.iCurrentCount +")");
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         bottleRecyclerView.setLayoutManager(layoutManager);

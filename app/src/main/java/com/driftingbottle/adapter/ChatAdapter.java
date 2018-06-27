@@ -120,6 +120,14 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         }else if(holder instanceof ChatRightViewHolder){
             bLeftEmoji = false;
+            if(!lastLMin.isEmpty()){
+                int interval = CommonUtils.getIntInterval(time,lastLMin);
+                if(interval < 3){
+                    ((ChatRightViewHolder) holder).mTvRightTime.setVisibility(View.GONE);
+                }else {
+                    ((ChatRightViewHolder) holder).mTvRightTime.setVisibility(View.VISIBLE);
+                }
+            }
             ((ChatRightViewHolder) holder).iv_right_img.setVisibility(View.GONE);
             ((ChatRightViewHolder) holder).mTvMsgRight.setVisibility(View.GONE);
             ((ChatRightViewHolder) holder).mTvRightTime.setText(time);
