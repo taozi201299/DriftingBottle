@@ -14,11 +14,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.tu.loadingdialog.LoadingDialog;
 import com.driftingbottle.R;
+import com.driftingbottle.activity.SettingActivity;
 import com.driftingbottle.utils.Constant;
 import com.driftingbottle.utils.ScreenManager;
 import com.driftingbottle.utils.ToastUtils;
@@ -63,8 +66,20 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void setActionBarTitle(String title){
     }
     protected void initActionBar(){
+        Button index_set = findViewById(R.id.index_set);
+        index_set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intentActivity(BaseActivity.this, SettingActivity.class,false,true);
+            }
+        });
+        findViewById(R.id.iv_activity_index_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityFinish();
+            }
+        });
     }
-
     public abstract int getLayoutId();
     /**
      * 设置监听事件

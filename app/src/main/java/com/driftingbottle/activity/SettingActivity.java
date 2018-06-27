@@ -3,8 +3,10 @@ package com.driftingbottle.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -31,6 +33,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     LinearLayout open_photo_pick;
     @BindView(R.id.user_heard)
     ImageView user_heard;
+    @BindView(R.id.index_set)
+    Button index_set;
     private static final int RC_CAMERA_PERM = 100;
     private static final int PICKER_RESULT= 101;
     @Override
@@ -52,6 +56,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void initView() {
         showTitle("设置");
+        index_set.setVisibility(View.GONE);
         String strUserHead = (String) SPUtils.get("user_head","");
         if(strUserHead!= null && !strUserHead.isEmpty()){
             Glide.with(this).load(strUserHead).into(user_heard);
