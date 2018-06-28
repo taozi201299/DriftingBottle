@@ -343,6 +343,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 break;
             case R.id.tv_cancel_msg:
                 ll_dialog_send_message.setVisibility(View.GONE);
+                emojicons.setVisibility(View.GONE);
                 et_msg.setText("");
                 et_msg_tle.setText("");
                 break;
@@ -381,7 +382,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             public void onResponse(String result) {
                 bStart = false;
                 bFinish = false;
-                iTotalCount = 0;
+                iTotalCount = -100;
+                iCurrentCount = -100;
+                tv_activity_index_count.setVisibility(View.GONE);
+                bWorking = false;
+
             }
 
             @Override
@@ -397,6 +402,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             ToastUtils.show("服务已经启动");
             return;
         }else {
+            iTotalCount = 0;
+            iCurrentCount = 0;
             ToastUtils.show("服务启动");
             bStart = true;
         }
@@ -406,6 +413,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
+                bWorking = true;
                 String reponse ="{\n" +
                         "  \"code\": 0,\n" +
                         "  \"msg\": \"请求正常返回\",\n" +
@@ -633,7 +641,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
         @Override public void afterTextChanged(Editable s){
             if(!bFinish){
-                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(s.toString(),mContext);
+                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(s.toString(),mContext,et_msg_tle.getTextSize(),et_msg_tle.getmEmojiconSize());
                 bFinish = true;
                 if(iEmojiEditText == 1) {
                     et_msg.setText(builder);

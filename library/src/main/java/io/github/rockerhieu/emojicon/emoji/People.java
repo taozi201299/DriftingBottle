@@ -189,6 +189,7 @@ public class People {
             Emojicon.fromCodePoint(0x1f157),
             Emojicon.fromCodePoint(0x1f158),
             Emojicon.fromCodePoint(0x1f159),
+            Emojicon.fromCodePoint(0x1f160),
 
 
             Emojicon.fromCodePoint(0x1f604),

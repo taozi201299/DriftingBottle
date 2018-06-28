@@ -201,9 +201,10 @@ public final class EmojiconHandler {
         sEmojisMap.put(0x1f154, R.drawable.emoji_1f00154);
         sEmojisMap.put(0x1f155, R.drawable.emoji_1f00155);
         sEmojisMap.put(0x1f156, R.drawable.emoji_1f00156);
-        sEmojisMap.put(0x1f156, R.drawable.emoji_1f00157);
-        sEmojisMap.put(0x1f156, R.drawable.emoji_1f00158);
-        sEmojisMap.put(0x1f156, R.drawable.emoji_1f00159);
+        sEmojisMap.put(0x1f157, R.drawable.emoji_1f00157);
+        sEmojisMap.put(0x1f158, R.drawable.emoji_1f00158);
+        sEmojisMap.put(0x1f159, R.drawable.emoji_1f00159);
+        sEmojisMap.put(0x1f160,R.drawable.emoji_1f00160);
 
         sEmojisMap.put(0x1f604, R.drawable.emoji_1f604);
         sEmojisMap.put(0x1f603, R.drawable.emoji_1f603);

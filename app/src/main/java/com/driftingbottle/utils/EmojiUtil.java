@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.github.rockerhieu.emojicon.EmojiconSpan;
+
 /**
  * Created by Administrator on 2018/6/18.
  */
@@ -132,6 +134,16 @@ public class EmojiUtil {
             put("[跳跳]", R.drawable.emoji_1f00152);
             put("[发抖]", R.drawable.emoji_1f00153);
             put("[转圈]", R.drawable.emoji_1f00154);
+
+            // 13
+            put("[捂脸]",R.drawable.emoji_1f00155);
+            put("[奸笑]",R.drawable.emoji_1f00156);
+            put("[耶]",R.drawable.emoji_1f00157);
+            put("[皱眉]",R.drawable.emoji_1f00158);
+            put("[嘿哈]",R.drawable.emoji_1f00159);
+            put("[机智]",R.drawable.emoji_1f00160);
+
+
         }
     };
 
@@ -305,7 +317,7 @@ public class EmojiUtil {
                     int height = bitmap.getHeight();
 // 设置想要的大小
                     int newWidth = 500;
-                    int newHeight = 400;
+                    int newHeight = 500;
 // 计算缩放比例
                     float scaleWidth = ((float) newWidth) / width;
                     float scaleHeight = ((float) newHeight) / height;
@@ -342,7 +354,7 @@ public class EmojiUtil {
             }
             return spannableString;
         }
-    public static SpannableStringBuilder replaceStr2Emoji(String content,Context context){
+    public static SpannableStringBuilder replaceStr2Emoji(String content,Context context,float textSize,int emojiSize){
         String text = content;
         SpannableStringBuilder builder = new SpannableStringBuilder(
                 text);
@@ -355,8 +367,7 @@ public class EmojiUtil {
                 Pattern pattern = Pattern.compile(rexgString);
                 Matcher matcher = pattern.matcher(text);
                 while (matcher.find()) {
-
-                    CustomImageSpan imageSpan = new CustomImageSpan(context, emojisMap.get(key), 1);
+                    CustomImageSpan imageSpan = new CustomImageSpan(context, emojisMap.get(key), 2,(int)textSize,emojiSize);
                     //找到指定的字符后 setSpan的参数分别为（指定的图片，字符的开始位置，字符的结束位置）
                     builder.setSpan(imageSpan,matcher.start(), matcher.end(),
                             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

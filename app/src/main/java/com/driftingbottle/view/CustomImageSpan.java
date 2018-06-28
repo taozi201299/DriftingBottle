@@ -5,11 +5,17 @@ package com.driftingbottle.view;
  */
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.style.ImageSpan;
+import android.util.Log;
+
+import java.io.InputStream;
 
 /**
  * 自定义imageSpan实现图片与文字的居中对齐
@@ -18,6 +24,13 @@ public class CustomImageSpan extends ImageSpan {
 
     //自定义对齐方式--与文字中间线对齐
     private static final int ALIGN_FONTCENTER = 2;
+    private Context mContext;
+    int mResourceId ;
+    int mWidth;
+    int mTextSize;
+    int mHeight;
+    int mSize ;
+    int mTop;
 
     public CustomImageSpan(Drawable drawable, int verticalAlignment){
         super(drawable,verticalAlignment);
@@ -27,15 +40,30 @@ public class CustomImageSpan extends ImageSpan {
         super(context, resourceId);
     }
 
-    public CustomImageSpan(Context context, int resourceId, int verticalAlignment) {
+    public CustomImageSpan(Context context, int resourceId, int verticalAlignment,int textSize,int emojiSize) {
         super(context, resourceId, verticalAlignment);
+        mContext = context;
+        mResourceId = resourceId;
+        mWidth = mHeight = mSize = emojiSize;
+        mTextSize = textSize;
     }
 
-    //        public CustomImageSpan(Context context, int resourceId,int width,int height) {
-//            super(context, ThumbnailUtils.extractThumbnail(BitmapFactory.decodeResource(context.getResources(),resourceId),
-//                    AutoUtils.getPercentWidthSize(width), AutoUtils.getPercentWidthSize(height)), 2);
-//
-//        }
+    @Override
+    public Drawable getDrawable() {
+        Drawable drawable = null;
+        if (drawable == null) {
+            try {
+                drawable = mContext.getResources().getDrawable(mResourceId);
+                mHeight = mSize;
+                mWidth = mHeight * drawable.getIntrinsicWidth() / drawable.getIntrinsicHeight();
+                mTop = (mTextSize - mHeight) / 2;
+                drawable.setBounds(0, mTop, mWidth, mTop + mHeight);
+            } catch (Exception e) {
+                // swallow
+            }
+        }
+        return drawable;
+    }
     @Override
     public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom,
                      Paint paint) {

@@ -101,7 +101,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             if("0".equals(type)) {  // 文本
                  ((ChatLeftViewHolder) holder).mTvMsgLeft.setVisibility(View.VISIBLE);
-                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext);
+                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext,((ChatLeftViewHolder) holder).mTvMsgLeft.getTextSize(),
+                        ((ChatLeftViewHolder) holder).mTvMsgLeft.getmEmojiconSize());
                 ((ChatLeftViewHolder) holder).mTvMsgLeft.setText(builder);
             }else if("1".equals(type)){
                 ((ChatLeftViewHolder) holder).iv_left_img.setVisibility(View.VISIBLE);
@@ -138,7 +139,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
             if("0".equals(type)) {  // 文本
                 ((ChatRightViewHolder) holder).mTvMsgRight.setVisibility(View.VISIBLE);
-                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext);
+                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext,((ChatRightViewHolder) holder).mTvMsgRight.getTextSize(),
+                        ((ChatRightViewHolder) holder).mTvMsgRight.getmEmojiconSize());
                 ((ChatRightViewHolder) holder).mTvMsgRight.setText(builder);
             }else if("1".equals(type)){
                 ((ChatRightViewHolder) holder).iv_right_img.setVisibility(View.VISIBLE);

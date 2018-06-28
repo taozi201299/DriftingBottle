@@ -238,7 +238,7 @@
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/balck"
                     emojicon:emojiconAlignment="baseline"
-                    emojicon:emojiconSize="18sp"/>
+                    emojicon:emojiconSize="16sp"/>
                 <TextView
                     android:id="@+id/tv_activity_index_select_biaoqing"
                     android:layout_weight="4"
@@ -263,7 +263,7 @@
                 android:background="@null"
                 android:hint="输入群发消息"
                 android:padding="5dp"
-                emojicon:emojiconSize="18sp"
+                emojicon:emojiconSize="16sp"
                 android:textIsSelectable="true"
                 android:textColor="@color/balck"/>
             <TextView
