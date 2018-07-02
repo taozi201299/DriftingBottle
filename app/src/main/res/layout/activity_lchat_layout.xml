@@ -42,7 +42,7 @@
             android:layout_toRightOf="@id/iv_owner_img"
             android:layout_marginRight="@dimen/_10dp"
             android:autoLink="all"
-            android:background="@drawable/l"
+            android:background="@drawable/yi"
             android:gravity="center_vertical"
             android:letterSpacing="0.05"
             android:lineSpacingExtra="3dp"

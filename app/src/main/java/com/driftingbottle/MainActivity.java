@@ -172,6 +172,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     private static final int RC_CAMERA_PERM = 100;
     private static final int PICKER_RESULT= 101;
 
+    private int cursorStart = 0;
+    private int cursorEnd = 0;
+    private int beforeLength = 0;
+
     private Handler mHandler = new Handler(Looper.getMainLooper()){
         @Override
         public void handleMessage(Message msg) {
@@ -637,18 +641,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     private class MyTextWatcher implements TextWatcher
     {
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            if(iEmojiEditText == 1){
+                cursorStart = et_msg.getSelectionStart();
+            }else {
+                cursorStart = et_msg_tle.getSelectionStart();
+            }
+            beforeLength = s.length();
+        }
         @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
         @Override public void afterTextChanged(Editable s){
             if(!bFinish){
+                cursorEnd = cursorStart + s.length() - beforeLength;
                 SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(s.toString(),mContext,et_msg_tle.getTextSize(),et_msg_tle.getmEmojiconSize());
                 bFinish = true;
                 if(iEmojiEditText == 1) {
                     et_msg.setText(builder);
-                    et_msg.setSelection(s.length());
+                    et_msg.setSelection(cursorEnd);
                 }else {
                     et_msg_tle.setText(builder);
-                    et_msg_tle.setSelection(s.length());
+                    et_msg_tle.setSelection(cursorEnd);
                 }
             }
             bFinish = false;
