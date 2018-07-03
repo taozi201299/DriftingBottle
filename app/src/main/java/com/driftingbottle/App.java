@@ -18,13 +18,11 @@ public class  App extends Application {
     private static Context context;
     public static final boolean bDebug = false;
     public static String content = "┗(＾0＾)┓\uD83D\uDE35\uD83D\uDE35";
-    public static String strMoonUrl = "";
-    public static int count = 0;
-    public static String registerId = "";
     /**
      * 记录已读的bottleId
      */
     public static ArrayList<String> bottleIds = new ArrayList<>();
+    public static String strIp = "http://123.56.68.127:8080";
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);

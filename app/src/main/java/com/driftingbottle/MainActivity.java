@@ -36,6 +36,7 @@ import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.EmojiUtil;
 import com.driftingbottle.utils.ToastUtils;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lzy.okhttputils.cache.CacheMode;
 
 import java.util.ArrayList;
@@ -244,7 +245,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
          */
         int hour = CommonUtils.getHour();
         if(hour >= 18){
-           // getMoon();
+            getMoon();
         }
     }
     @Override
@@ -378,7 +379,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     }
     private void stopService(){
         ToastUtils.show("服务停止");
-        String url = "http://www.baidu.com";
+        String url = "http://123.56.68.127:8080/WebRoot/ClientReset";
         HashMap<String,String>param = new HashMap<>();
         param.put("clientID ",CommonUtils.getUniqueId(mContext));
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
@@ -411,40 +412,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             ToastUtils.show("服务启动");
             bStart = true;
         }
-        String url = "http://www.baidu.com";
+        String url = "http://123.56.68.127:8080/WebRoot/ClientGetCountAndMinutes";
         HashMap<String,String> param = new HashMap<>();
         param.put("clientID ",CommonUtils.getUniqueId(mContext));
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
                 bWorking = true;
-                String reponse ="{\n" +
-                        "  \"code\": 0,\n" +
-                        "  \"msg\": \"请求正常返回\",\n" +
-                        "  \"data\": [\n" +
-                        "    {\n" +
-                        "      \"bottleCount\": \"100\",\n" +
-                        "      \"buildMinutes\": \"8\"   \n" +
-                        "}\n" +
-                        "]\n" +
-                        "}\n";
-                BottleCountBean bottleCountBean ;
                 Gson gson = new Gson();
-                int count = Integer.valueOf("145");
-                iTotalCount  = count;
-                int time = Integer.valueOf("3");
-                interval = (time * 60 *1000 ) /(count -1);
-                Thread thread = new Thread(new BottleRunnable());
-                thread.start();
-//                bottleCountBean = gson.fromJson(reponse,BottleCountBean.class);
-//                if(bottleCountBean != null && bottleCountBean.result!= null){
-//                    int count = Integer.valueOf(bottleCountBean.bottleCount);
-//                    iTotalCount  = count;
-//                    int time = Integer.valueOf(bottleCountBean.buildMinutes);
-//                    interval = (time * 60 *1000 ) /(count -1);
-//                    Thread thread = new Thread(new BottleRunnable());
-//                    thread.start();
-//                }
+                List<BottleCountBean>bottleCountBean = gson.fromJson(result,new TypeToken<List<BottleCountBean>>(){}.getType());
+                if(bottleCountBean != null && bottleCountBean.size() >0){
+                    int count = Integer.valueOf(bottleCountBean.get(0).bottleCount);
+                    iTotalCount  = count;
+                    int time = Integer.valueOf(bottleCountBean.get(0).buildMinutes);
+                    interval = (time * 60 *1000 ) /(count -1);
+                    Thread thread = new Thread(new BottleRunnable());
+                    thread.start();
+                }
             }
 
             @Override
@@ -460,15 +444,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     }
 
     private void getMoon(){
-        String url = "http://www.baidu.com";
+        String url = "http://123.56.68.127:8080/WebRoot/ClientGetSelectMoonImage";
         HashMap<String,String>param = new HashMap<>();
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
                 Gson gson = new Gson();
-                MoonBean moonBean = gson.fromJson(result,MoonBean.class);
-                if(moonBean != null && moonBean.result != null ){
-                    Glide.with(MainActivity.this).load(moonBean.moomUrl).into(iv_activity_index_moon);
+                List<MoonBean> moonBeans = (List<MoonBean>) gson.fromJson(result,new TypeToken<List<MoonBean>>(){}.getType());
+                if(moonBeans != null && moonBeans.size() >0 ){
+                    Glide.with(MainActivity.this).load(App.strIp + moonBeans.get(0).moomUrl).into(iv_activity_index_moon);
                 }
             }
 

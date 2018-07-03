@@ -8,7 +8,7 @@ public class BottleBean0 extends BaseBean<BottleBean0> {
     public String reginonID;
     public String bottleName;
     public String headimage;
-    public String creatdDate;
+    public String CreatedDate;
     public String textData;
     public String imageData;
     public String title;

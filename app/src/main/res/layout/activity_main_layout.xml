@@ -17,10 +17,10 @@
         android:layout_below="@+id/action_bar">
         <ImageView
             android:id="@+id/iv_activity_index_moon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginTop="30dp"/>
         <ImageView
             android:id="@+id/iv_shape"
             android:layout_width="wrap_content"
