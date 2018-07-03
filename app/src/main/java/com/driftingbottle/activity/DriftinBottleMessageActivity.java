@@ -3,6 +3,7 @@ package com.driftingbottle.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
 
 import com.andview.refreshview.XRefreshView;
 import com.driftinbottle.callback.ErrorInfo;
@@ -38,6 +39,8 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     RecyclerView chatRecyclerView;
     @BindView(R.id.xRefreshView)
     XRefreshView xRefreshView;
+    @BindView(R.id.action_bar)
+    LinearLayout action_bar;
     ChatAdapter chatAdapter;
     private BottleBean0 bottleBean;
     private MessageBean0 messageBean;
@@ -187,6 +190,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     }
     @Override
     public void initView() {
+        action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         showDataLoadingDialog();
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局

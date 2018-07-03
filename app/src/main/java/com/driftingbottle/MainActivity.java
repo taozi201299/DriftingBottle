@@ -3,7 +3,10 @@ package com.driftingbottle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -14,6 +17,8 @@ import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
@@ -194,6 +199,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     };
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0及以上
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+// 生成一个状态栏大小的矩形
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        int statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+// 绘制一个和状态栏一样高的矩形
+        View statusView = new View(this);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,statusBarHeight);
+        statusView.setLayoutParams(params);
+        statusView.setBackgroundColor(Color.TRANSPARENT);
+// 添加 statusView 到布局中
+        ViewGroup rootView = (ViewGroup) ((ViewGroup) findViewById(R.id.rootview));
+        rootView.addView(statusView, 0);// addView(ViewGroup view, index);
+        rootView.setFitsSystemWindows(true);
+        rootView.setClipToPadding(true);
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.activity_main_layout;
     }
@@ -269,12 +295,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         if(hour < 18){
             rl_right_layout.setVisibility(View.GONE);
             rl_day_layout.setVisibility(View.VISIBLE);
+            rootview.setBackgroundResource(R.mipmap.day);
             // 热气球动画
             new Thread(new BollenAnimRunnable()).start();
 
         }else {
             rl_day_layout.setVisibility(View.GONE);
             rl_right_layout.setVisibility(View.VISIBLE);
+            rootview.setBackgroundResource(R.mipmap.bg);
             // 灯塔光动画
             AnimationDrawable animationDrawable = (AnimationDrawable) iv_shape.getDrawable();
             AnimationDrawable lanimationDrawable = (AnimationDrawable) iv_shape_center.getDrawable();

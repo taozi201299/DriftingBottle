@@ -120,11 +120,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
     protected void setStatusBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0及以上
-            View decorView = getWindow().getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    |View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-            decorView.setSystemUiVisibility(option);
+                View decorView = getWindow().getDecorView();
+                int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        |View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+                decorView.setSystemUiVisibility(option);
             //根据上面设置是否对状态栏单独设置颜色
             if (useThemestatusBarColor) {
                 getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));

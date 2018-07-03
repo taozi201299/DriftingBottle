@@ -3,6 +3,7 @@ package com.driftingbottle.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.driftinbottle.callback.ErrorInfo;
@@ -35,6 +36,8 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     RecyclerView bottleRecyclerView;
     @BindView(R.id.tv_emtry_message)
     TextView tv_emtry_message;
+    @BindView(R.id.action_bar)
+    LinearLayout action_bar;
     private BottleBean0 bottleBean ;
     private BottleAdatper bottleAdatper;
 
@@ -61,6 +64,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
 
     @Override
     public void initView() {
+        action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         showDataLoadingDialog();
         showTitle("我的瓶子" +"("+ MainActivity.iCurrentCount +")");
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

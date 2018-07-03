@@ -36,7 +36,7 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
                 .into(iv_activity_bottle_item_img);
         tv_activity_bottle_item_area.setText(bottleBean.bottleName.toString());
         String type = "0";
-        tv_activity_bottle_item_time.setText(bottleBean.creatdDate);
+        tv_activity_bottle_item_time.setText(bottleBean.CreatedDate);
         // 0，纯文本 1，纯图片 2，纯声音 3，文本+图片
         type = bottleBean.dataType;
         switch (type) {
