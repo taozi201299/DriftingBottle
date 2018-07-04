@@ -419,6 +419,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 iCurrentCount = -100;
                 tv_activity_index_count.setVisibility(View.GONE);
                 bWorking = false;
+                App.bottleIds.clear();
 
             }
 

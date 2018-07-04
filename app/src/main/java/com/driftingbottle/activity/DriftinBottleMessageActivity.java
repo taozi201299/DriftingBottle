@@ -42,7 +42,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     RecyclerView chatRecyclerView;
     @BindView(R.id.xRefreshView)
     XRefreshView xRefreshView;
-    @BindView(R.id.action_bar)
+    @BindView(R.id.layout_bar)
     LinearLayout action_bar;
     ChatAdapter chatAdapter;
     private BottleBean0 bottleBean;
@@ -84,7 +84,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         HashMap<String,String> params = new HashMap<>();
       //  params.put("clientID", CommonUtils.getUniqueId(mContext));
         params.put("clientID","11-11");
-        params.put("regionID",bottleBean.reginonID);
+        params.put("regionID",bottleBean.regionID);
 //
 //        params.put("pageIndex",String.valueOf(iPageIndex));
 //        params.put("pageCount","9");
@@ -186,16 +186,16 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         int size = datas.size();
         for(int i = 0; i <size; i++){
             MessageBean0 item = datas.get(i);
-            if(item.dateType.equals("3")){
+            if(item.dataType.equals("3")){
                 MessageBean0 messageBean = new MessageBean0();
-                messageBean.dateType = "1";
+                messageBean.dataType = "1";
                 messageBean.answerType = item.answerType;
                 messageBean.CreatedDate = item.CreatedDate;
                 messageBean.imageData = item.imageData;
                 messageBean.voiceNumber = "";
                 messageBean.textData = "";
                 datas.add(i,messageBean);
-                item.dateType = "0";
+                item.dataType = "0";
             }
         }
 

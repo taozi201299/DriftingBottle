@@ -354,8 +354,11 @@ public class EmojiUtil {
             }
             return spannableString;
         }
+        String ss = "12312312312\\uD83C\\uDF89\\uD83C\\uDF811312312377";
+
     public static SpannableStringBuilder replaceStr2Emoji(String content,Context context,float textSize,int emojiSize){
         String text = content;
+        text = text.replace("\\\\\\\\u","\\\\u");
         SpannableStringBuilder builder = new SpannableStringBuilder(
                 text);
         for(String key :emojisMap.keySet()){

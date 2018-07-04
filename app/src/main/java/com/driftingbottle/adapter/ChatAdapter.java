@@ -70,11 +70,11 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         MessageBean0 msg = mDatas.get(position);
         String time = msg.CreatedDate;
         String content = "" ;
-        String type = msg.dateType;
+        String type = msg.dataType;
         if(type.equals("0")){
             content = msg.textData;
         }else if(type.equals("1")){
-            content = msg.imageData;
+            content = App.strIp +msg.imageData;
         }else if(type.equals("2")){
             content = msg.voiceNumber;
         }

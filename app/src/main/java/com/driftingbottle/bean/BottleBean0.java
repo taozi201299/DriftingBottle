@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 
 public class BottleBean0 implements Serializable {
-    public String reginonID;
+    public String regionID;
     public String province;
     public String city;
     public String bottleName;
