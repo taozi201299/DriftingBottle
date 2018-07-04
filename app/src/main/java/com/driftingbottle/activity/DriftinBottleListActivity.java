@@ -15,13 +15,17 @@ import com.driftingbottle.R;
 import com.driftingbottle.adapter.BottleAdatper;
 import com.driftingbottle.adapter.CommonAdapter;
 import com.driftingbottle.base.BaseActivity;
+import com.driftingbottle.bean.BottleBean;
 import com.driftingbottle.bean.BottleBean0;
 import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.ToastUtils;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lzy.okhttputils.cache.CacheMode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -38,7 +42,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     TextView tv_emtry_message;
     @BindView(R.id.action_bar)
     LinearLayout action_bar;
-    private BottleBean0 bottleBean ;
+    private ArrayList<BottleBean0> bottleBeans ;
     private BottleAdatper bottleAdatper;
 
     @Override
@@ -74,128 +78,22 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         bottleRecyclerView.setAdapter(bottleAdatper);
     }
     private void getBottle(){
-        String url = "http://192.168.1.8:8080/wcsps-supervision/v1/att/ad/base/attAdBases/";
+        String url = "http://123.56.68.127:8080/WebRoot/ClientGetPLPList";
         HashMap<String,String>params = new HashMap<>();
-        params.put("clientID", CommonUtils.getUniqueId(mContext));
+       // params.put("clientID", CommonUtils.getUniqueId(mContext));
+        params.put("clientID","11-11");
         HttpUtils.getInstance().requestGet(url, params, url, new RequestCallback<String>() {
             @Override
-            public void onResponse(String result) {
-                result ="{\n" +
-                        "  \"code\": 0,\n" +
-                        "  \"msg\": \"请求正常返回\",\n" +
-                        "  \"totalCount\": 3479,\n" +
-                        "  \"data\": [\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD88C\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"北京\",\n" +
-                        "      \"textData\": \"\",\n" +
-                        "      \"imageData\": \"\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"2018-6-25 17:45:00\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD880\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"上海\",\n" +
-                        "      \"textData\": \"\",\n" +
-                        "      \"imageData\": \"\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"2018-6-25 17:45:01\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD881\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"北京\",\n" +
-                        "      \"textData\": \"\",\n" +
-                        "      \"imageData\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"title\": \"\",\n" +
-                        "      \"voiceNumber\": \"\",\n" +
-                        "      \"dataType\": \"1\",\n" +
-                        "      \"creatdDate\": \"2018-6-25 17:45:05\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD882\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"中华人民共和国\",\n" +
-                        "      \"textData\": \"中华人民共和国\",\n" +
-                        "      \"imageData\": \"中华人民共和国\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"10s\",\n" +
-                        "      \"dataType\": \"2\",\n" +
-                        "      \"creatdDate\": \"中华人民共和国\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD883\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"中华人民共和国\",\n" +
-                        "      \"textData\": \"中华人民共和国\",\n" +
-                        "      \"imageData\": \"中华人民共和国\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"中华人民共和国\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"中华人民共和国\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD884\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"中华人民共和国\",\n" +
-                        "      \"textData\": \"中华人民共和国\",\n" +
-                        "      \"imageData\": \"中华人民共和国\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"中华人民共和国\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"中华人民共和国\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD885\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"中华人民共和国\",\n" +
-                        "      \"textData\": \"中华人民共和国\",\n" +
-                        "      \"imageData\": \"中华人民共和国\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"中华人民共和国\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"中华人民共和国\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD886\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"中华人民共和国\",\n" +
-                        "      \"textData\": \"中华人民共和国\",\n" +
-                        "      \"imageData\": \"中华人民共和国\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"中华人民共和国\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"中华人民共和国\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD887\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"中华人民共和国\",\n" +
-                        "      \"textData\": \"中华人民共和国\",\n" +
-                        "      \"imageData\": \"中华人民共和国\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"中华人民共和国\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"中华人民共和国\"\n" +
-                        "    }\n" +
-                        "\n" +
-                        "]\n" +
-                        "}\n";
-                final String finalResult = result;
+            public void onResponse(final String result) {
+
                 ((DriftinBottleListActivity)mContext).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         //此时已在主线程中，可以更新UI了
                         closeDataDialog();
                         Gson gson = new Gson();
-                        bottleBean = gson.fromJson(finalResult,BottleBean0.class);
-                        if(bottleBean == null){
+                        bottleBeans = gson.fromJson(result,new TypeToken<List<BottleBean0>>(){}.getType());
+                        if(bottleBeans == null){
                             ToastUtils.show(ErrorInfo.ErrorCode.valueOf(-5).getMessage());
                             return;
                         }else {
@@ -209,128 +107,12 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
 
             @Override
             public void onFailure(final ErrorInfo.ErrorCode errorInfo) {
-               final String result ="{\n" +
-                        "  \"code\": 0,\n" +
-                        "  \"msg\": \"请求正常返回\",\n" +
-                        "  \"totalCount\": 3479,\n" +
-                        "  \"data\": [\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD88C\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"北京\",\n" +
-                        "      \"textData\": \"\",\n" +
-                        "      \"imageData\": \"\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"2018-6-25 17:45:00\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD880\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"上海\",\n" +
-                        "      \"textData\": \"\",\n" +
-                        "      \"imageData\": \"\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"2018-6-25 17:45:01\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD881\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"北京\",\n" +
-                        "      \"textData\": \"\",\n" +
-                        "      \"imageData\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"title\": \"\",\n" +
-                        "      \"voiceNumber\": \"\",\n" +
-                        "      \"dataType\": \"1\",\n" +
-                        "      \"creatdDate\": \"2018-6-25 17:45:05\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD882\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"中华人民共和国\",\n" +
-                        "      \"textData\": \"中华人民共和国\",\n" +
-                        "      \"imageData\": \"中华人民共和国\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"10s\",\n" +
-                        "      \"dataType\": \"2\",\n" +
-                        "      \"creatdDate\": \"中华人民共和国\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD883\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"中华人民共和国\",\n" +
-                        "      \"textData\": \"中华人民共和国\",\n" +
-                        "      \"imageData\": \"中华人民共和国\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"中华人民共和国\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"中华人民共和国\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD884\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"中华人民共和国\",\n" +
-                        "      \"textData\": \"中华人民共和国\",\n" +
-                        "      \"imageData\": \"中华人民共和国\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"中华人民共和国\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"中华人民共和国\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD885\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"中华人民共和国\",\n" +
-                        "      \"textData\": \"中华人民共和国\",\n" +
-                        "      \"imageData\": \"中华人民共和国\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"中华人民共和国\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"中华人民共和国\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD886\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"中华人民共和国\",\n" +
-                        "      \"textData\": \"中华人民共和国\",\n" +
-                        "      \"imageData\": \"中华人民共和国\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"中华人民共和国\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"中华人民共和国\"\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"reginonID\": \"7A52C1E4A3064127B6C20C54CB0BD887\",\n" +
-                        "      \"headimage\": \"/storage/emulated/0/Download/03-28-33-613e24431257c9bb_400.jpg\",\n" +
-                        "      \"bottleName\": \"中华人民共和国\",\n" +
-                        "      \"textData\": \"中华人民共和国\",\n" +
-                        "      \"imageData\": \"中华人民共和国\",\n" +
-                        "      \"title\": \"中华人民共和国\",\n" +
-                        "      \"voiceNumber\": \"中华人民共和国\",\n" +
-                        "      \"dataType\": \"0\",\n" +
-                        "      \"creatdDate\": \"中华人民共和国\"\n" +
-                        "    }\n" +
-                        "\n" +
-                        "]\n" +
-                        "}\n";
                 ((DriftinBottleListActivity)mContext).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         //此时已在主线程中，可以更新UI了
                         closeDataDialog();
                         ToastUtils.show(errorInfo.getMessage());
-                        Gson gson = new Gson();
-                        bottleBean = gson.fromJson(result,BottleBean0.class);
-                        if(bottleBean == null){
-                            ToastUtils.show(ErrorInfo.ErrorCode.valueOf(-5).getMessage());
-                            return;
-                        }else {
-                            refreshUI();
-                        }
-
                     }
                 });
 
@@ -339,19 +121,19 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     }
 
     private void refreshUI(){
-        for(BottleBean0 item : bottleBean.result){
+        for(BottleBean0 item : bottleBeans){
             if(App.bottleIds.contains(item.reginonID)){
                 item.bIsRead = true;
             }
         }
-        bottleAdatper.setData(bottleBean.result);
+        bottleAdatper.setData(bottleBeans);
         bottleAdatper.notifyDataSetChanged();
 
     }
 
     @Override
     public void onItemClick(int position) {
-        BottleBean0 item = bottleBean.result.get(position);
+        BottleBean0 item = bottleBeans.get(position);
         if(!App.bottleIds.contains(item.reginonID)) {
             App.bottleIds.add(item.reginonID);
         }

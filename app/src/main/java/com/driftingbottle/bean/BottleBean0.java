@@ -1,11 +1,15 @@
 package com.driftingbottle.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/6/25.
  */
 
-public class BottleBean0 extends BaseBean<BottleBean0> {
+public class BottleBean0 implements Serializable {
     public String reginonID;
+    public String province;
+    public String city;
     public String bottleName;
     public String headimage;
     public String CreatedDate;
