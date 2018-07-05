@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
     <include layout="@layout/action_bar_layout"
+        android:visibility="gone"
         android:id="@+id/action_bar"/>
     <RelativeLayout
         android:id="@+id/rl_right_layout"

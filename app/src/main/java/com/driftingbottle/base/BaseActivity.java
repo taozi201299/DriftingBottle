@@ -125,6 +125,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         |View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
                 decorView.setSystemUiVisibility(option);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0及以上
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            }
             //根据上面设置是否对状态栏单独设置颜色
             if (useThemestatusBarColor) {
                 getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));

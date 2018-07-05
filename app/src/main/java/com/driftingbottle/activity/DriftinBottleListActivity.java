@@ -3,6 +3,7 @@ package com.driftingbottle.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,6 +49,12 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     @Override
     public int getLayoutId() {
         return R.layout.activity_bottle_list_layout;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 
     @Override

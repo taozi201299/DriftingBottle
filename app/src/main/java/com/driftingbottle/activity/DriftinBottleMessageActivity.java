@@ -3,6 +3,7 @@ package com.driftingbottle.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.andview.refreshview.XRefreshView;
@@ -58,7 +59,11 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     public void initListener() {
 
     }
-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
