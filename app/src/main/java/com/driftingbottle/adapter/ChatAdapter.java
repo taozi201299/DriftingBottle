@@ -28,6 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.rockerhieu.emojicon.EmojiconTextView;
 
+import static android.widget.TextView.BufferType.SPANNABLE;
 
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -72,7 +73,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         String content = "" ;
         String type = msg.dataType;
         if(type.equals("0")){
-            content = msg.textData;
+            content = EmojiUtil.decodeUnicode(msg.textData);
         }else if(type.equals("1")){
             content = App.strIp +msg.imageData;
         }else if(type.equals("2")){
@@ -103,7 +104,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                  ((ChatLeftViewHolder) holder).mTvMsgLeft.setVisibility(View.VISIBLE);
                 SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext,((ChatLeftViewHolder) holder).mTvMsgLeft.getTextSize(),
                         ((ChatLeftViewHolder) holder).mTvMsgLeft.getmEmojiconSize());
-                ((ChatLeftViewHolder) holder).mTvMsgLeft.setText(builder);
+                ((ChatLeftViewHolder) holder).mTvMsgLeft.setText(builder,SPANNABLE);
             }else if("1".equals(type)){
                 ((ChatLeftViewHolder) holder).iv_left_img.setVisibility(View.VISIBLE);
                 Glide.with(mContext)

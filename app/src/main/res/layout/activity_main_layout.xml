@@ -314,16 +314,36 @@
         android:orientation="vertical"
         android:background="@drawable/bg_dialog"
         android:layout_centerInParent="true"
-        android:layout_height="160dp">
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginLeft="@dimen/_180dp"
+            android:text="文本在前"
+            />
         <ImageView
             android:id="@+id/iv_activity_index_photo"
             android:layout_width="100dp"
             android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal"
             android:layout_height="100dp"
             android:scaleType="fitXY"
             android:layout_marginBottom="5dp"
+            android:layout_marginLeft="@dimen/_20dp"
             android:background="@drawable/my_icon_image_add"/>
+        <io.github.rockerhieu.emojicon.EmojiconEditText
+            android:id="@+id/et_photo_msg"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textSize="14sp"
+            android:background="@null"
+            android:hint="输入群发消息"
+            android:padding="5dp"
+            emojicon:emojiconSize="16sp"
+            android:layout_marginLeft="@dimen/_20dp"
+            android:textIsSelectable="true"
+            android:textColor="@color/balck"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
