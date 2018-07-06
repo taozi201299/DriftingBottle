@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -131,7 +132,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             content = EmojiUtil.decodeUnicode(msg.textData);
         }else if(type.equals("1")){
             if(msg.answerType.equals("0"))
-            content = App.strIp + "/" + msg.imageData;
+            content = App.strIp  + msg.imageData;
             else if(msg.answerType.equals("1")){
                 content = msg.imageData;
             }
@@ -264,7 +265,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @BindView(R.id.tv_right_msg)
         EmojiconTextView mTvMsgRight;
         @BindView(R.id.ll_audio_right)
-        LinearLayout ll_audio_right;
+        RelativeLayout ll_audio_right;
         @BindView(R.id.tv_audio_right)
         TextView tv_audio_right;
         @BindView(R.id.tv_audio_right_time)

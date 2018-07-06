@@ -36,6 +36,8 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
             wei_du_xiao_xi.setVisibility(View.VISIBLE);
         }
         Glide.with(mContext).load(App.strIp +bottleBean.headimage)
+                .placeholder(R.drawable.zl)
+                .error(R.drawable.zl)
                 .into(iv_activity_bottle_item_img);
         tv_activity_bottle_item_area.setText(bottleBean.city.toString());
         String type = "0";
@@ -44,17 +46,42 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
         type = bottleBean.dataType;
         switch (type) {
             case "0":
-                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(bottleBean.textData,mContext,tv_activity_bottle_item_final_msg.getTextSize(),
+                String content = "";
+                if(bottleBean.title != null && !bottleBean.title.isEmpty()){
+                    content = bottleBean.title;
+                }else {
+                    content = bottleBean.textData;
+                }
+                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext,tv_activity_bottle_item_final_msg.getTextSize(),
                         tv_activity_bottle_item_final_msg.getmEmojiconSize());
                 tv_activity_bottle_item_final_msg.setText(builder);
                 break;
             case "1":
-            case "3":
                 if(bottleBean.imageData.contains("gif")){
                     tv_activity_bottle_item_final_msg.setText("[动画表情]");
                 }else {
                     tv_activity_bottle_item_final_msg.setText("[图片]");
                 }
+                break;
+            case "3":
+                if(bottleBean.orderType.equals("0")){
+                    String content1 = "";
+                    if(bottleBean.title != null && !bottleBean.title.isEmpty()){
+                        content1 = bottleBean.title;
+                    }else {
+                        content1 = bottleBean.textData;
+                    }
+                    SpannableStringBuilder builder1 = EmojiUtil.replaceStr2Emoji(content1,mContext,tv_activity_bottle_item_final_msg.getTextSize(),
+                            tv_activity_bottle_item_final_msg.getmEmojiconSize());
+                    tv_activity_bottle_item_final_msg.setText(builder1);
+                }else{
+                    if(bottleBean.imageData.contains("gif")){
+                        tv_activity_bottle_item_final_msg.setText("[动画表情]");
+                    }else {
+                        tv_activity_bottle_item_final_msg.setText("[图片]");
+                    }
+                }
+
                 break;
             case "2":
                 tv_activity_bottle_item_final_msg.setText("[语音通话]");

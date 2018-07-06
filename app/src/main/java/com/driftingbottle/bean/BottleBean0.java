@@ -19,5 +19,6 @@ public class BottleBean0 implements Serializable {
     public String voiceNumber;
    // 0，纯文本 1，纯图片 2，纯声音 3，文本+图片
     public String dataType;
+    public String orderType;
     public   boolean bIsRead;
 }

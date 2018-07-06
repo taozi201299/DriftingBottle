@@ -277,7 +277,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     protected void onDestroy() {
         super.onDestroy();
         releaseWakeLock();
-        stopService();
+       // stopService();
         messageType = 0;
         ll_dialog_select.setVisibility(View.GONE);
         ll_dialog_send_message.setVisibility(View.GONE);
@@ -567,13 +567,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         String url = "http://123.56.68.127:8080/WebRoot/ClientSendMsg";
         HashMap<String,String>param = new HashMap<>();
         param.put("clientID",CommonUtils.getUniqueId(mContext));
-        param.put("answerType","1");
         param.put("dateType",String.valueOf(messageType));
         if(messageType == 0) {
-            param.put("title", et_msg_tle.getText().toString());
-            param.put("textData", et_msg.getText().toString());
+            param.put("title", EmojiUtil.escapeUnicode(et_msg_tle.getText().toString()));
+            param.put("textData", EmojiUtil.escapeUnicode(et_msg.getText().toString()));
             param.put("imageData","");
-            param.put("orderType","");
+            param.put("orderType","0");
         }else if(messageType == 1){
             param.put("title","");
             if(photos.size() == 0){
@@ -589,22 +588,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 messageType = 3;
             }
             param.put("dateType",String.valueOf(messageType));
-            param.put("textData", et_photo_msg.getText().toString());
+            param.put("textData", EmojiUtil.escapeUnicode(et_photo_msg.getText().toString()));
             param.put("orderType",checkBox.isChecked() ? "0":"1");
         }
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
                 ll_dialog_send_message.setVisibility(View.GONE);
+                iEmojiEditText = -1;
                 et_msg.setText("");
                 et_msg_tle.setText("");
                 et_photo_msg.setText("");
+                emojicons.setVisibility(View.GONE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     iv_activity_index_photo.setBackground(getDrawable(R.drawable.my_icon_image_add));
                 }else {
                     iv_activity_index_photo.setImageResource(R.drawable.my_icon_image_add);
                 }
-                hideSoftInput(MainActivity.this);
+                hideInput(mContext,rootview);
                 ToastUtils.show("群发成功");
             }
 
@@ -682,8 +683,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     public void onEmojiconClicked(Emojicon emojicon) {
         if (iEmojiEditText == 1){
             EmojiconsFragment.input(et_msg, emojicon);
-        }else{
+        }else if(iEmojiEditText == 0){
             EmojiconsFragment.input(et_msg_tle, emojicon);
+        }else if(iEmojiEditText == 3){
+            EmojiconsFragment.input(et_photo_msg,emojicon);
         }
     }
 
@@ -692,8 +695,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     {
         if (iEmojiEditText == 1){
             EmojiconsFragment.backspace(et_msg);
-        }else{
+        }else if(iEmojiEditText ==0 ){
             EmojiconsFragment.backspace(et_msg_tle);
+        }else if(iEmojiEditText == 3){
+            EmojiconsFragment.backspace(et_photo_msg);
         }
     }
 
@@ -703,13 +708,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             if(iEmojiEditText == 1){
                 cursorStart = et_msg.getSelectionStart();
-            }else {
+            }else if(iEmojiEditText == 0) {
                 cursorStart = et_msg_tle.getSelectionStart();
             }
             beforeLength = s.length();
         }
         @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
         @Override public void afterTextChanged(Editable s){
+            if(s.toString().isEmpty()) return;
             if(!bFinish){
                 cursorEnd = cursorStart + s.length() - beforeLength;
                 SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(s.toString(),mContext,et_msg_tle.getTextSize(),et_msg_tle.getmEmojiconSize());
