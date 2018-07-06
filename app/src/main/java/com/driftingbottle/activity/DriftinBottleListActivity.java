@@ -37,6 +37,7 @@ import butterknife.BindView;
 
 public class DriftinBottleListActivity extends BaseActivity  implements CommonAdapter.OnItemClickListener{
 
+    private final String TAG = DriftinBottleListActivity.class.getSimpleName();
     @BindView(R.id.bottleRecyclerView)
     RecyclerView bottleRecyclerView;
     @BindView(R.id.tv_emtry_message)
@@ -74,6 +75,12 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        HttpUtils.getInstance().cancleHttp(TAG);
+    }
+
+    @Override
     public void initView() {
         action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         showDataLoadingDialog();
@@ -88,7 +95,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         String url = "http://123.56.68.127:8080/WebRoot/ClientGetPLPList";
         HashMap<String,String>params = new HashMap<>();
         params.put("clientID", CommonUtils.getUniqueId(mContext));
-        HttpUtils.getInstance().requestGet(url, params, url, new RequestCallback<String>() {
+        HttpUtils.getInstance().requestGet(url, params, TAG, new RequestCallback<String>() {
             @Override
             public void onResponse(final String result) {
 

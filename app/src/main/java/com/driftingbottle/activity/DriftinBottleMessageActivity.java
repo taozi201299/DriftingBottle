@@ -198,7 +198,11 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                 messageBean.imageData = item.imageData;
                 messageBean.voiceNumber = "";
                 messageBean.textData = "";
-                datas.add(i,messageBean);
+                if(item.orderType.equals("0")){
+                    datas.add(i+1,messageBean);
+                }else {
+                    datas.add(i,messageBean);
+                }
                 item.dataType = "0";
             }
         }

@@ -40,7 +40,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private List<MessageBean0> mDatas = new ArrayList<>();
     private String urlImage;
-    private String  lastLMin ="";
+    private String  lastLMin ="1970-01-01 00:00:00";
     boolean bFinish = false;
     boolean bLeftEmoji = true;
 
@@ -131,8 +131,9 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if(type.equals("0")){
             content = EmojiUtil.decodeUnicode(msg.textData);
         }else if(type.equals("1")){
-            if(msg.answerType.equals("0"))
-            content = App.strIp  + msg.imageData;
+            if(msg.answerType.equals("0")) {
+                content = App.strIp + msg.imageData;
+            }
             else if(msg.answerType.equals("1")){
                 content = msg.imageData;
             }
@@ -170,8 +171,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 ((ChatLeftViewHolder) holder).iv_left_img.setVisibility(View.VISIBLE);
                 Glide.with(mContext)
                         .load(content)
-                        .placeholder(R.drawable.emoji_00a9)
-                        .error(R.drawable.emoji_00a9)
+                        .placeholder(R.mipmap.dialog_loading_img)
+                        .error(R.drawable.zl)
                         .into(((ChatLeftViewHolder) holder).iv_left_img);
             }else if("2".equals(type)){
                 ((ChatLeftViewHolder) holder).ll_audio_left.setVisibility(View.VISIBLE);
@@ -189,11 +190,12 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     ((ChatRightViewHolder) holder).mTvRightTime.setVisibility(View.GONE);
                 }else {
                     ((ChatRightViewHolder) holder).mTvRightTime.setVisibility(View.VISIBLE);
+                    ((ChatRightViewHolder) holder).mTvRightTime.setText(time);
                 }
             }
             ((ChatRightViewHolder) holder).iv_right_img.setVisibility(View.GONE);
             ((ChatRightViewHolder) holder).mTvMsgRight.setVisibility(View.GONE);
-            ((ChatRightViewHolder) holder).mTvRightTime.setText(time);
+
             if(imgUrl != null && !imgUrl.isEmpty()) {
                 Glide.with(mContext).load(imgUrl)
                         .error(R.drawable.zl)
@@ -277,13 +279,4 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    private class MyTextWatcher implements TextWatcher
-    {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-        @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
-        @Override public void afterTextChanged(Editable s){
-
-        }
-    }
 }

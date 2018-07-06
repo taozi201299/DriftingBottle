@@ -31,8 +31,7 @@
             android:layout_height="40dp"
             android:src="@drawable/zl"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="@dimen/_10dp"
-            android:scaleType="fitXY" />
+            android:layout_marginLeft="@dimen/_10dp" />
 
         <io.github.rockerhieu.emojicon.EmojiconTextView
             android:id="@+id/tv_left_msg"

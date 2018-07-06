@@ -23,6 +23,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20dp"
         android:layout_marginTop="10dp">
 
         <ImageView
@@ -31,8 +32,7 @@
             android:layout_height="40dp"
             android:src="@drawable/hard"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/_10dp"
-            android:scaleType="fitXY" />
+            android:layout_marginRight="@dimen/_10dp" />
         <io.github.rockerhieu.emojicon.EmojiconTextView
             android:id="@+id/tv_right_msg"
             android:layout_width="wrap_content"

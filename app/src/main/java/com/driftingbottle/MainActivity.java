@@ -139,6 +139,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     TextView tv_cancel_msg;
     @BindView(R.id.et_photo_msg)
     EmojiconEditText et_photo_msg;
+    @BindView(R.id.et_photo_msg_title)
+    EmojiconEditText et_photo_msg_title;
     @BindView(R.id.checkbox)
     CheckBox checkBox;
     /**
@@ -232,6 +234,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         tv_activity_index_select_biaoqing.setOnClickListener(this);
         et_msg.addTextChangedListener(new MyTextWatcher());
         et_msg_tle.addTextChangedListener(new MyTextWatcher());
+        et_photo_msg_title.addTextChangedListener(new MyTextWatcher());
+        et_photo_msg.addTextChangedListener(new MyTextWatcher());
         et_msg_tle.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -244,12 +248,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 iEmojiEditText = 1;
             }
         });
+        et_photo_msg.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                iEmojiEditText = 2;
+            }
+        });
+        et_photo_msg_title.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                iEmojiEditText = 3;
+            }
+        });
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 checkBox.setChecked(isChecked);
             }
         });
+        checkBox.setChecked(true);
     }
 
     @Override
@@ -396,6 +413,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             case R.id.tv_cancel_photo:
                 ll_dialog_send_photo.setVisibility(View.GONE);
                 iv_activity_index_photo.setImageResource(0);
+                et_photo_msg_title.setText("");
+                et_photo_msg.setText("");
+                checkBox.setChecked(true);
                 break;
             case R.id.iv_activity_index_photo:
                 requestCameraPermission();
@@ -559,9 +579,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 ToastUtils.show("群发内容为空");
                 return;
             }
-            if(checkBox.isChecked() && et_photo_msg.getText().toString().isEmpty()){
-                ToastUtils.show("文本在前，请输入文本信息");
-                return;
+            if(checkBox.isChecked() ) {
+                if (et_photo_msg.getText().toString().isEmpty()) {
+                    ToastUtils.show("文本在前，请输入文本信息");
+                    return;
+                }if(et_photo_msg_title.getText().toString().isEmpty()){
+                    ToastUtils.show("请输入标题");
+                }
+            }else {
+                if(et_photo_msg.getText().toString().isEmpty()){
+                    if(!et_photo_msg_title.getText().toString().isEmpty()){
+                        ToastUtils.show("标题存在时，一定要输入内容哦");
+                        return;
+                    }
+                }else {
+                    if(et_photo_msg_title.getText().toString().isEmpty()){
+                        ToastUtils.show("请输入标题");
+                        return;
+                    }
+                }
             }
         }
         String url = "http://123.56.68.127:8080/WebRoot/ClientSendMsg";
@@ -574,7 +610,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             param.put("imageData","");
             param.put("orderType","0");
         }else if(messageType == 1){
-            param.put("title","");
+            param.put("title",EmojiUtil.escapeUnicode(et_photo_msg_title.getText().toString()));
             if(photos.size() == 0){
                 messageType = 0;
                 param.put("imageData","");
@@ -595,10 +631,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             @Override
             public void onResponse(String result) {
                 ll_dialog_send_message.setVisibility(View.GONE);
-                iEmojiEditText = -1;
+                ll_dialog_send_photo.setVisibility(View.GONE);
                 et_msg.setText("");
                 et_msg_tle.setText("");
                 et_photo_msg.setText("");
+                et_photo_msg_title.setText("");
+                iv_activity_index_photo.setImageResource(0);
                 emojicons.setVisibility(View.GONE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     iv_activity_index_photo.setBackground(getDrawable(R.drawable.my_icon_image_add));
@@ -685,8 +723,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             EmojiconsFragment.input(et_msg, emojicon);
         }else if(iEmojiEditText == 0){
             EmojiconsFragment.input(et_msg_tle, emojicon);
-        }else if(iEmojiEditText == 3){
+        }else if(iEmojiEditText == 2){
             EmojiconsFragment.input(et_photo_msg,emojicon);
+        }else if(iEmojiEditText == 3){
+            EmojiconsFragment.input(et_photo_msg_title,emojicon);
         }
     }
 
@@ -697,9 +737,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             EmojiconsFragment.backspace(et_msg);
         }else if(iEmojiEditText ==0 ){
             EmojiconsFragment.backspace(et_msg_tle);
-        }else if(iEmojiEditText == 3){
+        }else if(iEmojiEditText == 2){
             EmojiconsFragment.backspace(et_photo_msg);
-        }
+        }else if (iEmojiEditText == 3){
+            EmojiconsFragment.backspace(et_photo_msg_title);
+    }
     }
 
     private class MyTextWatcher implements TextWatcher
@@ -710,6 +752,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 cursorStart = et_msg.getSelectionStart();
             }else if(iEmojiEditText == 0) {
                 cursorStart = et_msg_tle.getSelectionStart();
+            }else if (iEmojiEditText == 2){
+                cursorStart = et_photo_msg.getSelectionStart();
+            }else if(iEmojiEditText == 3){
+                cursorStart = et_photo_msg_title.getSelectionStart();
             }
             beforeLength = s.length();
         }
@@ -723,9 +769,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 if(iEmojiEditText == 1) {
                     et_msg.setText(builder);
                     et_msg.setSelection(cursorEnd);
-                }else {
+                }else if(iEmojiEditText == 0) {
                     et_msg_tle.setText(builder);
                     et_msg_tle.setSelection(cursorEnd);
+                }else if(iEmojiEditText == 2){
+                    et_photo_msg.setText(builder);
+                    et_photo_msg.setSelection(cursorEnd);
+                }else if(iEmojiEditText == 3){
+                    et_photo_msg_title.setText(builder);
+                    et_photo_msg_title.setSelection(cursorEnd);
                 }
             }
             bFinish = false;
@@ -755,6 +807,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 iCurrentCount ++;
                 postMessage();
                 if(iCurrentCount == iTotalCount){
+                    ToastUtils.show("获取瓶子完成");
                     bWorking = false;
                 }
             }

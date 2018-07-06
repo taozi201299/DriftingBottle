@@ -37,7 +37,7 @@ public class  App extends Application {
         super.onCreate();
         context = getApplicationContext();
         OkHttpUtils.init(this);
-        OkHttpUtils.getInstance().setConnectTimeout(1000);
+        OkHttpUtils.getInstance().setConnectTimeout(10000);
 
     }
 

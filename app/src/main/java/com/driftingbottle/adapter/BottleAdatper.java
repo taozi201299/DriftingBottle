@@ -7,11 +7,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.driftinbottle.httputils.HttpUtils;
 import com.driftingbottle.App;
 import com.driftingbottle.R;
 import com.driftingbottle.bean.BottleBean;
 import com.driftingbottle.bean.BottleBean0;
 import com.driftingbottle.utils.EmojiUtil;
+
+import java.util.HashMap;
 
 import io.github.rockerhieu.emojicon.EmojiconTextView;
 
@@ -36,7 +39,7 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
             wei_du_xiao_xi.setVisibility(View.VISIBLE);
         }
         Glide.with(mContext).load(App.strIp +bottleBean.headimage)
-                .placeholder(R.drawable.zl)
+                .placeholder(R.mipmap.dialog_loading_img)
                 .error(R.drawable.zl)
                 .into(iv_activity_bottle_item_img);
         tv_activity_bottle_item_area.setText(bottleBean.city.toString());

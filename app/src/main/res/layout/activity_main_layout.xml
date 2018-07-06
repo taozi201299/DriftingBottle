@@ -334,9 +334,21 @@
             android:layout_marginLeft="@dimen/_20dp"
             android:background="@drawable/my_icon_image_add"/>
         <io.github.rockerhieu.emojicon.EmojiconEditText
+            android:id="@+id/et_photo_msg_title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="14sp"
+            android:background="@null"
+            android:hint="输入标题"
+            android:padding="5dp"
+            emojicon:emojiconSize="16sp"
+            android:layout_marginLeft="@dimen/_20dp"
+            android:textIsSelectable="true"
+            android:textColor="@color/balck"/>
+        <io.github.rockerhieu.emojicon.EmojiconEditText
             android:id="@+id/et_photo_msg"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:textSize="14sp"
             android:background="@null"
             android:hint="输入群发消息"
