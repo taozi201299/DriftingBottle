@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.driftingbottle.App;
 import com.driftingbottle.R;
 import com.driftingbottle.bean.MessageBean;
@@ -155,7 +156,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
              lastLMin  = time;
             ((ChatLeftViewHolder) holder).mTvLeftTime.setText(time);
             if(!urlImage.isEmpty())
-                Glide.with(mContext).load(urlImage)
+                Glide.with(mContext).load(urlImage).priority(Priority.HIGH)
                         .error(R.drawable.zl).into(((ChatLeftViewHolder) holder).iv_owner_img);
 
             ((ChatLeftViewHolder) holder).mTvMsgLeft.setVisibility(View.GONE);
@@ -166,7 +167,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext,((ChatLeftViewHolder) holder).mTvMsgLeft.getTextSize(),
                         ((ChatLeftViewHolder) holder).mTvMsgLeft.getmEmojiconSize());
                 ((ChatLeftViewHolder) holder).mTvMsgLeft.setText(builder);
-             //   autoSplitText(((ChatLeftViewHolder) holder).mTvMsgLeft,builder.toString());
             }else if("1".equals(type)){
                 ((ChatLeftViewHolder) holder).iv_left_img.setVisibility(View.VISIBLE);
                 Glide.with(mContext)

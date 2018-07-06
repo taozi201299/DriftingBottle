@@ -2,11 +2,14 @@ package com.driftingbottle.adapter;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.driftinbottle.httputils.HttpUtils;
 import com.driftingbottle.App;
 import com.driftingbottle.R;
@@ -41,7 +44,10 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
         Glide.with(mContext).load(App.strIp +bottleBean.headimage)
                 .placeholder(R.mipmap.dialog_loading_img)
                 .error(R.drawable.zl)
+                .dontAnimate()
+                .centerCrop()
                 .into(iv_activity_bottle_item_img);
+
         tv_activity_bottle_item_area.setText(bottleBean.city.toString());
         String type = "0";
         tv_activity_bottle_item_time.setText(bottleBean.CreatedDate);
@@ -92,4 +98,5 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
         }
 
     }
+
 }
