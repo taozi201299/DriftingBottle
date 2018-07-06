@@ -31,19 +31,21 @@
             android:text=""
             android:textColor="@color/balck"
             android:textSize="16sp" />
-
-        <TextView
+        <io.github.rockerhieu.emojicon.EmojiconTextView
             android:id="@+id/tv_activity_bottle_item_final_msg"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="3dp"
             android:ellipsize="end"
+            android:singleLine="true"
             android:ems="16"
             android:maxLines="1"
             android:paddingTop="2dp"
             android:text=""
             android:textColor="#ababab"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            emojicon:emojiconSize="14sp"
+            android:visibility="visible" />
     </LinearLayout>
 
     <TextView

@@ -10,4 +10,6 @@ public class MoonBean implements Serializable {
     public String id;
     public String moomUrl;
     public String isselect;
+    public String starstatus;
 }
+

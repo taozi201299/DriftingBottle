@@ -87,8 +87,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     private void getMessage(){
         String url = "http://123.56.68.127:8080/WebRoot/ClientDetails";
         HashMap<String,String> params = new HashMap<>();
-      //  params.put("clientID", CommonUtils.getUniqueId(mContext));
-        params.put("clientID","11-11");
+        params.put("clientID", CommonUtils.getUniqueId(mContext));
         params.put("regionID",bottleBean.regionID);
 //
 //        params.put("pageIndex",String.valueOf(iPageIndex));

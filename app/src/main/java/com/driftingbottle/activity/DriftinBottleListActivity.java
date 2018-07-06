@@ -87,8 +87,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     private void getBottle(){
         String url = "http://123.56.68.127:8080/WebRoot/ClientGetPLPList";
         HashMap<String,String>params = new HashMap<>();
-       // params.put("clientID", CommonUtils.getUniqueId(mContext));
-        params.put("clientID","11-11");
+        params.put("clientID", CommonUtils.getUniqueId(mContext));
         HttpUtils.getInstance().requestGet(url, params, url, new RequestCallback<String>() {
             @Override
             public void onResponse(final String result) {

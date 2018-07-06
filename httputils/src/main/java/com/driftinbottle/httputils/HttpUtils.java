@@ -43,7 +43,7 @@ public class HttpUtils {
     }
     public void requestGet(String url, HashMap<String,String> params, String tag, final RequestCallback<String> callback, CacheMode cacheMode) {
         HttpParams httpParams = new HttpParams();
-        for(String key:params.keySet()){
+         for(String key:params.keySet()){
             httpParams.put(key,params.get(key));
         }
         OkHttpUtils.get(url)     // 请求方式和请求url

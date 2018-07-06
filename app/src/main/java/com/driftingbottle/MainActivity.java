@@ -23,6 +23,8 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -135,6 +137,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     TextView tv_send_msg;
     @BindView(R.id.tv_cancel_msg)
     TextView tv_cancel_msg;
+    @BindView(R.id.et_photo_msg)
+    EmojiconEditText et_photo_msg;
+    @BindView(R.id.checkbox)
+    CheckBox checkBox;
     /**
      * 群发图片消息布局
      */
@@ -177,7 +183,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     /**
      * 图片list
      */
-    ArrayList<String> photos = null;
+    ArrayList<String> photos = new ArrayList<>();
     private static final int RC_CAMERA_PERM = 100;
     private static final int PICKER_RESULT= 101;
 
@@ -208,7 +214,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
     @Override
     public void initListener() {
-        rootview.setOnClickListener(this);
+       // rootview.setOnClickListener(this);
         iv_activity_index_back.setOnClickListener(this);
         tv_activity_index_start.setOnClickListener(this);
         index_set.setOnClickListener(this);
@@ -236,6 +242,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 iEmojiEditText = 1;
+            }
+        });
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                checkBox.setChecked(isChecked);
             }
         });
     }
@@ -272,9 +284,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         ll_dialog_send_photo.setVisibility(View.GONE);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void updateBackGround(){
         int hour = CommonUtils.getHour();
         if(hour < 18){
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+            action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             rl_right_layout.setVisibility(View.GONE);
             rl_day_layout.setVisibility(View.VISIBLE);
             rootview.setBackgroundResource(R.mipmap.day);
@@ -284,7 +300,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         }else {
             rl_day_layout.setVisibility(View.GONE);
             rl_right_layout.setVisibility(View.VISIBLE);
-            rootview.setBackgroundResource(R.mipmap.bg);
+            rootview.setBackgroundResource(R.mipmap.bg_index);
             // 灯塔光动画
             AnimationDrawable animationDrawable = (AnimationDrawable) iv_shape.getDrawable();
             AnimationDrawable lanimationDrawable = (AnimationDrawable) iv_shape_center.getDrawable();
@@ -322,18 +338,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         switch (v.getId()){
             case R.id.rootview:
                 if(action_bar.getVisibility() == View.VISIBLE) {
+                    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                            WindowManager.LayoutParams.FLAG_FULLSCREEN);
                     getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                     action_bar.setVisibility(View.GONE);
-                    action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 }else {
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
                     action_bar.setVisibility(View.VISIBLE);
-                    if(CommonUtils.getHour() < 18) {
-                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
-                        action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    }
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                    getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+                    action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 }
-
                 break;
             case R.id.iv_activity_index_back:
                 stopService();
@@ -407,7 +422,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         ToastUtils.show("服务停止");
         String url = "http://123.56.68.127:8080/WebRoot/ClientReset";
         HashMap<String,String>param = new HashMap<>();
-        param.put("clientID ",CommonUtils.getUniqueId(mContext));
+        param.put("clientID",CommonUtils.getUniqueId(mContext));
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
@@ -441,7 +456,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         }
         String url = "http://123.56.68.127:8080/WebRoot/ClientGetCountAndMinutes";
         HashMap<String,String> param = new HashMap<>();
-        param.put("clientID ",CommonUtils.getUniqueId(mContext));
+        param.put("clientID",CommonUtils.getUniqueId(mContext));
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
@@ -452,7 +467,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                     int count = Integer.valueOf(bottleCountBean.get(0).bottleCount);
                     iTotalCount  = count;
                     int time = Integer.valueOf(bottleCountBean.get(0).buildMinutes);
-                    interval = (time * 60 *1000 ) /(count -1);
+                  //  interval = (time * 60 *1000 ) /(count -1);
+                    interval = Integer.valueOf(bottleCountBean.get(0).onePerSeconds);
                     Thread thread = new Thread(new BottleRunnable());
                     thread.start();
                 }
@@ -480,6 +496,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 List<MoonBean> moonBeans = (List<MoonBean>) gson.fromJson(result,new TypeToken<List<MoonBean>>(){}.getType());
                 if(moonBeans != null && moonBeans.size() >0 ){
                     Glide.with(MainActivity.this).load(App.strIp + moonBeans.get(0).moomUrl).into(iv_activity_index_moon);
+                }
+                if("1".equals(moonBeans.get(0).starstatus)){
+                    rootview.setBackgroundResource(R.mipmap.bg);
                 }
             }
 
@@ -536,8 +555,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             }
         }
         else if(messageType == 1){
-            if(photos == null || photos.size() == 0){
+            if((photos == null || photos.size() == 0) && (et_photo_msg.getText() == null || et_photo_msg.getText().toString().isEmpty())){
                 ToastUtils.show("群发内容为空");
+                return;
+            }
+            if(checkBox.isChecked() && et_photo_msg.getText().toString().isEmpty()){
+                ToastUtils.show("文本在前，请输入文本信息");
                 return;
             }
         }
@@ -548,15 +571,40 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         param.put("dateType",String.valueOf(messageType));
         if(messageType == 0) {
             param.put("title", et_msg_tle.getText().toString());
-            param.put("content", et_msg.getText().toString());
+            param.put("textData", et_msg.getText().toString());
+            param.put("imageData","");
+            param.put("orderType","");
         }else if(messageType == 1){
             param.put("title","");
-            param.put("content",photos.get(0));
+            if(photos.size() == 0){
+                messageType = 0;
+                param.put("imageData","");
+            }else {
+                param.put("imageData",photos.get(0));
+            }
+            if(et_photo_msg.getText().toString().isEmpty()){
+                messageType = 1;
+            }
+            if(photos.size() > 0 && !et_photo_msg.getText().toString().isEmpty()){
+                messageType = 3;
+            }
+            param.put("dateType",String.valueOf(messageType));
+            param.put("textData", et_photo_msg.getText().toString());
+            param.put("orderType",checkBox.isChecked() ? "0":"1");
         }
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
                 ll_dialog_send_message.setVisibility(View.GONE);
+                et_msg.setText("");
+                et_msg_tle.setText("");
+                et_photo_msg.setText("");
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    iv_activity_index_photo.setBackground(getDrawable(R.drawable.my_icon_image_add));
+                }else {
+                    iv_activity_index_photo.setImageResource(R.drawable.my_icon_image_add);
+                }
+                hideSoftInput(MainActivity.this);
                 ToastUtils.show("群发成功");
             }
 
@@ -694,7 +742,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                     continue;
                 }
                 try {
-                    Thread.sleep(interval);
+                    Thread.sleep(interval *1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

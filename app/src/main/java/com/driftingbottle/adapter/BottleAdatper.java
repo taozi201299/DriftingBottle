@@ -1,6 +1,7 @@
 package com.driftingbottle.adapter;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import com.driftingbottle.App;
 import com.driftingbottle.R;
 import com.driftingbottle.bean.BottleBean;
 import com.driftingbottle.bean.BottleBean0;
+import com.driftingbottle.utils.EmojiUtil;
 
 import io.github.rockerhieu.emojicon.EmojiconTextView;
 
@@ -25,7 +27,7 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
     public void convert(ViewHolder holder, BottleBean0 bottleBean) {
         ImageView iv_activity_bottle_item_img = (ImageView)holder.getView(R.id.iv_activity_bottle_item_img);
         TextView tv_activity_bottle_item_area = (TextView) holder.getView(R.id.tv_activity_bottle_item_area);
-        TextView tv_activity_bottle_item_final_msg = (TextView) holder.getView(R.id.tv_activity_bottle_item_final_msg);
+        EmojiconTextView tv_activity_bottle_item_final_msg = (EmojiconTextView) holder.getView(R.id.tv_activity_bottle_item_final_msg);
         TextView tv_activity_bottle_item_time = (TextView) holder.getView(R.id.tv_activity_bottle_item_time);
         TextView wei_du_xiao_xi = (TextView)holder.getView(R.id.wei_du_xiao_xi);
         if(bottleBean.bIsRead){
@@ -42,7 +44,9 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
         type = bottleBean.dataType;
         switch (type) {
             case "0":
-                tv_activity_bottle_item_final_msg.setText(bottleBean.title);
+                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(bottleBean.textData,mContext,tv_activity_bottle_item_final_msg.getTextSize(),
+                        tv_activity_bottle_item_final_msg.getmEmojiconSize());
+                tv_activity_bottle_item_final_msg.setText(builder);
                 break;
             case "1":
             case "3":
