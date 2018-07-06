@@ -171,6 +171,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
     @BindView(R.id.emojicons)
     FrameLayout emojicons;
+    @BindView(R.id.emojicons_photo)
+    FrameLayout emojicons_photo;
 
 
     private PowerManager.WakeLock mWakeLock;
@@ -394,7 +396,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 ll_dialog.setVisibility(View.GONE);
                 break;
             case R.id.tv_activity_index_select_biaoqing:
-            case R.id.tv_activity_index_select_biaoqing_photo:
                 if(bEmojiVisible){
                     bEmojiVisible = false;
                     emojicons.setVisibility(View.GONE);
@@ -404,7 +405,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                     emojicons.setVisibility(View.VISIBLE);
                     tv_activity_index_select_biaoqing.setText("隐藏表情");
                 }
-                showEmojiFragment(false);
+                showEmojiFragment(false,0);
+                break;
+            case R.id.tv_activity_index_select_biaoqing_photo:
+                if(bEmojiVisible){
+                    bEmojiVisible = false;
+                    emojicons_photo.setVisibility(View.GONE);
+                    tv_activity_index_select_biaoqing_photo.setText("选择表情");
+                }else {
+                    bEmojiVisible = true;
+                    emojicons_photo.setVisibility(View.VISIBLE);
+                    tv_activity_index_select_biaoqing_photo.setText("隐藏表情");
+                }
+                showEmojiFragment(false,1);
                 break;
             case R.id.tv_send_msg:
             case R.id.tv_send_photo:
@@ -421,6 +434,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 iv_activity_index_photo.setImageResource(0);
                 et_photo_msg_title.setText("");
                 et_photo_msg.setText("");
+                emojicons_photo.setVisibility(View.GONE);
                 checkBox.setChecked(true);
                 break;
             case R.id.iv_activity_index_photo:
@@ -644,6 +658,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 et_photo_msg_title.setText("");
                 iv_activity_index_photo.setImageResource(0);
                 emojicons.setVisibility(View.GONE);
+                emojicons_photo.setVisibility(View.GONE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     iv_activity_index_photo.setBackground(getDrawable(R.drawable.my_icon_image_add));
                 }else {
@@ -661,11 +676,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     }
 
 
-    private void  showEmojiFragment(boolean useSystemDefault){
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.emojicons, EmojiconsFragment.newInstance(useSystemDefault))
-                .commit();
+    private void  showEmojiFragment(boolean useSystemDefault,int messageType ){
+        if(messageType == 0) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.emojicons, EmojiconsFragment.newInstance(useSystemDefault))
+                    .commit();
+        }else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.emojicons_photo, EmojiconsFragment.newInstance(useSystemDefault))
+                    .commit();
+        }
     }
     private boolean requestCameraPermission() {
         String[]permissions = {android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE,

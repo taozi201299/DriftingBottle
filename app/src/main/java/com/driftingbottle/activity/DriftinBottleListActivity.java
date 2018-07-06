@@ -136,7 +136,9 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     private void refreshUI(){
         for(BottleBean0 item : bottleBeans){
             if(App.bottleIds.contains(item.regionID)){
-                item.bIsRead = true;
+                if("1".equals(item.answerType) || "2".equals(item.answerType))
+                item.bIsRead = false;
+                else item.bIsRead = true;
             }else {
                 item.bIsRead = false;
             }

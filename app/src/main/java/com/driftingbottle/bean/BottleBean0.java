@@ -21,4 +21,5 @@ public class BottleBean0 implements Serializable {
     public String dataType;
     public String orderType;
     public   boolean bIsRead;
+    public String answerType;
 }
