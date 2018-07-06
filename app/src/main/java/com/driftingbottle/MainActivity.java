@@ -47,6 +47,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okhttputils.cache.CacheMode;
 
+import junit.framework.Test;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -143,6 +145,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     EmojiconEditText et_photo_msg_title;
     @BindView(R.id.checkbox)
     CheckBox checkBox;
+    @BindView(R.id.tv_activity_index_select_biaoqing_photo)
+    TextView tv_activity_index_select_biaoqing_photo;
     /**
      * 群发图片消息布局
      */
@@ -232,6 +236,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         ll_activity_index_wenben.setOnClickListener(this);
         ll_activity_index_photo.setOnClickListener(this);
         tv_activity_index_select_biaoqing.setOnClickListener(this);
+        tv_activity_index_select_biaoqing_photo.setOnClickListener(this);
         et_msg.addTextChangedListener(new MyTextWatcher());
         et_msg_tle.addTextChangedListener(new MyTextWatcher());
         et_photo_msg_title.addTextChangedListener(new MyTextWatcher());
@@ -389,6 +394,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 ll_dialog.setVisibility(View.GONE);
                 break;
             case R.id.tv_activity_index_select_biaoqing:
+            case R.id.tv_activity_index_select_biaoqing_photo:
                 if(bEmojiVisible){
                     bEmojiVisible = false;
                     emojicons.setVisibility(View.GONE);

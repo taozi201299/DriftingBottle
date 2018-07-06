@@ -316,14 +316,30 @@
         android:background="@drawable/bg_dialog"
         android:layout_centerInParent="true"
         android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         <CheckBox
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10dp"
-            android:layout_marginLeft="@dimen/_180dp"
+            android:layout_marginLeft="@dimen/_10dp"
             android:text="文本在前"
             />
+            <TextView
+                android:id="@+id/tv_activity_index_select_biaoqing_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_17dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_10dp"
+                android:textSize="12sp"
+                android:textColor="@color/blue"
+                android:gravity="center_vertical"
+                android:text="选择表情"/>
+
+        </RelativeLayout>
         <ImageView
             android:id="@+id/iv_activity_index_photo"
             android:layout_width="100dp"
