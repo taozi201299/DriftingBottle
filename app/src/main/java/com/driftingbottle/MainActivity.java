@@ -859,7 +859,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         @Override
         public void run() {
             TranslateAnimation alphaAnimation = new TranslateAnimation(0f, 200f, 100, 20);
-            alphaAnimation.setDuration(20000);
+            alphaAnimation.setDuration(10000);
             alphaAnimation.setRepeatCount(1);
             alphaAnimation.setRepeatMode(Animation.REVERSE);
             alphaAnimation.setFillAfter(true);

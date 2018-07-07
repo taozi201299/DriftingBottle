@@ -32,7 +32,7 @@
             android:layout_centerInParent="true"
             android:text="漂流瓶"
             android:textColor="@color/write"
-            android:textSize="18sp"/>
+            android:textSize="16sp"/>
         <Button
             android:id="@+id/index_set"
             android:layout_width="22dp"

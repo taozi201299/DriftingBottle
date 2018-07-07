@@ -3,13 +3,15 @@
 
     android:oneshot="false">
 
+
+
     <item android:drawable="@drawable/xq_1" android:duration="3000"/>
     <item android:drawable="@drawable/xp_1" android:duration="500"/>
+
     <item android:drawable="@drawable/xo_1" android:duration="500"/>
     <item android:drawable="@drawable/xn_1" android:duration="500"/>
     <item android:drawable="@drawable/xm_1" android:duration="500"/>
     <item android:drawable="@drawable/xl_1" android:duration="500"/>
-    <item android:drawable="@android:color/transparent" android:duration="7000"/>
 
     <!--<item android:drawable="@drawable/xu" android:duration="50"/>-->
     <!--<item android:drawable="@drawable/xv" android:duration="50"/>-->
