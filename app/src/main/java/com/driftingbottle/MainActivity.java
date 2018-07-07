@@ -105,6 +105,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     RelativeLayout rl_day_layout;
     @BindView(R.id.iv_bollen)
     ImageView iv_bollen;
+    @BindView(R.id.tv_day_title)
+    TextView tv_day_title;
 
     /**
      * 底部布局
@@ -198,6 +200,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     private int cursorStart = 0;
     private int cursorEnd = 0;
     private int beforeLength = 0;
+    private boolean bMoon  = false;
 
     private Handler mHandler = new Handler(Looper.getMainLooper()){
         @Override
@@ -322,9 +325,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             new Thread(new BollenAnimRunnable()).start();
 
         }else {
+            if(!bMoon){
+                getMoon();
+            }
             rl_day_layout.setVisibility(View.GONE);
+            tv_day_title.setVisibility(View.GONE);
             rl_right_layout.setVisibility(View.VISIBLE);
             rootview.setBackgroundResource(R.mipmap.bg_index);
+            RelativeLayout.LayoutParams leftTxtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            leftTxtParams.addRule(RelativeLayout.RIGHT_OF,iv_activity_index_back.getId());
+            leftTxtParams.addRule(RelativeLayout.CENTER_VERTICAL);
+            leftTxtParams.setMargins(10,0,0,0);
+            tv_activity_index_start.setLayoutParams(leftTxtParams);
             // 灯塔光动画
             AnimationDrawable animationDrawable = (AnimationDrawable) iv_shape.getDrawable();
             AnimationDrawable lanimationDrawable = (AnimationDrawable) iv_shape_center.getDrawable();
@@ -527,6 +539,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     }
 
     private void getMoon(){
+        bMoon = true;
         String url = "http://123.56.68.127:8080/WebRoot/ClientGetSelectMoonImage";
         HashMap<String,String>param = new HashMap<>();
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
