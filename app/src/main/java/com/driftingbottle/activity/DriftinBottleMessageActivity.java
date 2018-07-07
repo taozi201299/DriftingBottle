@@ -69,6 +69,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         super.onDestroy();
         iPageIndex = 0;
         bFinish = false;
+        xRefreshView.setPullRefreshEnable(false);
     }
 
     @Override

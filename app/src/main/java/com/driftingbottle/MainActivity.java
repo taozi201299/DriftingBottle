@@ -320,7 +320,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             rl_right_layout.setVisibility(View.GONE);
             rl_day_layout.setVisibility(View.VISIBLE);
+            tv_day_title.setVisibility(View.VISIBLE);
             rootview.setBackgroundResource(R.mipmap.day);
+            RelativeLayout.LayoutParams leftTxtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            leftTxtParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+            tv_activity_index_start.setLayoutParams(leftTxtParams);
             // 热气球动画
             new Thread(new BollenAnimRunnable()).start();
 
@@ -484,7 +488,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 iCurrentCount = -100;
                 tv_activity_index_count.setVisibility(View.GONE);
                 bWorking = false;
-                App.bottleIds.clear();
+                App.bottles.clear();
 
             }
 
@@ -830,6 +834,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         message.what = 0;
         mHandler.sendMessage(message);
     }
+    private void postFinish(){
+        Message message = new Message();
+        message.what = 1;
+        mHandler.sendMessage(message);
+    }
     class BottleRunnable implements Runnable{
 
         @Override
@@ -848,7 +857,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 iCurrentCount ++;
                 postMessage();
                 if(iCurrentCount == iTotalCount){
-                    ToastUtils.show("获取瓶子完成");
+                   // ToastUtils.show("获取瓶子完成");
+                    postFinish();
                     bWorking = false;
                 }
             }
@@ -858,8 +868,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
         @Override
         public void run() {
-            TranslateAnimation alphaAnimation = new TranslateAnimation(0f, 200f, 100, 20);
-            alphaAnimation.setDuration(10000);
+            TranslateAnimation alphaAnimation = new TranslateAnimation(0f, 300f, 100, 0);
+            alphaAnimation.setDuration(15000);
             alphaAnimation.setRepeatCount(1);
             alphaAnimation.setRepeatMode(Animation.REVERSE);
             alphaAnimation.setFillAfter(true);

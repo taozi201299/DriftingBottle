@@ -135,10 +135,12 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
 
     private void refreshUI(){
         for(BottleBean0 item : bottleBeans){
-            if(App.bottleIds.contains(item.regionID)){
-                if("1".equals(item.answerType) || "2".equals(item.answerType))
-                item.bIsRead = false;
-                else item.bIsRead = true;
+            if(App.bottles.containsKey(item.regionID)){
+                if(App.bottles.get(item.regionID).equals(item.answerType)){
+                    item.bIsRead = true;
+                }else {
+                    item.bIsRead = false;
+                }
             }else {
                 item.bIsRead = false;
             }
@@ -151,8 +153,8 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     @Override
     public void onItemClick(int position) {
         BottleBean0 item = bottleBeans.get(position);
-        if(!App.bottleIds.contains(item.regionID)) {
-            App.bottleIds.add(item.regionID);
+        if(!App.bottles.containsKey(item.regionID)) {
+            App.bottles.put(item.regionID,item.answerType);
         }
         Bundle bundle = new Bundle();
         bundle.putSerializable("key",item);
