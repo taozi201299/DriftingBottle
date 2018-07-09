@@ -293,6 +293,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         int hour = CommonUtils.getHour();
         if(hour >= 18){
             getMoon();
+            rootview.setBackgroundResource(R.mipmap.bg_index);
         }
     }
     @Override
@@ -335,7 +336,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             rl_day_layout.setVisibility(View.GONE);
             tv_day_title.setVisibility(View.GONE);
             rl_right_layout.setVisibility(View.VISIBLE);
-            rootview.setBackgroundResource(R.mipmap.bg_index);
             RelativeLayout.LayoutParams leftTxtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             leftTxtParams.addRule(RelativeLayout.RIGHT_OF,iv_activity_index_back.getId());
             leftTxtParams.addRule(RelativeLayout.CENTER_VERTICAL);

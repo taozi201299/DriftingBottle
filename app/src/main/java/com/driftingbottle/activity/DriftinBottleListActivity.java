@@ -153,8 +153,10 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     @Override
     public void onItemClick(int position) {
         BottleBean0 item = bottleBeans.get(position);
-        if(!App.bottles.containsKey(item.regionID)) {
-            App.bottles.put(item.regionID,item.answerType);
+        for(BottleBean0 bottleBean0 :bottleBeans) {
+            if (!App.bottles.containsKey(item.regionID)) {
+                App.bottles.put(bottleBean0.regionID, bottleBean0.answerType);
+            }
         }
         Bundle bundle = new Bundle();
         bundle.putSerializable("key",item);
