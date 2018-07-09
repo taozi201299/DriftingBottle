@@ -3,8 +3,10 @@ package com.driftingbottle.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.andview.refreshview.XRefreshView;
 import com.driftinbottle.callback.ErrorInfo;
@@ -45,6 +47,8 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     XRefreshView xRefreshView;
     @BindView(R.id.layout_bar)
     LinearLayout action_bar;
+    @BindView(R.id.tv_day_title)
+    TextView tv_day_title;
     ChatAdapter chatAdapter;
     private BottleBean0 bottleBean;
     ArrayList<MessageBean0>datas = new ArrayList<>();
@@ -77,7 +81,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         Bundle bundle = getIntent().getBundleExtra(DEFAULT_BUNDLE_NAME);
         bottleBean = (BottleBean0) bundle.getSerializable("key");
         chatAdapter.setMyImage(App.strIp + bottleBean.headimage);
-        showTitle(bottleBean.bottleName);
+        showTitle(bottleBean.city);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -131,6 +135,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     }
     @Override
     public void initView() {
+        tv_day_title.setVisibility(View.INVISIBLE);
         action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         showDataLoadingDialog();
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);

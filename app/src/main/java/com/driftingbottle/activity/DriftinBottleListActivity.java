@@ -3,6 +3,7 @@ package com.driftingbottle.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,6 +45,8 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     TextView tv_emtry_message;
     @BindView(R.id.action_bar)
     LinearLayout action_bar;
+    @BindView(R.id.tv_day_title)
+    TextView tv_day_title;
     private ArrayList<BottleBean0> bottleBeans ;
     private BottleAdatper bottleAdatper;
 
@@ -82,6 +85,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
 
     @Override
     public void initView() {
+        tv_day_title.setVisibility(View.INVISIBLE);
         action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         showDataLoadingDialog();
         showTitle("我的瓶子" +"("+ MainActivity.iCurrentCount +")");
