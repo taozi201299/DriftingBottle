@@ -90,7 +90,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         }).start();
     }
     private void getMessage(){
-        String url = "http://123.56.68.127:8080/WebRoot/ClientDetails";
+        String url = App.strIp + "/WebRoot/ClientDetails";
         HashMap<String,String> params = new HashMap<>();
         params.put("clientID", CommonUtils.getUniqueId(mContext));
         params.put("regionID",bottleBean.regionID);

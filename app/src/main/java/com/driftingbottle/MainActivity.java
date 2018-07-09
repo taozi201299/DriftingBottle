@@ -476,7 +476,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     }
     private void stopService(){
         ToastUtils.show("服务停止");
-        String url = "http://123.56.68.127:8080/WebRoot/ClientReset";
+        String url = App.strIp+"/WebRoot/ClientReset";
         HashMap<String,String>param = new HashMap<>();
         param.put("clientID",CommonUtils.getUniqueId(mContext));
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
@@ -510,7 +510,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             ToastUtils.show("服务启动");
             bStart = true;
         }
-        String url = "http://123.56.68.127:8080/WebRoot/ClientGetCountAndMinutes";
+        String url = App.strIp +"/WebRoot/ClientGetCountAndMinutes";
         HashMap<String,String> param = new HashMap<>();
         param.put("clientID",CommonUtils.getUniqueId(mContext));
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
@@ -544,7 +544,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
     private void getMoon(){
         bMoon = true;
-        String url = "http://123.56.68.127:8080/WebRoot/ClientGetSelectMoonImage";
+        String url = App.strIp +"/WebRoot/ClientGetSelectMoonImage";
         HashMap<String,String>param = new HashMap<>();
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
             @Override
@@ -637,7 +637,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 }
             }
         }
-        String url = "http://123.56.68.127:8080/WebRoot/ClientSendMsg";
+        String url = App.strIp +"/WebRoot/ClientSendMsg";
         HashMap<String,String>param = new HashMap<>();
         param.put("clientID",CommonUtils.getUniqueId(mContext));
         param.put("dateType",String.valueOf(messageType));

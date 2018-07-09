@@ -96,7 +96,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         bottleRecyclerView.setAdapter(bottleAdatper);
     }
     private void getBottle(){
-        String url = "http://123.56.68.127:8080/WebRoot/ClientGetPLPList";
+        String url = App.strIp +"/WebRoot/ClientGetPLPList";
         HashMap<String,String>params = new HashMap<>();
         params.put("clientID", CommonUtils.getUniqueId(mContext));
         HttpUtils.getInstance().requestGet(url, params, TAG, new RequestCallback<String>() {
