@@ -209,10 +209,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             switch (msg.what){
                 case 0:
                     if(iCurrentCount > 0) {
-                        Log.d("1111111111",String.valueOf(iCurrentCount));
                         tv_activity_index_count.setVisibility(View.VISIBLE);
                         tv_activity_index_count.setText(String.valueOf(iCurrentCount));
                     }
+                    break;
+                case 1:
+                    ToastUtils.show("瓶子获取完成");
+                    tv_activity_index_count.setText(String.valueOf(iTotalCount));
                     break;
             }
         }
@@ -305,7 +308,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     protected void onDestroy() {
         super.onDestroy();
         releaseWakeLock();
-       // stopService();
+        stopService();
         messageType = 0;
         ll_dialog_select.setVisibility(View.GONE);
         ll_dialog_send_message.setVisibility(View.GONE);

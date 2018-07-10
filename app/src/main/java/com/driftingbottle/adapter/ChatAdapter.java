@@ -216,7 +216,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
             else if("2".equals(type)){
                 ((ChatRightViewHolder) holder).ll_audio_right.setVisibility(View.VISIBLE);
-                ((ChatRightViewHolder) holder).tv_audio_right_time.setText(msg.voiceNumber);
+                ((ChatRightViewHolder) holder).tv_audio_right_time.setText(msg.voiceNumber + "''");
                 int len = Integer.valueOf(msg.voiceNumber);
                 for(int i = 0 ; i < len; i++){
                     ((ChatRightViewHolder) holder).tv_audio_right.append(String.valueOf(i));

@@ -151,6 +151,11 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         }
         bottleAdatper.setData(bottleBeans);
         bottleAdatper.notifyDataSetChanged();
+        for(BottleBean0 bottleBean0 :bottleBeans) {
+            if (!App.bottles.containsKey(bottleBean0.regionID)) {
+                App.bottles.put(bottleBean0.regionID, bottleBean0.answerType);
+            }
+        }
 
     }
 
@@ -158,9 +163,14 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     public void onItemClick(int position) {
         BottleBean0 item = bottleBeans.get(position);
         for(BottleBean0 bottleBean0 :bottleBeans) {
-            if (!App.bottles.containsKey(item.regionID)) {
+            if (!App.bottles.containsKey(bottleBean0.regionID)) {
                 App.bottles.put(bottleBean0.regionID, bottleBean0.answerType);
             }
+        }
+        if(App.bottles.get(item.regionID).equals(item.answerType)){
+
+        }else {
+            App.bottles.put(item.regionID,item.answerType);
         }
         Bundle bundle = new Bundle();
         bundle.putSerializable("key",item);

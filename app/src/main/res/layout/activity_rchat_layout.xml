@@ -45,7 +45,7 @@
             android:letterSpacing="0.05"
             android:lineSpacingExtra="3dp"
             android:paddingLeft="@dimen/_10dp"
-            android:paddingRight="@dimen/_5dp"
+            android:paddingRight="@dimen/_10dp"
             android:text=""
             android:textColor="#000000"
             android:textColorLink="@color/blue"
@@ -66,11 +66,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/qp"
-                android:drawableLeft="@drawable/audio_r"
+                android:drawableRight="@drawable/audio_r"
                 android:gravity="right|center_vertical"
-                android:paddingLeft="25dp"
-                android:paddingRight="@dimen/_10dp"
-                android:layout_marginLeft="@dimen/_20dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@android:color/transparent" />
             <TextView
@@ -79,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/tv_audio_right"
-                android:layout_marginRight="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_2dp"
                 android:text = "10s"/>
 
         </RelativeLayout>
