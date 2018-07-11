@@ -35,18 +35,16 @@
             android:id="@+id/tv_activity_bottle_item_final_msg"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:singleLine="true"
             android:ems="16"
             android:maxLines="1"
-            android:paddingTop="2dp"
+            android:paddingTop="1dp"
             android:text=""
             android:textColor="#ababab"
             android:textSize="14sp"
-            android:letterSpacing="0.08"
-            android:lineSpacingExtra="2dp"
-            emojicon:emojiconSize="14sp"
+            emojicon:emojiconSize="15sp"
             android:visibility="visible" />
     </LinearLayout>
 

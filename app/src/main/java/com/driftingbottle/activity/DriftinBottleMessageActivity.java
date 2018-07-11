@@ -48,8 +48,6 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     XRefreshView xRefreshView;
     @BindView(R.id.layout_bar)
     LinearLayout action_bar;
-    @BindView(R.id.tv_day_title)
-    TextView tv_day_title;
     @BindView(R.id.index_set)
     Button index_set;
     @BindView(R.id.index_set1)
@@ -86,10 +84,9 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         Bundle bundle = getIntent().getBundleExtra(DEFAULT_BUNDLE_NAME);
         bottleBean = (BottleBean0) bundle.getSerializable("key");
         chatAdapter.setMyImage(App.strIp + bottleBean.headimage);
-        tv_day_title.setText("来自"+ bottleBean.city+"的瓶子");
         index_set.setVisibility(View.GONE);
         index_set1.setVisibility(View.VISIBLE);
-        setTitleShow(false);
+        showTitle("来自"+ bottleBean.city +"的瓶子");
         new Thread(new Runnable() {
             @Override
             public void run() {

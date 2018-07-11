@@ -51,8 +51,6 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     TextView tv_emtry_message;
     @BindView(R.id.action_bar)
     LinearLayout action_bar;
-    @BindView(R.id.tv_day_title)
-    TextView tv_day_title;
     @BindView(R.id.index_set)
     Button index_set;
     @BindView(R.id.index_set1)
@@ -98,8 +96,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         index_set.setVisibility(View.GONE);
         index_set1.setVisibility(View.GONE);
         action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        showDataLoadingDialog();
-        setTitleShow(false);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         bottleRecyclerView.setLayoutManager(layoutManager);
@@ -111,12 +108,13 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
             activity_index.setBackgroundColor(getResources().getColor(R.color.white));
             tv_emtry_message.setVisibility(View.VISIBLE);
             bottleRecyclerView.setVisibility(View.GONE);
-            tv_day_title.setText("我的瓶子");
+            showTitle("我的瓶子");
         }else {
+            showDataLoadingDialog();
             activity_index.setBackgroundColor(getResources().getColor(R.color.gray_bb));
             tv_emtry_message.setVisibility(View.GONE);
             bottleRecyclerView.setVisibility(View.VISIBLE);
-            tv_day_title.setText("我的瓶子" + "(" + MainActivity.iCurrentCount + ")");
+            showTitle("我的瓶子("+ MainActivity.iCurrentCount +")");
         }
     }
     private void getBottle(){

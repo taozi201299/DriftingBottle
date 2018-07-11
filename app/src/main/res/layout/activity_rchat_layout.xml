@@ -78,6 +78,14 @@
                 android:layout_toLeftOf="@+id/tv_audio_right"
                 android:layout_marginRight="@dimen/_2dp"
                 android:text = "10s"/>
+            <TextView
+                android:id="@+id/tv_activity_index_count"
+                android:layout_width="@dimen/_10dp"
+                android:layout_height="@dimen/_10dp"
+                android:background="@drawable/cl_red"
+                android:layout_marginRight="@dimen/_5dp"
+                android:layout_toLeftOf="@+id/tv_audio_right_time"
+                android:layout_centerVertical="true" />
 
         </RelativeLayout>
 

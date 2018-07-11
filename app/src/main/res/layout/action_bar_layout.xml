@@ -16,20 +16,12 @@
             android:layout_marginLeft="10dp"
             android:background="@drawable/uj"/>
         <TextView
-            android:id="@+id/tv_day_title"
-            android:visibility="visible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/iv_activity_index_back"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/write"
-            android:text="发现"/>
-        <TextView
             android:id="@+id/tv_activity_index_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_activity_index_back"
+            android:layout_marginLeft="@dimen/_15dp"
             android:text="漂流瓶"
             android:textColor="@color/write"
             android:textSize="16sp"/>
@@ -41,6 +33,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
             android:background="@drawable/setting"/>
         <Button
             android:id="@+id/index_set1"

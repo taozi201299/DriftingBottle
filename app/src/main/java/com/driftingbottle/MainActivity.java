@@ -105,8 +105,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     RelativeLayout rl_day_layout;
     @BindView(R.id.iv_bollen)
     ImageView iv_bollen;
-    @BindView(R.id.tv_day_title)
-    TextView tv_day_title;
 
     /**
      * 底部布局
@@ -319,16 +317,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     private void updateBackGround(){
         int hour = CommonUtils.getHour();
         if(hour < 18){
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
-            action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             rl_right_layout.setVisibility(View.GONE);
             rl_day_layout.setVisibility(View.VISIBLE);
-            tv_day_title.setVisibility(View.VISIBLE);
             rootview.setBackgroundResource(R.mipmap.day);
-            RelativeLayout.LayoutParams leftTxtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            leftTxtParams.addRule(RelativeLayout.CENTER_IN_PARENT);
-            tv_activity_index_start.setLayoutParams(leftTxtParams);
             // 热气球动画
             new Thread(new BollenAnimRunnable()).start();
 
@@ -337,13 +328,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 getMoon();
             }
             rl_day_layout.setVisibility(View.GONE);
-            tv_day_title.setVisibility(View.GONE);
             rl_right_layout.setVisibility(View.VISIBLE);
-            RelativeLayout.LayoutParams leftTxtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            leftTxtParams.addRule(RelativeLayout.RIGHT_OF,iv_activity_index_back.getId());
-            leftTxtParams.addRule(RelativeLayout.CENTER_VERTICAL);
-            leftTxtParams.setMargins(10,0,0,0);
-            tv_activity_index_start.setLayoutParams(leftTxtParams);
             // 灯塔光动画
             AnimationDrawable animationDrawable = (AnimationDrawable) iv_shape.getDrawable();
             AnimationDrawable lanimationDrawable = (AnimationDrawable) iv_shape_center.getDrawable();
