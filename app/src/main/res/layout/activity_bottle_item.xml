@@ -44,8 +44,8 @@
             android:text=""
             android:textColor="#ababab"
             android:textSize="14sp"
-            android:letterSpacing="0.05"
-            android:lineSpacingExtra="3dp"
+            android:letterSpacing="0.08"
+            android:lineSpacingExtra="2dp"
             emojicon:emojiconSize="14sp"
             android:visibility="visible" />
     </LinearLayout>

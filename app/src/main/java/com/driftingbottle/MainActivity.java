@@ -594,11 +594,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
      * 我的瓶子
      */
     private void processThree(){
-        if(!bStart){
-            ToastUtils.show("请点击标题开启服务");
-            return;
-        }
-        intentActivity(this, DriftinBottleListActivity.class,false, true);
+
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("start",bStart);
+        intentActivity(this, DriftinBottleListActivity.class,false, bundle);
 
     }
     private void sendMessage(){

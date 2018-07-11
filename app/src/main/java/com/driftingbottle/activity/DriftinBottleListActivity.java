@@ -32,6 +32,8 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.driftingbottle.utils.Constant.DEFAULT_BUNDLE_NAME;
+
 /**
  * Created by jidan on 18-6-12.
  * 获取瓶子列表 （包含最后一条信息）
@@ -101,6 +103,15 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         bottleRecyclerView.setLayoutManager(layoutManager);
         bottleAdatper = new BottleAdatper(this,R.layout.activity_bottle_item);
         bottleRecyclerView.setAdapter(bottleAdatper);
+        Bundle bundle = getIntent().getBundleExtra(DEFAULT_BUNDLE_NAME);
+        boolean bStart = bundle.getBoolean("start");
+        if(!bStart){
+            tv_emtry_message.setVisibility(View.VISIBLE);
+            bottleRecyclerView.setVisibility(View.GONE);
+        }else {
+            tv_emtry_message.setVisibility(View.GONE);
+            bottleRecyclerView.setVisibility(View.VISIBLE);
+        }
     }
     private void getBottle(){
         String url = App.strIp +"/WebRoot/ClientGetPLPList";
