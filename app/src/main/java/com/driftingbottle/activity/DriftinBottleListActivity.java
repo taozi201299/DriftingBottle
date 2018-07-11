@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.driftinbottle.callback.ErrorInfo;
@@ -42,6 +43,8 @@ import static com.driftingbottle.utils.Constant.DEFAULT_BUNDLE_NAME;
 public class DriftinBottleListActivity extends BaseActivity  implements CommonAdapter.OnItemClickListener{
 
     private final String TAG = DriftinBottleListActivity.class.getSimpleName();
+    @BindView(R.id.activity_index)
+    LinearLayout activity_index;
     @BindView(R.id.bottleRecyclerView)
     RecyclerView bottleRecyclerView;
     @BindView(R.id.tv_emtry_message)
@@ -94,7 +97,6 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     public void initView() {
         index_set.setVisibility(View.GONE);
         index_set1.setVisibility(View.GONE);
-        tv_day_title.setText("我的瓶子" +"("+ MainActivity.iCurrentCount +")");
         action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         showDataLoadingDialog();
         setTitleShow(false);
@@ -106,11 +108,15 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         Bundle bundle = getIntent().getBundleExtra(DEFAULT_BUNDLE_NAME);
         boolean bStart = bundle.getBoolean("start");
         if(!bStart){
+            activity_index.setBackgroundColor(getResources().getColor(R.color.white));
             tv_emtry_message.setVisibility(View.VISIBLE);
             bottleRecyclerView.setVisibility(View.GONE);
+            tv_day_title.setText("我的瓶子");
         }else {
+            activity_index.setBackgroundColor(getResources().getColor(R.color.gray_bb));
             tv_emtry_message.setVisibility(View.GONE);
             bottleRecyclerView.setVisibility(View.VISIBLE);
+            tv_day_title.setText("我的瓶子" + "(" + MainActivity.iCurrentCount + ")");
         }
     }
     private void getBottle(){
