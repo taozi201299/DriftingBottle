@@ -26,8 +26,8 @@ public class  App extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        CrashHandler crashHandler = CrashHandler.getInstance();
-        crashHandler.init();
+//        CrashHandler crashHandler = CrashHandler.getInstance();
+//        crashHandler.init();
 
     }
 

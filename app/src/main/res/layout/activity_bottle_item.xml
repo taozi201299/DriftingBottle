@@ -3,22 +3,23 @@
     xmlns:emojicon="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="62dp"
-    android:layout_marginTop="@dimen/_2dp"
+    android:layout_marginTop="0.5dp"
     android:background="@color/write">
 
     <ImageView
         android:id="@+id/iv_activity_bottle_item_img"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="15dp"
         android:src="@drawable/hard" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginRight="50dp"
-        android:layout_centerVertical="true"
+        android:layout_alignBaseline="@+id/iv_activity_bottle_item_img"
+        android:layout_marginTop="@dimen/_10dp"
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@id/iv_activity_bottle_item_img"
         android:orientation="vertical">
@@ -43,6 +44,8 @@
             android:text=""
             android:textColor="#ababab"
             android:textSize="14sp"
+            android:letterSpacing="0.05"
+            android:lineSpacingExtra="3dp"
             emojicon:emojiconSize="14sp"
             android:visibility="visible" />
     </LinearLayout>

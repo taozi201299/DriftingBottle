@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="#ffffff"
+    android:background="#EBEBEB"
     android:orientation="vertical">
-
     <include
         android:id="@+id/layout_bar"
         layout="@layout/action_bar_layout" />
@@ -24,6 +23,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     </com.andview.refreshview.XRefreshView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#F4F4F4"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/messagebtn"/>
+    </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

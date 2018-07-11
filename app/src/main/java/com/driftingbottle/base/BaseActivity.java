@@ -64,6 +64,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void showTitle(String title){
         ((TextView)findViewById(R.id.tv_activity_index_start)).setText(title);
     }
+    protected void setTitleShow(boolean show){
+        ((TextView)findViewById(R.id.tv_activity_index_start)).setVisibility(show ?View.VISIBLE :View.INVISIBLE);
+    }
     public void setActionBarTitle(String title){
     }
     protected void initActionBar(){

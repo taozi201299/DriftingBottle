@@ -17,6 +17,9 @@ import com.driftingbottle.bean.BottleBean;
 import com.driftingbottle.bean.BottleBean0;
 import com.driftingbottle.utils.EmojiUtil;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import io.github.rockerhieu.emojicon.EmojiconTextView;
@@ -50,7 +53,18 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
 
         tv_activity_bottle_item_area.setText(bottleBean.city.toString());
         String type = "0";
-        tv_activity_bottle_item_time.setText(bottleBean.CreatedDate);
+        String time = bottleBean.CreatedDate;
+
+        SimpleDateFormat sdf= new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+        Date utilDate = null;
+        try {
+            utilDate = sdf.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat sdf1= new SimpleDateFormat( "HH:mm");
+        String displayTime = sdf1.format(utilDate);
+        tv_activity_bottle_item_time.setText(displayTime);
         // 0，纯文本 1，纯图片 2，纯声音 3，文本+图片
         type = bottleBean.dataType;
         switch (type) {

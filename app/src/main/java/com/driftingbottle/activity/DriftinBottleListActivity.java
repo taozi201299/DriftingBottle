@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,6 +48,10 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     LinearLayout action_bar;
     @BindView(R.id.tv_day_title)
     TextView tv_day_title;
+    @BindView(R.id.index_set)
+    Button index_set;
+    @BindView(R.id.index_set1)
+    Button index_set1;
     private ArrayList<BottleBean0> bottleBeans ;
     private BottleAdatper bottleAdatper;
 
@@ -85,10 +90,12 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
 
     @Override
     public void initView() {
-        tv_day_title.setVisibility(View.INVISIBLE);
+        index_set.setVisibility(View.GONE);
+        index_set1.setVisibility(View.GONE);
+        tv_day_title.setText("我的瓶子" +"("+ MainActivity.iCurrentCount +")");
         action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         showDataLoadingDialog();
-        showTitle("我的瓶子" +"("+ MainActivity.iCurrentCount +")");
+        setTitleShow(false);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
         bottleRecyclerView.setLayoutManager(layoutManager);

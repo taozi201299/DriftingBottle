@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -49,6 +50,10 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     LinearLayout action_bar;
     @BindView(R.id.tv_day_title)
     TextView tv_day_title;
+    @BindView(R.id.index_set)
+    Button index_set;
+    @BindView(R.id.index_set1)
+            Button index_set1;
     ChatAdapter chatAdapter;
     private BottleBean0 bottleBean;
     ArrayList<MessageBean0>datas = new ArrayList<>();
@@ -81,7 +86,10 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         Bundle bundle = getIntent().getBundleExtra(DEFAULT_BUNDLE_NAME);
         bottleBean = (BottleBean0) bundle.getSerializable("key");
         chatAdapter.setMyImage(App.strIp + bottleBean.headimage);
-        showTitle(bottleBean.city);
+        tv_day_title.setText("来自"+ bottleBean.city+"的瓶子");
+        index_set.setVisibility(View.GONE);
+        index_set1.setVisibility(View.VISIBLE);
+        setTitleShow(false);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -135,7 +143,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     }
     @Override
     public void initView() {
-        tv_day_title.setVisibility(View.INVISIBLE);
+
         action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         showDataLoadingDialog();
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);

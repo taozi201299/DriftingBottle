@@ -25,7 +25,10 @@ import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.EmojiUtil;
 import com.driftingbottle.utils.SPUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -154,7 +157,16 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             }
              lastLMin  = time;
-            ((ChatLeftViewHolder) holder).mTvLeftTime.setText(time);
+            SimpleDateFormat sdf= new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+            Date utilDate = null;
+            try {
+                utilDate = sdf.parse(time);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            SimpleDateFormat sdf1= new SimpleDateFormat( "HH:mm");
+            String displayTime = sdf1.format(utilDate);
+            ((ChatLeftViewHolder) holder).mTvLeftTime.setText(displayTime);
             if(!urlImage.isEmpty())
                 Glide.with(mContext).load(urlImage).priority(Priority.HIGH)
                         .error(R.drawable.zl).into(((ChatLeftViewHolder) holder).iv_owner_img);
@@ -184,16 +196,26 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         }else if(holder instanceof ChatRightViewHolder){
             bLeftEmoji = false;
+            SimpleDateFormat sdf= new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+            Date utilDate = null;
+            try {
+                utilDate = sdf.parse(time);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            SimpleDateFormat sdf1= new SimpleDateFormat( "HH:mm");
+            String displayTime = sdf1.format(utilDate);
             if(!lastLMin.isEmpty()){
                 int interval = CommonUtils.getIntInterval(time,lastLMin);
                 if(interval < 3){
                     ((ChatRightViewHolder) holder).mTvRightTime.setVisibility(View.GONE);
                 }else {
                     ((ChatRightViewHolder) holder).mTvRightTime.setVisibility(View.VISIBLE);
-                    ((ChatRightViewHolder) holder).mTvRightTime.setText(time);
+                    ((ChatRightViewHolder) holder).mTvRightTime.setText(displayTime);
                 }
             }
             lastLMin  = time;
+
             ((ChatRightViewHolder) holder).iv_right_img.setVisibility(View.GONE);
             ((ChatRightViewHolder) holder).mTvMsgRight.setVisibility(View.GONE);
 
