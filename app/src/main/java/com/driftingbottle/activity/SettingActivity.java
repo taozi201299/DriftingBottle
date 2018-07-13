@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,6 +36,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     ImageView user_heard;
     @BindView(R.id.index_set)
     Button index_set;
+    @BindView(R.id.action_bar)
+    LinearLayout action_bar;
     private static final int RC_CAMERA_PERM = 100;
     private static final int PICKER_RESULT= 101;
     @Override
@@ -52,11 +55,17 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     public void initData() {
 
     }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+    }
 
     @Override
     public void initView() {
         showTitle("设置");
         index_set.setVisibility(View.GONE);
+        action_bar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         String strUserHead = (String) SPUtils.get("user_head","");
         if(strUserHead!= null && !strUserHead.isEmpty()){
             Glide.with(this).load(strUserHead).into(user_heard);

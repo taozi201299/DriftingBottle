@@ -1,16 +1,21 @@
 package com.driftingbottle;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import com.driftingbottle.utils.CrashHandler;
+import com.driftingbottle.utils.ToastUtils;
 import com.lzy.okhttputils.OkHttpUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class  App extends Application {
 
@@ -18,6 +23,7 @@ public class  App extends Application {
     private static Context context;
     public static final boolean bDebug = false;
     public static String content = "┗(＾0＾)┓\uD83D\uDE35\uD83D\uDE35";
+    private static final int RC_STORAGE_PERM = 101;
     /**
      * 记录已读的bottleId
      */
@@ -42,24 +48,6 @@ public class  App extends Application {
 
     public static Context globalContext() {
         return context;
-    }
-    private void  test(){
-//        int iCount = 1000;
-//        int iPageCount = 10;
-//        int iPageIndex = iCount / iPageCount;
-//        int ioneMin = (int) (1000* 0.6);
-//        int ithirMin = (int) (1000*0.4);
-//        double iperPage = 0.16;
-//        double j = 0.25;
-//        for(int i = 0 ; i < ioneMin ; i++){
-//            int index = (int) ((i * iperPage) * iPageCount);
-//            Log.d("index is ",String.valueOf(index) );
-//        }
-//        for(int i = 0 ; i < ithirMin ; i++){
-//            int index = (int) ((i * j) * iPageCount);
-//            Log.d("three index is ",String.valueOf(index));
-//        }
-
     }
 
 }

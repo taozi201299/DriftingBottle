@@ -190,7 +190,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 ((ChatLeftViewHolder) holder).ll_audio_left.setVisibility(View.VISIBLE);
                 ((ChatLeftViewHolder) holder).tv_audio_left_time.setText(msg.voiceNumber  + "''");
                 int len = Integer.valueOf(msg.voiceNumber);
-                for(int i = 0 ; i < len; i++){
+                for(int i = 0 ; i < len /2; i++){
                     ((ChatLeftViewHolder) holder).tv_audio_left.append(String.valueOf(i));
                 }
             }

@@ -68,6 +68,8 @@
                 android:background="@drawable/qp"
                 android:drawableRight="@drawable/audio_r"
                 android:gravity="right|center_vertical"
+                android:paddingLeft="@dimen/_10dp"
+                android:paddingRight="@dimen/_10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@android:color/transparent" />
             <TextView

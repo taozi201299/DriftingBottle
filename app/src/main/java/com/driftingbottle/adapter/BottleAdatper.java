@@ -28,6 +28,7 @@ import io.github.rockerhieu.emojicon.EmojiconTextView;
 public class BottleAdatper extends CommonAdapter<BottleBean0> {
 
     private Context mContext;
+    private final String strSplit = "#";
     public BottleAdatper(Context context, int layoutId) {
         super(context, layoutId);
         this.mContext = context;
@@ -74,6 +75,12 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
                     content = bottleBean.title;
                 }else {
                     content = bottleBean.textData;
+                }
+                if(content.contains(strSplit)){
+                    String[] arrayContent = content.split(strSplit);
+                    if(arrayContent.length >0){
+                        content = arrayContent[arrayContent.length -1];
+                    }
                 }
                 SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext,tv_activity_bottle_item_final_msg.getTextSize(),
                         tv_activity_bottle_item_final_msg.getmEmojiconSize());

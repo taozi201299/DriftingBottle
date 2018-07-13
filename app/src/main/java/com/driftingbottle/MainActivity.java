@@ -194,12 +194,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     ArrayList<String> photos = new ArrayList<>();
     private static final int RC_CAMERA_PERM = 100;
     private static final int PICKER_RESULT= 101;
-
+    /**
+     * 用户设置光标位置
+     */
     private int cursorStart = 0;
     private int cursorEnd = 0;
     private int beforeLength = 0;
     private boolean bMoon  = false;
-
+    /**
+     * 主线程handler 用户更新瓶子数量
+     */
     private Handler mHandler = new Handler(Looper.getMainLooper()){
         @Override
         public void handleMessage(Message msg) {
@@ -313,6 +317,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         ll_dialog_send_photo.setVisibility(View.GONE);
     }
 
+    /**
+     * 根据时间修改主界面背景
+     */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void updateBackGround(){
         int hour = CommonUtils.getHour();
@@ -336,6 +343,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             animationDrawable.start();
             lanimationDrawable.start();
             ranimationDrawable.start();
+
         }
     }
     private void acquireWakeLock() {
@@ -357,7 +365,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     }
 
     /**
-     * 点击事件
+     * 点击事件 业务处理
      * @param v
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -462,6 +470,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         }
 
     }
+
+    /**
+     * 数据重置
+     */
     private void stopService(){
         ToastUtils.show("服务停止");
         String url = App.strIp+"/WebRoot/ClientReset";
@@ -488,6 +500,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         },CacheMode.DEFAULT);
 
     }
+
+    /**
+     * 服务开启
+     */
     private void startService(){
         if(bStart){
             ToastUtils.show("服务已经启动");
@@ -530,6 +546,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         intentActivity(this, SettingActivity.class,false,true);
     }
 
+    /**
+     * 获取月亮图标
+     */
     private void getMoon(){
         bMoon = true;
         String url = App.strIp +"/WebRoot/ClientGetSelectMoonImage";
@@ -585,6 +604,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         intentActivity(this, DriftinBottleListActivity.class,false, bundle);
 
     }
+
+    /**
+     * 群发消息
+     */
     private void sendMessage(){
         if(messageType == 0) {
             String title = et_msg_tle.getText().toString();
@@ -669,6 +692,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                     iv_activity_index_photo.setImageResource(R.drawable.my_icon_image_add);
                 }
                 hideInput(mContext,rootview);
+                for(String key :App.bottles.keySet()){
+                    App.bottles.put(key,"0");
+                }
                 ToastUtils.show("群发成功");
             }
 
@@ -679,7 +705,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         }, CacheMode.DEFAULT);
     }
 
-
+    /**
+     * 显示图片选择fragment
+     * @param useSystemDefault
+     * @param messageType
+     */
     private void  showEmojiFragment(boolean useSystemDefault,int messageType ){
         if(messageType == 0) {
             getSupportFragmentManager()
@@ -693,6 +723,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                     .commit();
         }
     }
+
+    /**
+     * 权限请求
+     * @return
+     */
     private boolean requestCameraPermission() {
         String[]permissions = {android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 android.Manifest.permission.READ_EXTERNAL_STORAGE};
@@ -734,6 +769,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             ProcessImageMessage(data);
         }
     }
+
+    /**
+     * 打开本地文件路径
+     */
     private void startFile() {
         PhotoPickerIntent photo = new PhotoPickerIntent(this);
         photo.setShowCamera(false);
@@ -749,6 +788,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         Glide.with(this).load(photos.get(0)).placeholder(R.mipmap.dialog_loading_img)
                 .error(R.mipmap.dialog_loading_img).into(iv_activity_index_photo);
     }
+
+    /**
+     * 通过图片fragment输入图标
+     * @param emojicon
+     */
     @Override
     public void onEmojiconClicked(Emojicon emojicon) {
         if (iEmojiEditText == 1){
@@ -776,6 +820,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     }
     }
 
+    /**
+     * 用于处理emoji的显示
+     */
     private class MyTextWatcher implements TextWatcher
     {
         @Override
@@ -826,6 +873,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         message.what = 1;
         mHandler.sendMessage(message);
     }
+
+    /**
+     *  修改瓶子数量
+     */
     class BottleRunnable implements Runnable{
 
         @Override
@@ -851,6 +902,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             }
         }
     }
+
+    /**
+     * bollen 的动画
+     */
     class BollenAnimRunnable implements Runnable{
 
         @Override

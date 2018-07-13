@@ -1,6 +1,7 @@
 package com.driftingbottle.activity;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -51,7 +52,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     @BindView(R.id.index_set)
     Button index_set;
     @BindView(R.id.index_set1)
-            Button index_set1;
+    Button index_set1;
     ChatAdapter chatAdapter;
     private BottleBean0 bottleBean;
     ArrayList<MessageBean0>datas = new ArrayList<>();
@@ -199,6 +200,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     }
     private void processResult(){
         int size = datas.size();
+        String []arrayContent;
         for(int i = 0; i <size; i++){
             MessageBean0 item = datas.get(i);
             if(item.dataType.equals("3")){
@@ -215,6 +217,25 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                     datas.add(i+1,messageBean);
                 }
                 item.dataType = "0";
+            }else if(item.dataType.equals("0")) {
+                if(item.textData.contains("#")){
+                    arrayContent = item.textData.split("#");
+                    if(arrayContent == null || arrayContent.length == 0){
+                        return;
+                    }else {
+                        for(int index = arrayContent.length -1 ; index >=0; index --){
+                            MessageBean0 newMessage = new MessageBean0();
+                            newMessage.dataType = "0";
+                            newMessage.answerType = item.answerType;
+                            newMessage.CreatedDate = item.CreatedDate;
+                            newMessage.imageData = item.imageData;
+                            newMessage.voiceNumber = "";
+                            newMessage.textData = arrayContent[index];
+                            datas.add(i,newMessage);
+                        }
+                        datas.remove(item);
+                    }
+                }
             }
         }
 

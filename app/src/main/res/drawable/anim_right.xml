@@ -11,8 +11,8 @@
 
     <!--<item android:drawable="@drawable/xq" android:duration="200"/>-->
 
-
-    <item android:drawable="@drawable/xy" android:duration="7000"/>
+    <item android:drawable="@android:color/transparent" android:duration="6000"/>
+    <item android:drawable="@drawable/xy" android:duration="500"/>
     <item android:drawable="@drawable/xx" android:duration="500"/>
     <item android:drawable="@drawable/xw" android:duration="500"/>
     <item android:drawable="@drawable/xv" android:duration="500"/>
