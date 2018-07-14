@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -195,6 +196,11 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     }
     private void refresh(){
         processResult();
+        for(MessageBean0 item :datas){
+            if(item.dataType.equals("-100")){
+                datas.remove(item);
+            }
+        }
         chatAdapter.setData(datas);
         chatAdapter.notifyDataSetChanged();
     }
@@ -233,7 +239,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                             newMessage.textData = arrayContent[index];
                             datas.add(i,newMessage);
                         }
-                        datas.remove(item);
+                        item.dataType = "-100";
                     }
                 }
             }

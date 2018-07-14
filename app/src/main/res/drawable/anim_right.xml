@@ -11,12 +11,12 @@
 
     <!--<item android:drawable="@drawable/xq" android:duration="200"/>-->
 
-    <item android:drawable="@drawable/xz" android:duration="500"/>
-    <item android:drawable="@drawable/xy" android:duration="500"/>
-    <item android:drawable="@drawable/xx" android:duration="500"/>
-    <item android:drawable="@drawable/xw" android:duration="500"/>
-    <item android:drawable="@drawable/xv" android:duration="500"/>
-    <item android:drawable="@drawable/xu" android:duration="500"/>
+    <item android:drawable="@drawable/xz" android:duration="3000"/>
+    <item android:drawable="@drawable/xy" android:duration="400"/>
+    <item android:drawable="@drawable/xx" android:duration="400"/>
+    <item android:drawable="@drawable/xw" android:duration="400"/>
+    <item android:drawable="@drawable/xv" android:duration="400"/>
+    <item android:drawable="@drawable/xu" android:duration="400"/>
 
 
 </animation-list>

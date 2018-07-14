@@ -341,7 +341,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             AnimationDrawable lanimationDrawable = (AnimationDrawable) iv_shape_center.getDrawable();
             AnimationDrawable ranimationDrawable = (AnimationDrawable) iv_shape_right.getDrawable();
             animationDrawable.start();
-            lanimationDrawable.start();
+           // lanimationDrawable.start();
             ranimationDrawable.start();
 
         }
@@ -674,7 +674,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             param.put("textData", EmojiUtil.escapeUnicode(et_photo_msg.getText().toString()));
             param.put("orderType",checkBox.isChecked() ? "0":"1");
         }
-        HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
+        HttpUtils.getInstance().requestNet_post(url, param, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
                 ll_dialog_send_message.setVisibility(View.GONE);
@@ -702,7 +702,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             public void onFailure(ErrorInfo.ErrorCode errorInfo) {
                 ToastUtils.show("网络错误，群发失败");
             }
-        }, CacheMode.DEFAULT);
+        });
     }
 
     /**

@@ -63,7 +63,7 @@
             android:layout_height="40dp"
             android:src="@mipmap/bollen"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="0dp"/>
     </RelativeLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -158,11 +158,12 @@
                     android:layout_marginBottom="22dp"
                     android:layout_marginRight="30dp"
                     android:visibility="gone"
+                    tools:visibility="visible"
                     android:textStyle="bold"
                     android:background="@drawable/cl_red"
                     android:layout_centerHorizontal="true"
                     android:layout_centerInParent="true"
-                    android:text=""
+                    android:text="557"
                     android:textColor="@color/write" />
             </RelativeLayout>
         </LinearLayout>
