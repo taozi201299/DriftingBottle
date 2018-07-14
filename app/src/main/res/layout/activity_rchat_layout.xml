@@ -15,7 +15,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/dialog_bg_shape"
         android:gravity="center_vertical"
-        android:padding="10dp"
+        android:padding="3dp"
         android:text=""
         android:textColor="@color/write"
         android:textSize="12sp" />
@@ -39,7 +39,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/_5dp"
             android:layout_toLeftOf="@id/iv_owner_img"
-            android:autoLink="all"
             android:background="@drawable/qp"
             android:gravity="center_vertical"
             android:lineSpacingExtra="3dp"
@@ -52,6 +51,7 @@
             android:textColor="#000000"
             android:textColorLink="#586c8f"
             android:textSize="15sp"
+            android:layout_marginLeft="@dimen/_15dp"
             emojicon:emojiconSize="18sp"/>
         <RelativeLayout
             android:id="@+id/ll_audio_right"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/qp"
-                android:drawableRight="@drawable/audio_r"
+                android:drawableRight="@drawable/audio_right"
                 android:gravity="right|center_vertical"
                 android:paddingLeft="@dimen/_10dp"
                 android:paddingRight="@dimen/_10dp"

@@ -42,7 +42,7 @@
             android:maxLines="1"
             android:paddingTop="1dp"
             android:text="sssssss"
-            android:textSize="13sp"
+            android:textSize="15sp"
             android:textColor="@color/text"
             emojicon:emojiconSize="16sp"
             android:visibility="visible" />

@@ -14,6 +14,7 @@ import android.os.PowerManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.text.Editable;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -43,6 +44,7 @@ import com.driftingbottle.bean.MoonBean;
 import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.EmojiUtil;
 import com.driftingbottle.utils.ToastUtils;
+import com.driftingbottle.view.NoUnderLineSpan;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okhttputils.cache.CacheMode;
@@ -176,7 +178,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
 
     private PowerManager.WakeLock mWakeLock;
-    private boolean bStart =false;
+    private int bStart = 0; // 0 未开始 1 开始 2 群发
     private boolean bFinish = false;
     private boolean bEmojiVisible = false;
     private int iEmojiEditText = 0 ; // 0 title 1 msg
@@ -482,7 +484,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
-                bStart = false;
+                bStart = 0;
                 bFinish = false;
                 iTotalCount = 0;
                 iCurrentCount = 0;
@@ -505,14 +507,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
      * 服务开启
      */
     private void startService(){
-        if(bStart){
+        if(bStart == 1){
             ToastUtils.show("服务已经启动");
             return;
         }else {
             iTotalCount = 0;
             iCurrentCount = 0;
             ToastUtils.show("服务启动");
-            bStart = true;
+            bStart = 1;
         }
         String url = App.strIp +"/WebRoot/ClientGetCountAndMinutes";
         HashMap<String,String> param = new HashMap<>();
@@ -536,7 +538,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
             @Override
             public void onFailure(ErrorInfo.ErrorCode errorInfo) {
-                bStart = false;
+                bStart = 0;
                 ToastUtils.show("网络错误，服务启动失败");
 
             }
@@ -585,7 +587,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
      * 检一个的处理
      */
     private void processTwo(){
-        if(!bStart){
+        if(bStart == 0) {
             ToastUtils.show("请点击标题开启服务");
             return;
         }
@@ -600,7 +602,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     private void processThree(){
 
         Bundle bundle = new Bundle();
-        bundle.putBoolean("start",bStart);
+        bundle.putInt("start",bStart);
         intentActivity(this, DriftinBottleListActivity.class,false, bundle);
 
     }

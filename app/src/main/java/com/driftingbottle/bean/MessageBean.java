@@ -7,6 +7,7 @@ package com.driftingbottle.bean;
 public class MessageBean extends BaseBean<MessageBean> {
     public static int TYPE_LEFT  = 0;
     public static int TYPE_RIGHT = 1;
+    public static int TYPE_2 = 2;
 
     private  String messageId;
     private  String messageContent;

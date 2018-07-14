@@ -57,7 +57,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     Button index_set1;
     private ArrayList<BottleBean0> bottleBeans ;
     private BottleAdatper bottleAdatper;
-    boolean bStart = false;
+    int bStart = 0;
 
     @Override
     public int getLayoutId() {
@@ -77,7 +77,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
 
     @Override
     public void initData() {
-        if(!bStart) return;
+        if(bStart == 0) return;
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -105,8 +105,8 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         bottleAdatper = new BottleAdatper(this,R.layout.activity_bottle_item);
         bottleRecyclerView.setAdapter(bottleAdatper);
         Bundle bundle = getIntent().getBundleExtra(DEFAULT_BUNDLE_NAME);
-        bStart = bundle.getBoolean("start");
-        if(!bStart){
+        bStart = bundle.getInt("start");
+        if(bStart == 0){
             activity_index.setBackgroundColor(getResources().getColor(R.color.white));
             tv_emtry_message.setVisibility(View.VISIBLE);
             bottleRecyclerView.setVisibility(View.GONE);
@@ -116,7 +116,11 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
             activity_index.setBackgroundColor(getResources().getColor(R.color.gray_bb));
             tv_emtry_message.setVisibility(View.GONE);
             bottleRecyclerView.setVisibility(View.VISIBLE);
-            showTitle("我的瓶子("+ MainActivity.iCurrentCount +")");
+            if(bStart == 1) {
+                showTitle("我的瓶子(" + MainActivity.iCurrentCount + ")");
+            }else {
+                showTitle("我的瓶子(" + MainActivity.iCurrentCount * 0.2 + ")");
+            }
         }
     }
     private void getBottle(){
@@ -165,7 +169,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         for(BottleBean0 item : bottleBeans){
             if(App.bottles.containsKey(item.regionID)){
                 if(App.bottles.get(item.regionID).equals(item.answerType)){
-                    item.bIsRead = true;
+                    item.bIsRead = false;
                 }else {
                     item.bIsRead = false;
                 }

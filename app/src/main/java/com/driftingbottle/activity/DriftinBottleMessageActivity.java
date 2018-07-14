@@ -79,6 +79,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         iPageIndex = 0;
         bFinish = false;
         xRefreshView.setPullRefreshEnable(false);
+        xRefreshView.setPullLoadEnable(false);
     }
 
     @Override
@@ -150,7 +151,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         chatRecyclerView.setLayoutManager(layoutmanager);
         chatAdapter = new ChatAdapter(this);
         chatRecyclerView.setAdapter(chatAdapter);
-        xRefreshView.setPullRefreshEnable(true);
+        xRefreshView.setPullRefreshEnable(false);
         xRefreshView.setPullLoadEnable(false);
         xRefreshView.setMoveHeadWhenDisablePullRefresh(false);
         xRefreshView.setDividerPadding(20);

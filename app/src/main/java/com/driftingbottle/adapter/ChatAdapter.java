@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -24,6 +25,7 @@ import com.driftingbottle.bean.MessageBean0;
 import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.EmojiUtil;
 import com.driftingbottle.utils.SPUtils;
+import com.driftingbottle.view.NoUnderLineSpan;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,7 +67,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == MessageBean.TYPE_LEFT) {
+        if (viewType == MessageBean.TYPE_LEFT || viewType == MessageBean.TYPE_2) {
             View view = mLayoutInflater.inflate(R.layout.activity_lchat_layout, parent, false);
             return new ChatLeftViewHolder(view);
         } else {
@@ -125,7 +127,11 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                  ((ChatLeftViewHolder) holder).mTvMsgLeft.setVisibility(View.VISIBLE);
                 SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext,((ChatLeftViewHolder) holder).mTvMsgLeft.getTextSize(),
                         ((ChatLeftViewHolder) holder).mTvMsgLeft.getmEmojiconSize());
+                NoUnderLineSpan noUnderLineSpan = new NoUnderLineSpan(builder.toString());
+                Spannable s = (Spannable)builder;
+                s.setSpan(noUnderLineSpan,0,s.length(),Spannable.SPAN_MARK_MARK);
                 ((ChatLeftViewHolder) holder).mTvMsgLeft.setText(builder);
+
             }else if("1".equals(type)){
                 ((ChatLeftViewHolder) holder).iv_left_img.setVisibility(View.VISIBLE);
                 Glide.with(mContext)
@@ -162,9 +168,9 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             }
             lastLMin  = time;
-
             ((ChatRightViewHolder) holder).iv_right_img.setVisibility(View.GONE);
             ((ChatRightViewHolder) holder).mTvMsgRight.setVisibility(View.GONE);
+
 
             if(imgUrl != null && !imgUrl.isEmpty()) {
                 Glide.with(mContext).load(imgUrl)
@@ -175,7 +181,11 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 ((ChatRightViewHolder) holder).mTvMsgRight.setVisibility(View.VISIBLE);
                 SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext,((ChatRightViewHolder) holder).mTvMsgRight.getTextSize(),
                         ((ChatRightViewHolder) holder).mTvMsgRight.getmEmojiconSize());
+                NoUnderLineSpan noUnderLineSpan = new NoUnderLineSpan(builder.toString());
+                Spannable s = (Spannable)builder;
+                s.setSpan(noUnderLineSpan,0,s.length(),Spannable.SPAN_MARK_MARK);
                 ((ChatRightViewHolder) holder).mTvMsgRight.setText(builder);
+
             }else if("1".equals(type)){
                 ((ChatRightViewHolder) holder).iv_right_img.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(content)

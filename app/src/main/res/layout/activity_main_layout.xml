@@ -17,8 +17,8 @@
         android:layout_below="@+id/action_bar">
         <ImageView
             android:id="@+id/iv_activity_index_moon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="35dp"/>
         <ImageView
