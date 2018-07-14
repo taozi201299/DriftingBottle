@@ -11,11 +11,11 @@
     <TextView
         android:id="@+id/tv_left_time"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="#D4D4D4"
+        android:background="@drawable/dialog_bg_shape"
         android:gravity="center_vertical"
-        android:padding="2dp"
+        android:padding="5dp"
         android:text="2015"
         android:textColor="@color/write"
         android:textSize="12sp" />
@@ -29,39 +29,41 @@
             android:id="@+id/iv_owner_img"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/zl"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="@dimen/_10dp" />
+            android:layout_marginLeft="@dimen/_10dp"
+            android:src="@drawable/zl" />
 
         <io.github.rockerhieu.emojicon.EmojiconEditText
             android:id="@+id/tv_left_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/iv_owner_img"
             android:layout_marginRight="@dimen/_10dp"
+            android:layout_toRightOf="@id/iv_owner_img"
             android:autoLink="all"
             android:background="@drawable/l"
+            android:editable="false"
             android:gravity="center_vertical"
             android:lineSpacingExtra="3dp"
             android:paddingLeft="18dp"
             android:paddingRight="@dimen/_13dp"
             android:textColor="#000000"
-            android:textColorLink="@color/blue"
+            android:textColorLink="#586c8f"
             android:textSize="15sp"
-            emojicon:emojiconSize="18sp"
-            android:editable="false"
             android:visibility="gone"
-            tools:visibility="visible"/>
+            emojicon:emojiconSize="18sp"
+            tools:visibility="visible" />
+
         <LinearLayout
             android:id="@+id/ll_audio_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:layout_marginRight="@dimen/_10dp"
             android:layout_toRightOf="@id/iv_owner_img"
             android:visibility="gone"
-            tools:visibility="visible"
-            android:layout_marginRight="@dimen/_10dp">
+            tools:visibility="visible">
+
             <TextView
                 android:id="@+id/tv_audio_left"
                 android:layout_width="wrap_content"
@@ -73,37 +75,38 @@
                 android:paddingRight="@dimen/_10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@android:color/transparent" />
+
             <TextView
                 android:id="@+id/tv_audio_left_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/tv_audio_left"
-                android:text = "10s"/>
+                android:text="10s" />
+
             <TextView
                 android:id="@+id/tv_activity_index_count"
                 android:layout_width="@dimen/_10dp"
                 android:layout_height="@dimen/_10dp"
-                android:background="@drawable/cl_red"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_5dp"
-                android:layout_gravity="center_vertical" />
+                android:background="@drawable/cl_red" />
         </LinearLayout>
-
 
 
         <ImageView
             android:id="@+id/iv_left_img"
             android:layout_width="@dimen/_150dp"
             android:layout_height="@dimen/_150dp"
+            android:layout_alignTop="@+id/iv_owner_img"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@id/iv_owner_img"
-            android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textColor="#000000"
-            android:textSize="14sp"
-            android:visibility="gone" />
+            android:scaleType="fitXY"
+            android:textSize="14sp" />
     </RelativeLayout>
 
 </LinearLayout>

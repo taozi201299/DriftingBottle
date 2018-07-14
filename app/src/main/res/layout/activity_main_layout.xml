@@ -59,8 +59,8 @@
         android:visibility="gone">
         <ImageView
             android:id="@+id/iv_bollen"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@mipmap/bollen"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="0dp"/>
@@ -145,7 +145,7 @@
                     android:textSize="@dimen/_12sp"
                     android:layout_below="@id/iv_three"
                     android:gravity="center_horizontal"
-                    android:text="我的瓶子"
+                    android:text="    我的瓶子"
                     android:textColor="@color/write" />
                 <TextView
                     android:id="@+id/tv_activity_index_count"
@@ -163,7 +163,7 @@
                     android:background="@drawable/cl_red"
                     android:layout_centerHorizontal="true"
                     android:layout_centerInParent="true"
-                    android:text="557"
+                    android:text=""
                     android:textColor="@color/write" />
             </RelativeLayout>
         </LinearLayout>

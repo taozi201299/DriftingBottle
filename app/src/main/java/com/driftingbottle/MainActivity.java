@@ -484,8 +484,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             public void onResponse(String result) {
                 bStart = false;
                 bFinish = false;
-                iTotalCount = -100;
-                iCurrentCount = -100;
+                iTotalCount = 0;
+                iCurrentCount = 0;
                 tv_activity_index_count.setVisibility(View.GONE);
                 bWorking = false;
                 App.bottles.clear();
@@ -912,7 +912,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         public void run() {
             TranslateAnimation alphaAnimation = new TranslateAnimation(0f, 300f, 100, 0);
             alphaAnimation.setDuration(15000);
-            alphaAnimation.setRepeatCount(1);
+            alphaAnimation.setRepeatCount(-1);
             alphaAnimation.setRepeatMode(Animation.REVERSE);
             alphaAnimation.setFillAfter(true);
             iv_bollen.setAnimation(alphaAnimation);

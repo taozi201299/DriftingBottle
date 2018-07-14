@@ -41,9 +41,9 @@
             android:ems="16"
             android:maxLines="1"
             android:paddingTop="1dp"
-            android:text=""
-            android:textColor="#ababab"
+            android:text="sssssss"
             android:textSize="13sp"
+            android:textColor="@color/text"
             emojicon:emojiconSize="16sp"
             android:visibility="visible" />
     </LinearLayout>

@@ -68,6 +68,8 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
         tv_activity_bottle_item_time.setText(displayTime);
         // 0，纯文本 1，纯图片 2，纯声音 3，文本+图片
         type = bottleBean.dataType;
+        int color0 = App.globalContext().getResources().getColor(R.color.text);
+        tv_activity_bottle_item_final_msg.setTextColor(color0);
         switch (type) {
             case "0":
                 String content = "";
@@ -114,7 +116,9 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
 
                 break;
             case "2":
-                tv_activity_bottle_item_final_msg.setText("[语音通话]");
+                tv_activity_bottle_item_final_msg.setText("[语音]");
+                int color = App.globalContext().getResources().getColor(R.color.green);
+                tv_activity_bottle_item_final_msg.setTextColor(color);
                 break;
         }
 

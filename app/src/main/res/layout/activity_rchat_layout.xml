@@ -11,12 +11,12 @@
     <TextView
         android:id="@+id/tv_right_time"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="#D4D4D4"
+        android:background="@drawable/dialog_bg_shape"
         android:gravity="center_vertical"
-        android:padding="2dp"
-        android:text="2015"
+        android:padding="10dp"
+        android:text=""
         android:textColor="@color/write"
         android:textSize="12sp" />
 
@@ -45,10 +45,12 @@
             android:lineSpacingExtra="3dp"
             android:paddingLeft="13dp"
             android:paddingRight="@dimen/_18dp"
+            android:paddingTop="@dimen/_5dp"
+            android:paddingBottom="@dimen/_5dp"
             android:editable="false"
             android:text=""
             android:textColor="#000000"
-            android:textColorLink="@color/blue"
+            android:textColorLink="#586c8f"
             android:textSize="15sp"
             emojicon:emojiconSize="18sp"/>
         <RelativeLayout
@@ -98,11 +100,12 @@
             android:layout_height="@dimen/_150dp"
             android:layout_marginLeft="5dp"
             android:layout_toLeftOf="@id/iv_owner_img"
-            android:gravity="center"
+            android:layout_alignTop="@+id/iv_owner_img"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textColor="#000000"
             android:textSize="14sp"
+            android:scaleType="fitXY"
             android:visibility="gone" />
     </RelativeLayout>
 
