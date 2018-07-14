@@ -128,11 +128,11 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 ((ChatLeftViewHolder) holder).mTvMsgLeft.setText(builder);
             }else if("1".equals(type)){
                 ((ChatLeftViewHolder) holder).iv_left_img.setVisibility(View.VISIBLE);
-//                Glide.with(mContext)
-//                        .load(content)
-//                        .placeholder(R.mipmap.dialog_loading_img)
-//                        .error(R.drawable.zl)
-//                        .into(((ChatLeftViewHolder) holder).iv_left_img);
+                Glide.with(mContext)
+                        .load(content)
+                        .placeholder(R.mipmap.dialog_loading_img)
+                        .error(R.drawable.zl)
+                        .into(((ChatLeftViewHolder) holder).iv_left_img);
             }else if("2".equals(type)){
                 ((ChatLeftViewHolder) holder).ll_audio_left.setVisibility(View.VISIBLE);
                 ((ChatLeftViewHolder) holder).tv_audio_left_time.setText(msg.voiceNumber  + "''");
@@ -178,10 +178,10 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 ((ChatRightViewHolder) holder).mTvMsgRight.setText(builder);
             }else if("1".equals(type)){
                 ((ChatRightViewHolder) holder).iv_right_img.setVisibility(View.VISIBLE);
-//                Glide.with(mContext).load(content)
-//                        .placeholder(R.mipmap.dialog_loading_img)
-//                        .error(R.mipmap.dialog_loading_img)
-//                        .into(((ChatRightViewHolder) holder).iv_right_img);
+                Glide.with(mContext).load(content)
+                        .placeholder(R.mipmap.dialog_loading_img)
+                        .error(R.mipmap.dialog_loading_img)
+                        .into(((ChatRightViewHolder) holder).iv_right_img);
             }
             else if("2".equals(type)){
                 ((ChatRightViewHolder) holder).ll_audio_right.setVisibility(View.VISIBLE);
