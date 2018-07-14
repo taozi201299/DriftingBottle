@@ -33,7 +33,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/_10dp" />
 
-        <io.github.rockerhieu.emojicon.EmojiconTextView
+        <io.github.rockerhieu.emojicon.EmojiconEditText
             android:id="@+id/tv_left_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,17 +43,16 @@
             android:autoLink="all"
             android:background="@drawable/l"
             android:gravity="center_vertical"
-            android:letterSpacing="0.05"
             android:lineSpacingExtra="3dp"
-            android:paddingLeft="25dp"
-            android:paddingRight="@dimen/_10dp"
-            android:text="adwdfwo我单位单位法人个人🎉🎁退他sk"
+            android:paddingLeft="18dp"
+            android:paddingRight="@dimen/_13dp"
             android:textColor="#000000"
             android:textColorLink="@color/blue"
-            android:textSize="16sp"
+            android:textSize="15sp"
             emojicon:emojiconSize="18sp"
+            android:editable="false"
             android:visibility="gone"
-            tools:visibility="gone"/>
+            tools:visibility="visible"/>
         <LinearLayout
             android:id="@+id/ll_audio_left"
             android:layout_width="wrap_content"

@@ -43,8 +43,7 @@
             android:paddingTop="1dp"
             android:text=""
             android:textColor="#ababab"
-            android:letterSpacing="0.05"
-            android:textSize="14sp"
+            android:textSize="13sp"
             emojicon:emojiconSize="16sp"
             android:visibility="visible" />
     </LinearLayout>

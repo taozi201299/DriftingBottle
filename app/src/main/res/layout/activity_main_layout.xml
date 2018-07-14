@@ -27,7 +27,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_height="wrap_content"
-            android:layout_marginTop="127dp"
+            android:layout_marginTop="125dp"
             android:layout_marginRight="100dp"
             android:src="@drawable/anim" />
         <ImageView
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_height="wrap_content"
-            android:layout_marginTop="127dp"
+            android:layout_marginTop="125dp"
             android:visibility="visible"
             android:layout_marginRight="20dp"
             android:src="@drawable/anim_right" />
@@ -59,11 +59,11 @@
         android:visibility="gone">
         <ImageView
             android:id="@+id/iv_bollen"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@mipmap/bollen"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="30dp"/>
     </RelativeLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -154,15 +154,15 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:gravity="center_horizontal|center_vertical"
-                    android:textSize="8.5sp"
+                    android:textSize="11sp"
                     android:layout_marginBottom="22dp"
                     android:layout_marginRight="30dp"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:textStyle="bold"
                     android:background="@drawable/cl_red"
                     android:layout_centerHorizontal="true"
                     android:layout_centerInParent="true"
-                    android:text="557"
+                    android:text=""
                     android:textColor="@color/write" />
             </RelativeLayout>
         </LinearLayout>

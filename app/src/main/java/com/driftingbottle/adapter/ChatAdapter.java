@@ -33,6 +33,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.rockerhieu.emojicon.EmojiconEditText;
 import io.github.rockerhieu.emojicon.EmojiconTextView;
 
 import static android.widget.TextView.BufferType.SPANNABLE;
@@ -266,7 +267,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @BindView(R.id.iv_owner_img)
         ImageView iv_owner_img;
         @BindView(R.id.tv_left_msg)
-        EmojiconTextView mTvMsgLeft;
+        EmojiconEditText mTvMsgLeft;
         @BindView(R.id.ll_audio_left)
         LinearLayout ll_audio_left;
         @BindView(R.id.tv_audio_left)
@@ -288,7 +289,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @BindView(R.id.iv_owner_img)
         ImageView iv_owner_img;
         @BindView(R.id.tv_right_msg)
-        EmojiconTextView mTvMsgRight;
+        EmojiconEditText mTvMsgRight;
         @BindView(R.id.ll_audio_right)
         RelativeLayout ll_audio_right;
         @BindView(R.id.tv_audio_right)

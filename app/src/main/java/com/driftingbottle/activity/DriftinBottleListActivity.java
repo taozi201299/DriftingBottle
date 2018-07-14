@@ -57,6 +57,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     Button index_set1;
     private ArrayList<BottleBean0> bottleBeans ;
     private BottleAdatper bottleAdatper;
+    boolean bStart = false;
 
     @Override
     public int getLayoutId() {
@@ -76,6 +77,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
 
     @Override
     public void initData() {
+        if(!bStart) return;
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -103,7 +105,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         bottleAdatper = new BottleAdatper(this,R.layout.activity_bottle_item);
         bottleRecyclerView.setAdapter(bottleAdatper);
         Bundle bundle = getIntent().getBundleExtra(DEFAULT_BUNDLE_NAME);
-        boolean bStart = bundle.getBoolean("start");
+        bStart = bundle.getBoolean("start");
         if(!bStart){
             activity_index.setBackgroundColor(getResources().getColor(R.color.white));
             tv_emtry_message.setVisibility(View.VISIBLE);

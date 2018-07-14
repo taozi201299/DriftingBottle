@@ -10,7 +10,7 @@
     <item android:drawable="@drawable/xn" android:duration="500"/>
     <item android:drawable="@drawable/xm" android:duration="500"/>
     <item android:drawable="@drawable/xl" android:duration="500"/>
-    <item android:drawable="@android:color/transparent" android:duration="6000"/>
+    <!--<item android:drawable="@android:color/transparent" android:duration="3000"/>-->
 
     <!--<item android:drawable="@drawable/xq" android:duration="50"/>-->
     <!--<item android:drawable="@drawable/xu" android:duration="50"/>-->
