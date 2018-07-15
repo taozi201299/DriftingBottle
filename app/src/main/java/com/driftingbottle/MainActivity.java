@@ -505,7 +505,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
             @Override
             public void onFailure(ErrorInfo.ErrorCode errorInfo) {
-                ToastUtils.show("网络错误，服务停止失败");
+              //  ToastUtils.show("网络错误，服务停止失败");
 
             }
         },CacheMode.DEFAULT);

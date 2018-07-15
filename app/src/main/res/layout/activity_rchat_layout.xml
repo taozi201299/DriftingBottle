@@ -106,7 +106,6 @@
             android:paddingRight="10dp"
             android:textColor="#000000"
             android:textSize="14sp"
-            android:scaleType="fitXY"
             android:visibility="gone" />
     </RelativeLayout>
 

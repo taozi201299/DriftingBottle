@@ -243,15 +243,5 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                 }
             }
         }
-        MessageBean0 newMessage = new MessageBean0();
-        newMessage.dataType = "0";
-        newMessage.answerType = "0";
-        newMessage.CreatedDate = "2017-09-09 00:00:00";
-        newMessage.imageData = "";
-        newMessage.voiceNumber = "";
-        newMessage.textData = "下午和子健说再＋1000你觉得有点少，那就2000吧，说实话，这个预算超出我这不少，费用下来你们哪里28000，我们这来回什么30000多了，我周一先给你们8000加上定金5000还差你们15000剩余的尾款我争取3周内给你们，这个当时我也说了，最近真的很紧张，都是用的信用卡的钱！\n" +
-                "在现有的功能上有需要调整的地方，咱就别再加了吧";
-        datas.add(newMessage);
-
     }
 }

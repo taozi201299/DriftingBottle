@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.tu.loadingdialog.LoadingDialog;
+import com.driftingbottle.App;
 import com.driftingbottle.R;
 import com.driftingbottle.activity.SettingActivity;
 import com.driftingbottle.utils.Constant;
@@ -46,6 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (allowFullScreen) {
             requestWindowFeature(Window.FEATURE_NO_TITLE); // 取消标题
         }
