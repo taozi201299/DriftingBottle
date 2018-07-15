@@ -204,9 +204,8 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         chatAdapter.notifyDataSetChanged();
     }
     private void processResult(){
-        int size = datas.size();
         String []arrayContent;
-        for(int i = 0; i <size; i++){
+        for(int i = 0; i <datas.size(); i++){
             MessageBean0 item = datas.get(i);
             if(item.dataType.equals("3") && !item.textData.contains("#")){
                 MessageBean0 messageBean = new MessageBean0();
