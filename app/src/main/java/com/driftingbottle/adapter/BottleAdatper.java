@@ -41,23 +41,29 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
         TextView tv_activity_bottle_item_time = (TextView) holder.getView(R.id.tv_activity_bottle_item_time);
         TextView wei_du_xiao_xi = (TextView)holder.getView(R.id.wei_du_xiao_xi);
         int count = 1;
-        if("0".equals(bottleBean.dataType)){
-            String data = bottleBean.textData;
-            String array[] ;
-            if(data.contains(strSplit)){
-                array = data.split(strSplit);
-                count += array.length;
-                count --;
+        if(App.bottleCount.containsKey(bottleBean.regionID)){
+            count = App.bottleCount.get(bottleBean.regionID);
+
+        }else {
+            if ("0".equals(bottleBean.dataType)) {
+                String data = bottleBean.textData;
+                String array[];
+                if (data.contains(strSplit)) {
+                    array = data.split(strSplit);
+                    count += array.length;
+                    count--;
+                }
+            } else if ("3".equals(bottleBean.dataType)) {
+                String data1 = bottleBean.textData;
+                String array1[];
+                if (data1.contains(strSplit)) {
+                    array1 = data1.split(strSplit);
+                    count += array1.length;
+                    count--;
+                }
+                count++;
             }
-        }else  if("3".equals(bottleBean.dataType)){
-            String data1 = bottleBean.textData;
-            String array1[] ;
-            if(data1.contains(strSplit)){
-                array1 = data1.split(strSplit);
-                count += array1.length;
-                count --;
-            }
-            count ++;
+            App.bottleCount.put(bottleBean.regionID,count);
         }
         if(bottleBean.bIsRead){
             wei_du_xiao_xi.setVisibility(View.GONE);

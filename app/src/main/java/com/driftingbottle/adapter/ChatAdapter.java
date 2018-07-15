@@ -6,8 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.URLSpan;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,10 +130,13 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                  ((ChatLeftViewHolder) holder).mTvMsgLeft.setVisibility(View.VISIBLE);
                 SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext,((ChatLeftViewHolder) holder).mTvMsgLeft.getTextSize(),
                         ((ChatLeftViewHolder) holder).mTvMsgLeft.getmEmojiconSize());
-                NoUnderLineSpan noUnderLineSpan = new NoUnderLineSpan(builder.toString());
-                Spannable s = (Spannable)builder;
-                s.setSpan(noUnderLineSpan,0,s.length(),Spannable.SPAN_MARK_MARK);
                 ((ChatLeftViewHolder) holder).mTvMsgLeft.setText(builder);
+                Editable strText = (((ChatLeftViewHolder) holder).mTvMsgLeft).getText();
+                NoUnderLineSpan noUnderLineSpan =  new NoUnderLineSpan();
+                if (strText instanceof Spannable) {
+                    Spannable s = (Spannable)strText;
+                    s.setSpan(noUnderLineSpan, 0, s.length(), Spanned.SPAN_MARK_MARK);
+                }
 
             }else if("1".equals(type)){
                 ((ChatLeftViewHolder) holder).iv_left_img.setVisibility(View.VISIBLE);
@@ -181,12 +187,18 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 ((ChatRightViewHolder) holder).mTvMsgRight.setVisibility(View.VISIBLE);
                 SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext,((ChatRightViewHolder) holder).mTvMsgRight.getTextSize(),
                         ((ChatRightViewHolder) holder).mTvMsgRight.getmEmojiconSize());
-                NoUnderLineSpan noUnderLineSpan = new NoUnderLineSpan(builder.toString());
-                Spannable s = (Spannable)builder;
-                s.setSpan(noUnderLineSpan,0,s.length(),Spannable.SPAN_MARK_MARK);
                 ((ChatRightViewHolder) holder).mTvMsgRight.setText(builder);
+                Editable strText = (((ChatRightViewHolder) holder).mTvMsgRight).getText();
+                NoUnderLineSpan noUnderLineSpan =  new NoUnderLineSpan();
+                if (strText instanceof Spannable) {
+                    Spannable s = (Spannable)strText;
+                    s.setSpan(noUnderLineSpan, 0, s.length(), Spanned.SPAN_MARK_MARK);
+                }
 
-            }else if("1".equals(type)){
+
+
+
+                }else if("1".equals(type)){
                 ((ChatRightViewHolder) holder).iv_right_img.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(content)
                         .placeholder(R.mipmap.dialog_loading_img)

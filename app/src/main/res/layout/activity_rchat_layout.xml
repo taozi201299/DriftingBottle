@@ -37,11 +37,12 @@
             android:id="@+id/tv_right_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_5dp"
+            android:layout_marginRight="@dimen/_3dp"
             android:layout_toLeftOf="@id/iv_owner_img"
             android:background="@drawable/qp"
+            android:autoLink="email|web|phone"
             android:gravity="center_vertical"
-            android:lineSpacingExtra="3dp"
+            android:lineSpacingExtra="3.5dp"
             android:paddingLeft="13dp"
             android:paddingRight="@dimen/_18dp"
             android:paddingTop="@dimen/_5dp"
@@ -51,7 +52,7 @@
             android:textColor="#000000"
             android:textColorLink="#586c8f"
             android:textSize="15sp"
-            android:layout_marginLeft="@dimen/_15dp"
+            android:layout_marginLeft="@dimen/_20dp"
             emojicon:emojiconSize="18sp"/>
         <RelativeLayout
             android:id="@+id/ll_audio_right"

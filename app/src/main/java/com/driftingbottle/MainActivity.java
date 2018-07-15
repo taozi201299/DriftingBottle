@@ -16,6 +16,7 @@ import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +39,7 @@ import com.driftinbottle.callback.RequestCallback;
 import com.driftinbottle.httputils.HttpUtils;
 import com.driftingbottle.activity.DriftinBottleListActivity;
 import com.driftingbottle.activity.SettingActivity;
+import com.driftingbottle.adapter.ChatAdapter;
 import com.driftingbottle.base.BaseActivity;
 import com.driftingbottle.bean.BottleCountBean;
 import com.driftingbottle.bean.MoonBean;
@@ -183,7 +185,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     private boolean bEmojiVisible = false;
     private int iEmojiEditText = 0 ; // 0 title 1 msg
     private boolean bWorking = true;
-    private int iTotalCount = 0;
+    public static int iTotalCount = 0;
     public static int iCurrentCount = 0;
     private long interval;
     /**
@@ -210,6 +212,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            if(bStart == 0 || !bWorking){
+                iCurrentCount = 0;
+                bWorking = false;
+                return;
+            }
             switch (msg.what){
                 case 0:
                     if(iCurrentCount > 0) {
@@ -220,6 +227,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 case 1:
                     ToastUtils.show("瓶子获取完成");
                     tv_activity_index_count.setText(String.valueOf(iTotalCount));
+                    bWorking = false;
                     break;
             }
         }
@@ -477,6 +485,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
      * 数据重置
      */
     private void stopService(){
+        bStart = 0;
+        bFinish = false;
+        iTotalCount = 0;
+        iCurrentCount = 0;
+        tv_activity_index_count.setVisibility(View.GONE);
+        bWorking = false;
+        App.bottles.clear();
         ToastUtils.show("服务停止");
         String url = App.strIp+"/WebRoot/ClientReset";
         HashMap<String,String>param = new HashMap<>();
@@ -484,13 +499,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         HttpUtils.getInstance().requestGet(url, param, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
-                bStart = 0;
-                bFinish = false;
-                iTotalCount = 0;
-                iCurrentCount = 0;
-                tv_activity_index_count.setVisibility(View.GONE);
-                bWorking = false;
-                App.bottles.clear();
+
 
             }
 
@@ -507,7 +516,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
      * 服务开启
      */
     private void startService(){
-        if(bStart == 1){
+        if(bStart != 0){
             ToastUtils.show("服务已经启动");
             return;
         }else {
@@ -698,6 +707,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                     App.bottles.put(key,"0");
                 }
                 ToastUtils.show("群发成功");
+                bStart = 3;
             }
 
             @Override
@@ -841,27 +851,51 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             beforeLength = s.length();
         }
         @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
-        @Override public void afterTextChanged(Editable s){
-            if(s.toString().isEmpty()) return;
-            if(!bFinish){
+        @Override public void afterTextChanged(Editable s) {
+            if (s.toString().isEmpty()) return;
+            if (!bFinish) {
                 cursorEnd = cursorStart + s.length() - beforeLength;
-                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(s.toString(),mContext,et_msg_tle.getTextSize(),et_msg_tle.getmEmojiconSize());
+                SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(s.toString(), mContext, et_msg_tle.getTextSize(), et_msg_tle.getmEmojiconSize());
                 bFinish = true;
-                if(iEmojiEditText == 1) {
+                if (iEmojiEditText == 1) {
                     et_msg.setText(builder);
                     et_msg.setSelection(cursorEnd);
-                }else if(iEmojiEditText == 0) {
+                    Editable strText = et_msg.getText();
+                    NoUnderLineSpan noUnderLineSpan = new NoUnderLineSpan();
+                    if (strText instanceof Spannable) {
+                        Spannable spannable = (Spannable) strText;
+                        spannable.setSpan(noUnderLineSpan, 0, spannable.length(), Spanned.SPAN_MARK_MARK);
+                    }
+                } else if (iEmojiEditText == 0) {
                     et_msg_tle.setText(builder);
                     et_msg_tle.setSelection(cursorEnd);
-                }else if(iEmojiEditText == 2){
+                    Editable strText = et_msg_tle.getText();
+                    NoUnderLineSpan noUnderLineSpan = new NoUnderLineSpan();
+                    if (strText instanceof Spannable) {
+                        Spannable spannable = (Spannable) strText;
+                        spannable.setSpan(noUnderLineSpan, 0, spannable.length(), Spanned.SPAN_MARK_MARK);
+                    }
+                } else if (iEmojiEditText == 2) {
                     et_photo_msg.setText(builder);
                     et_photo_msg.setSelection(cursorEnd);
-                }else if(iEmojiEditText == 3){
+                    Editable strText = et_photo_msg.getText();
+                    NoUnderLineSpan noUnderLineSpan = new NoUnderLineSpan();
+                    if (strText instanceof Spannable) {
+                        Spannable spannable = (Spannable) strText;
+                        spannable.setSpan(noUnderLineSpan, 0, spannable.length(), Spanned.SPAN_MARK_MARK);
+                    }
+                } else if (iEmojiEditText == 3) {
                     et_photo_msg_title.setText(builder);
                     et_photo_msg_title.setSelection(cursorEnd);
+                    Editable strText = et_photo_msg_title.getText();
+                    NoUnderLineSpan noUnderLineSpan = new NoUnderLineSpan();
+                    if (strText instanceof Spannable) {
+                        Spannable spannable = (Spannable) strText;
+                        spannable.setSpan(noUnderLineSpan, 0, spannable.length(), Spanned.SPAN_MARK_MARK);
+                    }
                 }
+                bFinish = false;
             }
-            bFinish = false;
         }
     }
 
