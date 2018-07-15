@@ -129,6 +129,12 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
                     }else {
                         content1 = bottleBean.textData;
                     }
+                    if(content1.contains(strSplit)){
+                        String[] arrayContent = content1.split(strSplit);
+                        if(arrayContent.length >0){
+                            content1 = arrayContent[arrayContent.length -1];
+                        }
+                    }
                     SpannableStringBuilder builder1 = EmojiUtil.replaceStr2Emoji(content1,mContext,tv_activity_bottle_item_final_msg.getTextSize(),
                             tv_activity_bottle_item_final_msg.getmEmojiconSize());
                     tv_activity_bottle_item_final_msg.setText(builder1);

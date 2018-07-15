@@ -208,7 +208,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         String []arrayContent;
         for(int i = 0; i <size; i++){
             MessageBean0 item = datas.get(i);
-            if(item.dataType.equals("3")){
+            if(item.dataType.equals("3") && !item.textData.contains("#")){
                 MessageBean0 messageBean = new MessageBean0();
                 messageBean.dataType = "1";
                 messageBean.answerType = item.answerType;
@@ -222,7 +222,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                     datas.add(i+1,messageBean);
                 }
                 item.dataType = "0";
-            }else if(item.dataType.equals("0")) {
+            }else if(item.dataType.equals("0") || (item.dataType.equals("3"))) {
                 if(item.textData.contains("#")){
                     arrayContent = item.textData.split("#");
                     if(arrayContent == null || arrayContent.length == 0){
@@ -236,9 +236,21 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                             newMessage.imageData = item.imageData;
                             newMessage.voiceNumber = "";
                             newMessage.textData = arrayContent[index];
-                            datas.add(i,newMessage);
+                            if(item.dataType.equals("0")) {
+                                datas.add(i, newMessage);
+                            }else if(item.dataType.equals("3")){
+                                if(item.orderType.equals("0")){
+                                    datas.add(i+1,newMessage);
+                                }else {
+                                    datas.add(i,newMessage);
+                                }
+                            }
                         }
-                        item.dataType = "-100";
+                        if(item.dataType.equals("0")) {
+                            item.dataType = "-100";
+                        }else if(item.dataType.equals("3")){
+                            item.dataType = "1";
+                        }
                     }
                 }
             }

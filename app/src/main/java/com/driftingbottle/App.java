@@ -30,7 +30,8 @@ public class  App extends Application {
      */
     public static HashMap<String,String>bottles = new HashMap<>();
     public static HashMap<String,Integer>bottleCount = new HashMap<>();
-    public static String strIp = "http://123.56.68.127:8080";
+   // public static String strIp = "http://123.56.68.127:8080";
+    public static String strIp = "http://118.190.155.234:8080";
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
