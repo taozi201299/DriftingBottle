@@ -59,9 +59,9 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
                 if (data1.contains(strSplit)) {
                     array1 = data1.split(strSplit);
                     count += array1.length;
-                    count--;
+                }else {
+                    count ++;
                 }
-                count++;
             }
             App.bottleCount.put(bottleBean.regionID,count);
         }
