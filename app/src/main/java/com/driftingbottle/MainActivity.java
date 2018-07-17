@@ -205,6 +205,41 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     private int cursorEnd = 0;
     private int beforeLength = 0;
     private boolean bMoon  = false;
+    static HashMap<Integer,Integer> images = new HashMap<Integer, Integer>(){
+        {
+            put(1, R.mipmap.a1);
+            put(2, R.mipmap.a2);
+            put(3, R.mipmap.a3);
+            put(4, R.mipmap.a4);
+            put(5, R.mipmap.a5);
+            put(6, R.mipmap.a6);
+            put(7, R.mipmap.a7);
+            put(8, R.mipmap.a8);
+            put(9, R.mipmap.a9);
+            put(10, R.mipmap.a10);
+            put(11, R.mipmap.a11);
+            put(12, R.mipmap.a12);
+            put(13, R.mipmap.a13);
+            put(14, R.mipmap.a14);
+            put(15, R.mipmap.a15);
+            put(16, R.mipmap.a16);
+            put(17, R.mipmap.a17);
+            put(18, R.mipmap.a18);
+            put(19, R.mipmap.a19);
+            put(20, R.mipmap.a20);
+            put(21, R.mipmap.a21);
+            put(22, R.mipmap.a22);
+            put(23, R.mipmap.a23);
+            put(24, R.mipmap.a24);
+            put(25, R.mipmap.a25);
+            put(26, R.mipmap.a26);
+            put(27, R.mipmap.a27);
+            put(28, R.mipmap.a28);
+            put(29, R.mipmap.a29);
+            put(30, R.mipmap.a30);
+            put(31, R.mipmap.a31);
+        }
+    };
     /**
      * 主线程handler 用户更新瓶子数量
      */
@@ -307,8 +342,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
          */
         int hour = CommonUtils.getHour();
         if(hour >= 18){
-            getMoon();
-            rootview.setBackgroundResource(R.mipmap.bg_index);
+           // getMoon();
+            int day = CommonUtils.getDay();
+            rootview.setBackgroundResource(images.get(day));
         }
     }
     @Override
@@ -341,11 +377,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             new Thread(new BollenAnimRunnable()).start();
 
         }else {
-            if(!bMoon){
-                getMoon();
-            }
             rl_day_layout.setVisibility(View.GONE);
             rl_right_layout.setVisibility(View.VISIBLE);
+            int day = CommonUtils.getDay();
+            rootview.setBackgroundResource(images.get(day));
             // 灯塔光动画
             AnimationDrawable animationDrawable = (AnimationDrawable) iv_shape.getDrawable();
             AnimationDrawable lanimationDrawable = (AnimationDrawable) iv_shape_center.getDrawable();
@@ -570,10 +605,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 Gson gson = new Gson();
                 List<MoonBean> moonBeans = (List<MoonBean>) gson.fromJson(result,new TypeToken<List<MoonBean>>(){}.getType());
                 if(moonBeans != null && moonBeans.size() >0 ){
-                    Glide.with(MainActivity.this).load(App.strIp + moonBeans.get(0).moomUrl).into(iv_activity_index_moon);
+                   // Glide.with(MainActivity.this).load(App.strIp + moonBeans.get(0).moomUrl).into(iv_activity_index_moon);
                 }
                 if("1".equals(moonBeans.get(0).starstatus)){
-                    rootview.setBackgroundResource(R.mipmap.bg);
+                  //  rootview.setBackgroundResource(R.mipmap.bg);
                 }
             }
 

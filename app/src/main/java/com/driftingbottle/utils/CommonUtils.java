@@ -104,6 +104,11 @@ public class CommonUtils {
         int week = calendar.get(Calendar.DAY_OF_WEEK);
         return hour;
     }
+    public static  int getDay(){
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        return day;
+    }
 
     public static String getCurrentDate() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
