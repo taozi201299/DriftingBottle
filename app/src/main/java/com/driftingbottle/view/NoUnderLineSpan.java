@@ -8,8 +8,6 @@ import android.text.style.UnderlineSpan;
 /**
  * Created by Administrator on 2018/7/14.
  */
-
-@SuppressLint("ParcelCreator")
 public class NoUnderLineSpan extends UnderlineSpan {
     @Override
     public void updateDrawState(TextPaint ds) {

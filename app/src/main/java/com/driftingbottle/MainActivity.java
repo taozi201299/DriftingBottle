@@ -247,8 +247,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if(bStart == 0 || !bWorking){
+            if(bStart == 0 && !bWorking){
                 iCurrentCount = 0;
+                iTotalCount = 0;
                 bWorking = false;
                 return;
             }

@@ -41,10 +41,6 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
         TextView tv_activity_bottle_item_time = (TextView) holder.getView(R.id.tv_activity_bottle_item_time);
         TextView wei_du_xiao_xi = (TextView)holder.getView(R.id.wei_du_xiao_xi);
         int count = 1;
-        if(App.bottleCount.containsKey(bottleBean.regionID)){
-            count = App.bottleCount.get(bottleBean.regionID);
-
-        }else {
             if ("0".equals(bottleBean.dataType)) {
                 String data = bottleBean.textData;
                 String array[];
@@ -63,8 +59,9 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
                     count ++;
                 }
             }
-            App.bottleCount.put(bottleBean.regionID,count);
-        }
+            if("2".equals(bottleBean.answerType)){
+                bottleBean.bIsRead = false;
+            }
         if(bottleBean.bIsRead){
             wei_du_xiao_xi.setVisibility(View.GONE);
         }else {

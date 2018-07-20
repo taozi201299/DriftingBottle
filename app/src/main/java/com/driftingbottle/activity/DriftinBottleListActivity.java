@@ -78,6 +78,13 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     @Override
     public void initData() {
         if(bStart == 0) return;
+        if(bStart == 1) {
+            showTitle("我的瓶子(" + MainActivity.iCurrentCount + ")");
+        }else if(bStart == 3) {
+            double count = MainActivity.iTotalCount * 0.2;
+            int icount = new Double(count).intValue();
+            showTitle("我的瓶子(" + icount + ")");
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -169,39 +176,20 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
 
     private void refreshUI(){
         for(BottleBean0 item : bottleBeans){
-            if(App.bottles.containsKey(item.regionID)){
-                if(App.bottles.get(item.regionID).equals(item.answerType)){
-                    item.bIsRead = false;
-                }else {
-                    item.bIsRead = false;
-                }
+            if(bStart == 3){
+                item.bIsRead = true;
             }else {
                 item.bIsRead = false;
             }
         }
         bottleAdatper.setData(bottleBeans);
         bottleAdatper.notifyDataSetChanged();
-        for(BottleBean0 bottleBean0 :bottleBeans) {
-            if (!App.bottles.containsKey(bottleBean0.regionID)) {
-                App.bottles.put(bottleBean0.regionID, bottleBean0.answerType);
-            }
-        }
 
     }
 
     @Override
     public void onItemClick(int position) {
         BottleBean0 item = bottleBeans.get(position);
-        for(BottleBean0 bottleBean0 :bottleBeans) {
-            if (!App.bottles.containsKey(bottleBean0.regionID)) {
-                App.bottles.put(bottleBean0.regionID, bottleBean0.answerType);
-            }
-        }
-        if(App.bottles.get(item.regionID).equals(item.answerType)){
-
-        }else {
-            App.bottles.put(item.regionID,item.answerType);
-        }
         Bundle bundle = new Bundle();
         bundle.putSerializable("key",item);
         intentActivity(this,DriftinBottleMessageActivity.class,false,bundle);

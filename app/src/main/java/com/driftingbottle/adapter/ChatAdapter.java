@@ -188,15 +188,11 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 SpannableStringBuilder builder = EmojiUtil.replaceStr2Emoji(content,mContext,((ChatRightViewHolder) holder).mTvMsgRight.getTextSize(),
                         ((ChatRightViewHolder) holder).mTvMsgRight.getmEmojiconSize());
                 ((ChatRightViewHolder) holder).mTvMsgRight.setText(builder);
-                Editable strText = (((ChatRightViewHolder) holder).mTvMsgRight).getText();
                 NoUnderLineSpan noUnderLineSpan =  new NoUnderLineSpan();
-                if (strText instanceof Spannable) {
-                    Spannable s = (Spannable)strText;
+                if (((ChatRightViewHolder) holder).mTvMsgRight.getText() instanceof Spannable) {
+                    Spannable s = (Spannable)((ChatRightViewHolder) holder).mTvMsgRight.getText();
                     s.setSpan(noUnderLineSpan, 0, s.length(), Spanned.SPAN_MARK_MARK);
                 }
-
-
-
 
                 }else if("1".equals(type)){
                 ((ChatRightViewHolder) holder).iv_right_img.setVisibility(View.VISIBLE);
@@ -257,7 +253,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @BindView(R.id.iv_owner_img)
         ImageView iv_owner_img;
         @BindView(R.id.tv_right_msg)
-        EmojiconEditText mTvMsgRight;
+        EmojiconTextView mTvMsgRight;
         @BindView(R.id.ll_audio_right)
         RelativeLayout ll_audio_right;
         @BindView(R.id.tv_audio_right)
