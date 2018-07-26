@@ -81,7 +81,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         if(bStart == 1) {
             showTitle("我的瓶子(" + MainActivity.iCurrentCount + ")");
         }else if(bStart == 3) {
-            double count = MainActivity.iTotalCount * 0.2;
+            double count = MainActivity.iTotalCount * App.IRand;
             int icount = new Double(count).intValue();
             showTitle("我的瓶子(" + icount + ")");
         }
@@ -126,7 +126,7 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
             if(bStart == 1) {
                 showTitle("我的瓶子(" + MainActivity.iCurrentCount + ")");
             }else {
-                double count = MainActivity.iTotalCount * 0.2;
+                double count = MainActivity.iTotalCount * App.IRand;
                 int icount = new Double(count).intValue();
                 showTitle("我的瓶子(" + icount + ")");
             }

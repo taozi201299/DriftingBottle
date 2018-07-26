@@ -142,6 +142,8 @@ public class EmojiUtil {
             put("[皱眉]",R.drawable.emoji_1f00158);
             put("[嘿哈]",R.drawable.emoji_1f00159);
             put("[机智]",R.drawable.emoji_1f00160);
+            put("[红包]",R.drawable.emoji_1f00172);
+            put("[發]",R.drawable.emoji_1f00173);
 
 
         }

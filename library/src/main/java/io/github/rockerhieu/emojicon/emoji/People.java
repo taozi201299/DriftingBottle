@@ -100,9 +100,24 @@ public class People {
             Emojicon.fromCodePoint(0x1f073),
             Emojicon.fromCodePoint(0x1f074),
             Emojicon.fromCodePoint(0x1f075),
-
             Emojicon.fromCodePoint(0x1f076),
             Emojicon.fromCodePoint(0x1f077),
+       // 添加新的表情
+            Emojicon.fromCodePoint(0x1f174),
+            Emojicon.fromCodePoint(0x1f175),
+            Emojicon.fromCodePoint(0x1f176),
+            Emojicon.fromCodePoint(0x1f177),
+            Emojicon.fromCodePoint(0x1f178),
+            Emojicon.fromCodePoint(0x1f179),
+            Emojicon.fromCodePoint(0x1f180),
+            Emojicon.fromCodePoint(0x1f181),
+            Emojicon.fromCodePoint(0x1f182),
+            Emojicon.fromCodePoint(0x1f183),
+            Emojicon.fromCodePoint(0x1f184),
+            Emojicon.fromCodePoint(0x1f185),
+            Emojicon.fromCodePoint(0x1f186),
+
+
             Emojicon.fromCodePoint(0x1f078),
             Emojicon.fromCodePoint(0x1f079),
             Emojicon.fromCodePoint(0x1f080),
@@ -184,14 +199,28 @@ public class People {
             Emojicon.fromCodePoint(0x1f152),
             Emojicon.fromCodePoint(0x1f153),
             Emojicon.fromCodePoint(0x1f154),
+
+            // 添加新的企鹅表情
+            Emojicon.fromCodePoint(0x1f161),
+            Emojicon.fromCodePoint(0x1f162),
+            Emojicon.fromCodePoint(0x1f163),
+            Emojicon.fromCodePoint(0x1f164),
+            Emojicon.fromCodePoint(0x1f165),
+            Emojicon.fromCodePoint(0x1f166),
+            Emojicon.fromCodePoint(0x1f167),
+            Emojicon.fromCodePoint(0x1f168),
+            Emojicon.fromCodePoint(0x1f169),
+            Emojicon.fromCodePoint(0x1f170),
+            Emojicon.fromCodePoint(0x1f171),
+            Emojicon.fromCodePoint(0x1f172),
+            Emojicon.fromCodePoint(0x1f173),
+///------------------------------------------------------
             Emojicon.fromCodePoint(0x1f155),
             Emojicon.fromCodePoint(0x1f156),
             Emojicon.fromCodePoint(0x1f157),
             Emojicon.fromCodePoint(0x1f158),
             Emojicon.fromCodePoint(0x1f159),
             Emojicon.fromCodePoint(0x1f160),
-
-
             Emojicon.fromCodePoint(0x1f604),
             Emojicon.fromCodePoint(0x1f603),
             Emojicon.fromCodePoint(0x1f600),

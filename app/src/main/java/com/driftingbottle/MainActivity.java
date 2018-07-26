@@ -560,6 +560,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             iCurrentCount = 0;
             ToastUtils.show("服务启动");
             bStart = 1;
+            double [] arr = {0.15,0.16,0.17,0.18,0.19,0.20,0.21,0.22,0.23,0.24,0.25,0.26,0.27};
+            int index=(int)(Math.random()*arr.length);
+            App.IRand =  arr[index];
         }
         String url = App.strIp +"/WebRoot/ClientGetCountAndMinutes";
         HashMap<String,String> param = new HashMap<>();
