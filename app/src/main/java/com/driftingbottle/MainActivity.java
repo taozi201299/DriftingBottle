@@ -175,9 +175,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
 
     @BindView(R.id.emojicons)
     FrameLayout emojicons;
-    @BindView(R.id.emojicons_photo)
-    FrameLayout emojicons_photo;
 
+    EmojiconsFragment fragment = EmojiconsFragment.newInstance(false);
 
     private PowerManager.WakeLock mWakeLock;
     private int bStart = 0; // 0 未开始 1 开始 2 群发
@@ -462,20 +461,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                     bEmojiVisible = true;
                     emojicons.setVisibility(View.VISIBLE);
                     tv_activity_index_select_biaoqing.setText("隐藏表情");
+                    showEmojiFragment(false,0);
                 }
-                showEmojiFragment(false,0);
                 break;
             case R.id.tv_activity_index_select_biaoqing_photo:
                 if(bEmojiVisible){
                     bEmojiVisible = false;
-                    emojicons_photo.setVisibility(View.GONE);
+                    emojicons.setVisibility(View.GONE);
                     tv_activity_index_select_biaoqing_photo.setText("选择表情");
                 }else {
                     bEmojiVisible = true;
-                    emojicons_photo.setVisibility(View.VISIBLE);
+                    emojicons.setVisibility(View.VISIBLE);
                     tv_activity_index_select_biaoqing_photo.setText("隐藏表情");
+                    showEmojiFragment(false,1);
                 }
-                showEmojiFragment(false,1);
+
                 break;
             case R.id.tv_send_msg:
             case R.id.tv_send_photo:
@@ -486,13 +486,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 emojicons.setVisibility(View.GONE);
                 et_msg.setText("");
                 et_msg_tle.setText("");
+                tv_activity_index_select_biaoqing.setText("选择表情");
                 break;
             case R.id.tv_cancel_photo:
                 ll_dialog_send_photo.setVisibility(View.GONE);
                 iv_activity_index_photo.setImageResource(0);
                 et_photo_msg_title.setText("");
                 et_photo_msg.setText("");
-                emojicons_photo.setVisibility(View.GONE);
+                emojicons.setVisibility(View.GONE);
+                tv_activity_index_select_biaoqing_photo.setText("选择表情");
                 checkBox.setChecked(true);
                 break;
             case R.id.iv_activity_index_photo:
@@ -734,8 +736,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 et_photo_msg.setText("");
                 et_photo_msg_title.setText("");
                 iv_activity_index_photo.setImageResource(0);
-                emojicons.setVisibility(View.GONE);
-                emojicons_photo.setVisibility(View.GONE);
+                emojicons.setVisibility(View.GONE);;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     iv_activity_index_photo.setBackground(getDrawable(R.drawable.my_icon_image_add));
                 }else {
@@ -762,17 +763,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
      * @param messageType
      */
     private void  showEmojiFragment(boolean useSystemDefault,int messageType ){
-        if(messageType == 0) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.emojicons, EmojiconsFragment.newInstance(useSystemDefault))
-                    .commit();
-        }else {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.emojicons_photo, EmojiconsFragment.newInstance(useSystemDefault))
-                    .commit();
-        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.emojicons, fragment)
+                .commit();
     }
 
     /**
