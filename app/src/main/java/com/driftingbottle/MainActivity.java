@@ -204,6 +204,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     private int cursorEnd = 0;
     private int beforeLength = 0;
     private boolean bMoon  = false;
+    AnimationDrawable animationDrawable ;
+    AnimationDrawable ranimationDrawable ;
+    private boolean bAnim = true;
+    LightRunnable lightRunnable ;
     static HashMap<Integer,Integer> images = new HashMap<Integer, Integer>(){
         {
             put(1, R.mipmap.a1);
@@ -329,10 +333,35 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         checkBox.setChecked(true);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void initData() {
+        // 灯塔光动画
+        bAnim = true;
+        lightRunnable = new LightRunnable();
+        iv_shape.setImageDrawable(getDrawable(R.drawable.anim));
+        animationDrawable = (AnimationDrawable) iv_shape.getDrawable();
+        animationDrawable.start();
+        mHandler.postDelayed(lightRunnable,10000);
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        bAnim = false;
+        if(animationDrawable != null)
+        animationDrawable.stop();
+        if(ranimationDrawable != null)
+        ranimationDrawable.stop();
+        if(lightRunnable != null) {
+            mHandler.removeCallbacks(lightRunnable);
+            lightRunnable = null;
+        }
+        iv_shape_right.setImageDrawable(null);
+        iv_shape.setImageDrawable(null);
+    }
+
     @Override
     public void initView() {
         setInitActionBar(false);
@@ -381,13 +410,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             rl_right_layout.setVisibility(View.VISIBLE);
             int day = CommonUtils.getDay();
             rootview.setBackgroundResource(images.get(day));
-            // 灯塔光动画
-            AnimationDrawable animationDrawable = (AnimationDrawable) iv_shape.getDrawable();
-            AnimationDrawable lanimationDrawable = (AnimationDrawable) iv_shape_center.getDrawable();
-            AnimationDrawable ranimationDrawable = (AnimationDrawable) iv_shape_right.getDrawable();
-            animationDrawable.start();
-           // lanimationDrawable.start();
-            ranimationDrawable.start();
 
         }
     }
@@ -986,6 +1008,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             alphaAnimation.setFillAfter(true);
             iv_bollen.setAnimation(alphaAnimation);
             alphaAnimation.start();
+        }
+    }
+
+    class LightRunnable implements Runnable{
+
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        public void run() {
+           if(bAnim){
+               iv_shape_right.setImageDrawable(getDrawable(R.drawable.anim_right));
+               ranimationDrawable = (AnimationDrawable) iv_shape_right.getDrawable();
+               ranimationDrawable.start();
+           }
         }
     }
 
