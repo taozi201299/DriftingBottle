@@ -370,7 +370,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
          * 根据时间获取月亮图标
          */
         int hour = CommonUtils.getHour();
-        if(hour >= 18){
+        if(hour >= 18 || hour<=6 ){
            // getMoon();
             int day = CommonUtils.getDay();
             rootview.setBackgroundResource(images.get(day));
@@ -398,7 +398,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void updateBackGround(){
         int hour = CommonUtils.getHour();
-        if(hour < 18){
+        if(hour < 18 || hour > 6){
             rl_right_layout.setVisibility(View.GONE);
             rl_day_layout.setVisibility(View.VISIBLE);
             rootview.setBackgroundResource(R.mipmap.day);
