@@ -361,7 +361,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         iv_shape_right.setImageDrawable(null);
         iv_shape.setImageDrawable(null);
     }
-
+    /**
+     * dp转换成px
+     */
+    private int dp2px(Context context,float dpValue){
+        float scale=context.getResources().getDisplayMetrics().density;
+        return (int)(dpValue*scale+0.5f);
+    }
     @Override
     public void initView() {
         setInitActionBar(false);
@@ -370,10 +376,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
          * 根据时间获取月亮图标
          */
         int hour = CommonUtils.getHour();
-        if(hour >= 18 || hour<=6 ){
+        if(hour >= 18 || hour<6 ){
            // getMoon();
             int day = CommonUtils.getDay();
             rootview.setBackgroundResource(images.get(day));
+        }
+        rl_day_layout.setVisibility(View.GONE);
+        rl_right_layout.setVisibility(View.VISIBLE);
+        int day = CommonUtils.getDay();
+        rootview.setBackgroundResource(images.get(day));
+        String brand = android.os.Build.BRAND;
+        String model = Build.MODEL;
+        if(model != null ) {
+            if (model.toLowerCase().contains("huawei") || model.toUpperCase().contains("GRA-CL00")) {
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(iv_shape.getLayoutParams());
+                lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                lp.setMargins(0, dp2px(this, 125), dp2px(this, 100), 0);
+                iv_shape.setLayoutParams(lp);
+                RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(iv_shape_right.getLayoutParams());
+                lp1.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                lp1.setMargins(0, dp2px(this, 125), dp2px(this, 20), 0);
+                iv_shape_right.setLayoutParams(lp1);
+            }
         }
     }
     @Override
@@ -398,7 +422,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void updateBackGround(){
         int hour = CommonUtils.getHour();
-        if(hour < 18 || hour > 6){
+        if(hour < 18 && hour >= 6){
             rl_right_layout.setVisibility(View.GONE);
             rl_day_layout.setVisibility(View.VISIBLE);
             rootview.setBackgroundResource(R.mipmap.day);
@@ -410,8 +434,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             rl_right_layout.setVisibility(View.VISIBLE);
             int day = CommonUtils.getDay();
             rootview.setBackgroundResource(images.get(day));
-
+            String brand = android.os.Build.BRAND;
+            String model = Build.MODEL;
+            if(model != null ) {
+                if (model.toLowerCase().contains("huawei") || model.toUpperCase().contains("GRA-CL00")) {
+                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(iv_shape.getLayoutParams());
+                    lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                    lp.setMargins(0, dp2px(this, 125), dp2px(this, 100), 0);
+                    iv_shape.setLayoutParams(lp);
+                    RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(iv_shape_right.getLayoutParams());
+                    lp1.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                    lp1.setMargins(0, dp2px(this, 125), dp2px(this, 20), 0);
+                    iv_shape_right.setLayoutParams(lp1);
+                }
+            }
         }
+
     }
     private void acquireWakeLock() {
         if(mWakeLock == null) {

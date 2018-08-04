@@ -1,0 +1,93 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:1:1-47:12
+INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:1:1-47:12
+INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:1:1-47:12
+INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:1:1-47:12
+INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:1:1-47:12
+INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:1:1-47:12
+INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:1:1-47:12
+	package
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:1:11-42
+		INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+		INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:1:1-47:12
+		INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:1:1-47:12
+		INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:2:5-63
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:5:5-79
+	android:name
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:5:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:6:5-80
+	android:name
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:6:22-78
+application
+ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:8:5-46:19
+	android:supportsRtl
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:10:9-35
+	android:label
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:9:9-41
+	android:allowBackup
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:8:18-44
+activity#com.imnjh.imagepicker.activity.PhotoPickerActivity
+ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:22:9-25:52
+	android:screenOrientation
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:24:13-49
+	android:theme
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:25:13-50
+	android:name
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:23:13-57
+activity#com.imnjh.imagepicker.activity.PickerPreviewActivity
+ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:27:9-30:54
+	android:screenOrientation
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:29:13-49
+	android:theme
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:30:13-52
+	android:name
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:28:13-59
+activity#com.imnjh.imagepicker.activity.CaptureConfirmActivity
+ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:32:9-35:54
+	android:screenOrientation
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:34:13-49
+	android:theme
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:35:13-52
+	android:name
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:33:13-60
+activity#com.imnjh.imagepicker.activity.CropImageActivity
+ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:37:9-40:54
+	android:screenOrientation
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:39:13-49
+	android:theme
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:40:13-52
+	android:name
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:38:13-55
+activity#com.imnjh.imagepicker.activity.CaptureTempActivity
+ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:42:9-45:54
+	android:screenOrientation
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:44:13-49
+	android:theme
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:45:13-52
+	android:name
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml:43:13-57
+uses-sdk
+INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+		INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+		ADDED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
+		INJECTED from D:\jidan\waterConservancy\code\DriftingBottle\imagepicker\src\main\AndroidManifest.xml
