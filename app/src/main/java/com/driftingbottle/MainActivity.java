@@ -342,7 +342,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         iv_shape.setImageDrawable(getDrawable(R.drawable.anim));
         animationDrawable = (AnimationDrawable) iv_shape.getDrawable();
         animationDrawable.start();
-        mHandler.postDelayed(lightRunnable,10000);
+        mHandler.postDelayed(lightRunnable,11000);
 
     }
 
