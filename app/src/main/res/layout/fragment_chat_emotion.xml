@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/fragment_chat_vp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <com.driftingbottle.widget.IndicatorView
+        android:id="@+id/fragment_chat_group"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:orientation="horizontal" />
+    <RadioGroup
+        android:id="@+id/rg_tab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="11dp"
+        android:paddingRight="11dp"
+        android:paddingTop="11dp">
+        <RadioButton
+            android:id="@+id/btn_workFragment_enterprises"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:layout_margin="@dimen/_2dp"
+            android:drawablePadding="@dimen/_2dp"
+            android:drawableTop="@drawable/my_icon_image_add"
+            android:gravity="center_horizontal" />
+
+        <RadioButton
+            android:id="@+id/btn_securityCloudFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_margin="@dimen/_2dp"
+            android:drawablePadding="@dimen/_2dp"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/setting" />
+
+        <RadioButton
+            android:id="@+id/btn_hematicMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_margin="@dimen/_2dp"
+            android:drawablePadding="@dimen/_2dp"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/emotion_se_gif" />
+    </RadioGroup>
+
+</LinearLayout>

@@ -1,12 +1,17 @@
 package com.driftingbottle.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.andview.refreshview.XRefreshView;
 import com.driftinbottle.callback.ErrorInfo;
@@ -15,12 +20,19 @@ import com.driftinbottle.httputils.HttpUtils;
 import com.driftingbottle.App;
 import com.driftingbottle.R;
 import com.driftingbottle.adapter.ChatAdapter;
+import com.driftingbottle.adapter.CommonFragmentPagerAdapter;
 import com.driftingbottle.base.BaseActivity;
 import com.driftingbottle.bean.BottleBean0;
 import com.driftingbottle.bean.MessageBean0;
+import com.driftingbottle.fragment.ChatEmotionFragment;
+import com.driftingbottle.fragment.ChatFunctionFragment;
 import com.driftingbottle.utils.CommonUtils;
+import com.driftingbottle.utils.GlobalOnItemClickManagerUtils;
 import com.driftingbottle.utils.ToastUtils;
 import com.driftingbottle.view.PullRecyclerView;
+import com.driftingbottle.widget.EmotionInputDetector;
+import com.driftingbottle.widget.NoScrollViewPager;
+import com.driftingbottle.widget.StateButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okhttputils.cache.CacheMode;
@@ -49,11 +61,37 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     Button index_set;
     @BindView(R.id.index_set1)
     Button index_set1;
+
+    @BindView(R.id.emotion_voice)
+    ImageView emotionVoice;
+    @BindView(R.id.edit_text)
+    EditText editText;
+    @BindView(R.id.voice_text)
+    TextView voiceText;
+    @BindView(R.id.emotion_button)
+    ImageView emotionButton;
+    @BindView(R.id.emotion_add)
+    ImageView emotionAdd;
+    @BindView(R.id.emotion_send)
+    StateButton emotionSend;
+    @BindView(R.id.viewpager)
+    NoScrollViewPager viewpager;
+    @BindView(R.id.emotion_layout)
+    RelativeLayout emotionLayout;
+
     ChatAdapter chatAdapter;
     private BottleBean0 bottleBean;
     ArrayList<MessageBean0>datas = new ArrayList<>();
     int iPageIndex = 0;
     boolean bFinish = false;
+
+
+
+    private EmotionInputDetector mDetector;
+    private ArrayList<Fragment> fragments;
+    private ChatEmotionFragment chatEmotionFragment;
+    private ChatFunctionFragment chatFunctionFragment;
+    private CommonFragmentPagerAdapter adapter;
     @Override
     public int getLayoutId() {
         return R.layout.activity_chat_layout;
@@ -77,6 +115,32 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         xRefreshView.setPullLoadEnable(false);
     }
 
+    private void initWidget() {
+        fragments = new ArrayList<>();
+        chatEmotionFragment = new ChatEmotionFragment();
+        fragments.add(chatEmotionFragment);
+        chatFunctionFragment = new ChatFunctionFragment();
+        fragments.add(chatFunctionFragment);
+        adapter = new CommonFragmentPagerAdapter(getSupportFragmentManager(), fragments);
+        viewpager.setAdapter(adapter);
+        viewpager.setCurrentItem(0);
+
+        mDetector = EmotionInputDetector.with(this)
+                .setEmotionView(emotionLayout)
+                .setViewPager(viewpager)
+                .bindToContent(chatRecyclerView)
+                .bindToEditText(editText)
+                .bindToEmotionButton(emotionButton)
+                .bindToAddButton(emotionAdd)
+                .bindToSendButton(emotionSend)
+                .bindToVoiceButton(emotionVoice)
+                .bindToVoiceText(voiceText)
+                .build();
+
+        GlobalOnItemClickManagerUtils globalOnItemClickListener = GlobalOnItemClickManagerUtils.getInstance(this);
+        globalOnItemClickListener.attachToEditText(editText);
+    }
+
     @Override
     public void initData() {
         Bundle bundle = getIntent().getBundleExtra(DEFAULT_BUNDLE_NAME);
@@ -97,9 +161,6 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         HashMap<String,String> params = new HashMap<>();
         params.put("clientID", CommonUtils.getUniqueId(mContext));
         params.put("regionID",bottleBean.regionID);
-//
-//        params.put("pageIndex",String.valueOf(iPageIndex));
-//        params.put("pageCount","9");
         HttpUtils.getInstance().requestGet(url, params, url, new RequestCallback<String>() {
             @Override
             public void onResponse(String result) {
@@ -177,6 +238,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
 
             }
         });
+        initWidget();
 
     }
 

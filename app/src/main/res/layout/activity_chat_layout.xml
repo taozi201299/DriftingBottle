@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:background="#EBEBEB"
     android:orientation="vertical">
@@ -24,19 +25,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     </com.andview.refreshview.XRefreshView>
-    <LinearLayout
+    <include
         android:id="@+id/ll_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#F4F4F4"
-        >
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:src="@drawable/messagebtn"/>
-    </LinearLayout>
-
+        layout="@layout/include_reply_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import com.driftingbottle.utils.CrashHandler;
 import com.driftingbottle.utils.ToastUtils;
@@ -33,6 +34,20 @@ public class  App extends Application {
    // public static String strIp = "http://123.56.68.127:8080";
     public static String strIp = "http://118.190.155.234:8080";
     public static double IRand = 0.2;
+
+    /**
+     * 屏幕宽度
+     */
+    public static int screenWidth;
+    /**
+     * 屏幕高度
+     */
+    public static int screenHeight;
+    /**
+     * 屏幕密度
+     */
+    public static float screenDensity;
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -47,11 +62,22 @@ public class  App extends Application {
         context = getApplicationContext();
         OkHttpUtils.init(this);
         OkHttpUtils.getInstance().setConnectTimeout(10000);
+        initScreenSize();
 
     }
 
     public static Context globalContext() {
         return context;
+    }
+
+    /**
+     * 初始化当前设备屏幕宽高
+     */
+    private void initScreenSize() {
+        DisplayMetrics curMetrics = getApplicationContext().getResources().getDisplayMetrics();
+        screenWidth = curMetrics.widthPixels;
+        screenHeight = curMetrics.heightPixels;
+        screenDensity = curMetrics.density;
     }
 }
 
