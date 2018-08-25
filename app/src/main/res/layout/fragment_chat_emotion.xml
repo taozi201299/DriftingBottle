@@ -21,51 +21,48 @@
     <com.driftingbottle.widget.IndicatorView
         android:id="@+id/fragment_chat_group"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="25dp"
         android:gravity="center"
         android:orientation="horizontal" />
+
     <RadioGroup
         android:id="@+id/rg_tab"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50dp"
-        android:background="@color/white"
+        android:layout_height="@dimen/_40dp"
         android:orientation="horizontal"
-        android:paddingLeft="11dp"
-        android:paddingRight="11dp"
-        android:paddingTop="11dp">
-        <RadioButton
-            android:id="@+id/btn_workFragment_enterprises"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:checked="true"
-            android:layout_margin="@dimen/_2dp"
-            android:drawablePadding="@dimen/_2dp"
-            android:drawableTop="@drawable/my_icon_image_add"
-            android:gravity="center_horizontal" />
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingRight="11dp">
 
         <RadioButton
-            android:id="@+id/btn_securityCloudFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:id="@+id/btn_add"
+            android:layout_width="@dimen/_50dp"
+            android:layout_height="@dimen/_50dp"
+            android:background="@drawable/selector_bk_rb"
             android:button="@null"
-            android:layout_margin="@dimen/_2dp"
-            android:drawablePadding="@dimen/_2dp"
-            android:gravity="center_horizontal"
-            android:drawableTop="@drawable/setting" />
+            android:drawableTop="@mipmap/icon_chat_add"
+            android:paddingTop="@dimen/_10dp" />
 
         <RadioButton
-            android:id="@+id/btn_hematicMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:id="@+id/btn_emoji"
+            android:layout_width="@dimen/_50dp"
+            android:layout_height="@dimen/_50dp"
+            android:paddingTop="@dimen/_10dp"
+            android:background="@drawable/selector_bk_rb"
             android:button="@null"
-            android:layout_margin="@dimen/_2dp"
-            android:drawablePadding="@dimen/_2dp"
-            android:gravity="center_horizontal"
-            android:drawableTop="@drawable/emotion_se_gif" />
+            android:drawableTop="@mipmap/icon_chat_add"
+            android:layout_marginLeft="@dimen/_1dp"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/btn_setting"
+            android:layout_width="@dimen/_50dp"
+            android:layout_height="@dimen/_50dp"
+            android:paddingTop="@dimen/_10dp"
+            android:background="@drawable/selector_bk_rb"
+            android:layout_marginLeft="@dimen/_1dp"
+            android:button="@null"
+            android:drawableTop="@mipmap/icon_chat_add" />
     </RadioGroup>
 
 </LinearLayout>

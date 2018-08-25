@@ -75,6 +75,7 @@ public class ChatEmotionFragment extends BaseFragment {
 
             }
         });
+        initTab();
         initEmotion();
     }
 
@@ -151,4 +152,7 @@ public class ChatEmotionFragment extends BaseFragment {
         return gv;
     }
 
+    private void initTab(){
+        rgTabs.check(R.id.btn_emoji);
+    }
 }

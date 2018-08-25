@@ -28,4 +28,9 @@
         <item name="android:textSize">@dimen/text_body</item>
     </style>
 
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/green</item>
+        <item name="colorControlActivated">@color/green</item>
+    </style>
+
 </resources>

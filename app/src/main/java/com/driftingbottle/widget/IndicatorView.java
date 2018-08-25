@@ -73,6 +73,13 @@ public class IndicatorView extends LinearLayout {
         }
         final View ViewStrat = mImageViews.get(startPosition);
         final View ViewNext = mImageViews.get(nextPosition);
+        LayoutParams lp ;
+
+        ViewNext.setBackgroundResource(R.drawable.bg_circle_white);
+        lp = new LayoutParams(pointSize, pointSize);
+        if (nextPosition != 0)
+            lp.leftMargin = marginLeft;
+        ViewNext.setLayoutParams(lp);
         ViewNext.setBackgroundResource(R.drawable.bg_circle_white);
         ViewStrat.setBackgroundResource(R.drawable.bg_circle_gary);
     }
