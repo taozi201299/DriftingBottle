@@ -8,7 +8,11 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.util.Log;
+
+import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.CrashHandler;
+import com.driftingbottle.utils.EmojiUtil;
+import com.driftingbottle.utils.EmotionUtils;
 import com.driftingbottle.utils.ToastUtils;
 import com.lzy.okhttputils.OkHttpUtils;
 
@@ -34,6 +38,8 @@ public class  App extends Application {
    // public static String strIp = "http://123.56.68.127:8080";
     public static String strIp = "http://118.190.155.234:8080";
     public static double IRand = 0.2;
+
+    public static ArrayList<Integer>emojis = EmotionUtils.getEmojis();
 
     /**
      * 屏幕宽度

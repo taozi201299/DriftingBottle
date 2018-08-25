@@ -29,8 +29,8 @@
     </style>
 
     <style name="MyEditText" parent="Theme.AppCompat.Light">
-        <item name="colorControlNormal">@color/green</item>
-        <item name="colorControlActivated">@color/green</item>
+        <item name="colorControlNormal">#DFDFDF</item>
+        <item name="colorControlActivated">#62A353</item>
     </style>
 
 </resources>

@@ -1,5 +1,6 @@
 package  com.driftingbottle.fragment;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 
@@ -16,12 +18,11 @@ import com.driftingbottle.R;
 import com.driftingbottle.adapter.EmotionGridViewAdapter;
 import com.driftingbottle.adapter.EmotionPagerAdapter;
 import com.driftingbottle.base.BaseFragment;
+import com.driftingbottle.utils.CommonUtils;
 import com.driftingbottle.utils.EmotionUtils;
 import com.driftingbottle.utils.GlobalOnItemClickManagerUtils;
 import com.driftingbottle.utils.Utils;
 import com.driftingbottle.widget.IndicatorView;
-import com.flyco.tablayout.CommonTabLayout;
-import com.flyco.tablayout.listener.CustomTabEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,8 @@ public class ChatEmotionFragment extends BaseFragment {
     RadioGroup rgTabs;
     private View rootView;
     private EmotionPagerAdapter emotionPagerAdapter;
+
+
 
 
     @Nullable
@@ -153,6 +156,35 @@ public class ChatEmotionFragment extends BaseFragment {
     }
 
     private void initTab(){
+        int size = App.emojis.size();
+        for(int i = 0 ; i < size; i++) {
+            RadioButton radioButton = new RadioButton(App.globalContext());
+            int w = CommonUtils.dp2px(App.globalContext(), 30);
+            radioButton.setWidth(w);
+            radioButton.setHeight(w);
+            radioButton.setBackground(getResources().getDrawable(R.drawable.selector_bk_rb));
+            Drawable top = getResources().getDrawable(App.emojis.get(i));// 获取res下的图片drawable
+            top.setBounds(0, 0, w, w);// 一定要设置setBounds();
+            radioButton.setPadding(0, 0, CommonUtils.dp2px(App.globalContext(), 10), 0);
+            radioButton.setCompoundDrawables(null, top, null, null);
+            radioButton.setId(App.emojis.get(i));
+            radioButton.setChecked(true);
+            radioButton.setButtonDrawable(null);
+            rgTabs.addView(radioButton);
+        }
+        RadioButton radioButton = new RadioButton(App.globalContext());
+        int w = CommonUtils.dp2px(App.globalContext(), 30);
+        radioButton.setWidth(w);
+        radioButton.setHeight(w);
+        radioButton.setBackground(getResources().getDrawable(R.drawable.selector_bk_rb));
+        Drawable top = getResources().getDrawable(R.drawable.setting);// 获取res下的图片drawable
+        top.setBounds(0, 0, w, w);// 一定要设置setBounds();
+        radioButton.setPadding(0, 0, CommonUtils.dp2px(App.globalContext(), 10), 0);
+        radioButton.setCompoundDrawables(null, top, null, null);
+        radioButton.setId(R.id.tab_setting);
+        radioButton.setChecked(true);
+        radioButton.setButtonDrawable(null);
+        rgTabs.addView(radioButton);
         rgTabs.check(R.id.btn_emoji);
     }
 }

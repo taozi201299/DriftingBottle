@@ -1,8 +1,10 @@
 
 package com.driftingbottle.utils;
 
+import com.driftingbottle.App;
 import com.driftingbottle.R;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 /**
@@ -306,5 +308,21 @@ public class EmotionUtils {
         EMOTION_STATIC_MAP.put("[药]", R.drawable.emotion_yao);
         EMOTION_STATIC_MAP.put("[手枪]", R.drawable.emotion_shouqiang);
         EMOTION_STATIC_MAP.put("[青蛙]", R.drawable.emotion_qingwa);
+    }
+    private static  int[]emojiSize = {0,1,2,3,4,5};
+    private static int[]emojis ={R.mipmap.icon_chat_add,R.mipmap.icon_chat_add,R.mipmap.icon_chat_add,
+            R.mipmap.icon_chat_add,R.mipmap.icon_chat_add};
+
+    private static  int getRandEmojiNum (){
+        return (int)(Math.random()*emojiSize.length);
+    }
+    public static ArrayList<Integer> getEmojis(){
+        ArrayList list = new ArrayList();
+        int size = getRandEmojiNum();
+        for(int i = 0; i < size ; i++){
+            int index =  (int)(Math.random()*emojis.length);
+            list.add(emojis[index]);
+        }
+        return list;
     }
 }

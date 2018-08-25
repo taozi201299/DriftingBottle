@@ -44,7 +44,9 @@
             android:drawableBottom="@drawable/line"
             android:background="@null"
             android:textCursorDrawable="@drawable/edit_text_cursor"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
 
         <TextView
             android:id="@+id/voice_text"
@@ -86,8 +88,8 @@
             android:text="发送"
             android:textColor="@color/white"
             android:visibility="gone"
-            app:normalBackgroundColor="@color/colorPrimary"
-            app:pressedBackgroundColor="@color/colorPrimaryDark"
+            app:normalBackgroundColor="#62A353"
+            app:pressedBackgroundColor="#62A353"
             app:radius="5dp" />
 
     </LinearLayout>

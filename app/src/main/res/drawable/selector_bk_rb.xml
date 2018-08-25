@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_checked="false"
-        android:drawable="@color/white" />
+        android:drawable="@color/tab_normal" />
     <item
         android:state_checked="true"
-        android:drawable="@color/gray_bb" />
+        android:drawable="@color/tab_selected" />
 </selector>

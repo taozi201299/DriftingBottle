@@ -1,5 +1,6 @@
 package com.driftingbottle.activity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -116,6 +117,11 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     }
 
     private void initWidget() {
+        editText.setCursorVisible(false);
+        Drawable bottom = getResources().getDrawable(R.drawable.line_normal);// 获取res下的图片drawable
+        bottom.setBounds(0, 0, bottom.getMinimumWidth(), bottom.getMinimumHeight());// 一定要设置setBounds();
+// 调用setCompoundDrawables(Drawable left, Drawable top,Drawable right, Drawable bottom)方法。(有四个参数，不需要设置的参数传null)
+        editText.setCompoundDrawables(null, null, null, bottom);
         fragments = new ArrayList<>();
         chatEmotionFragment = new ChatEmotionFragment();
         fragments.add(chatEmotionFragment);
@@ -124,6 +130,18 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         adapter = new CommonFragmentPagerAdapter(getSupportFragmentManager(), fragments);
         viewpager.setAdapter(adapter);
         viewpager.setCurrentItem(0);
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    editText.setCursorVisible(true);
+                    Drawable bottom = getResources().getDrawable(R.drawable.line);// 获取res下的图片drawable
+                    bottom.setBounds(0, 0, bottom.getMinimumWidth(), bottom.getMinimumHeight());// 一定要设置setBounds();
+// 调用setCompoundDrawables(Drawable left, Drawable top,Drawable right, Drawable bottom)方法。(有四个参数，不需要设置的参数传null)
+                    editText.setCompoundDrawables(null, null, null, bottom);
+                }
+            }
+        });
 
         mDetector = EmotionInputDetector.with(this)
                 .setEmotionView(emotionLayout)
