@@ -331,6 +331,10 @@ public class EmotionUtils {
         int size = getRandEmojiNum();
         for(int i = 0; i < size ; i++){
             int index =  (int)(Math.random()*emojis.length);
+            if(list.contains(emojis[index])){
+                i--;
+                continue;
+            }
             list.add(emojis[index]);
         }
         return list;

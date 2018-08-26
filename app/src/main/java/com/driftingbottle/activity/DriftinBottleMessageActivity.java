@@ -118,6 +118,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     }
 
     private void initWidget() {
+        editText.clearFocus();
         editText.setCursorVisible(false);
         Drawable bottom = getResources().getDrawable(R.drawable.line_normal);// 获取res下的图片drawable
         bottom.setBounds(0, 0, bottom.getMinimumWidth(), bottom.getMinimumHeight());// 一定要设置setBounds();

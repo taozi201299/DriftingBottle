@@ -8,6 +8,8 @@ import android.widget.EditText;
 
 import com.driftingbottle.adapter.EmotionGridViewAdapter;
 
+import io.github.rockerhieu.emojicon.EmojiconEditText;
+
 /**
  * 作者：Rance on 2016/11/29 10:47
  * 邮箱：rance935@163.com
@@ -16,7 +18,7 @@ import com.driftingbottle.adapter.EmotionGridViewAdapter;
 public class GlobalOnItemClickManagerUtils {
 
     private static GlobalOnItemClickManagerUtils instance;
-    private EditText mEditText;//输入框
+    private EmojiconEditText mEditText;//输入框
     private static Context mContext;
 
     public static GlobalOnItemClickManagerUtils getInstance(Context context) {
@@ -31,7 +33,7 @@ public class GlobalOnItemClickManagerUtils {
         return instance;
     }
 
-    public void attachToEditText(EditText editText) {
+    public void attachToEditText(EmojiconEditText editText) {
         mEditText = editText;
     }
 

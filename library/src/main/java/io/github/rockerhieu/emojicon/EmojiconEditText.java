@@ -48,7 +48,7 @@ public class EmojiconEditText extends AppCompatEditText {
 
     private void init(AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.Emojicon);
-        mEmojiconSize = (int) a.getDimension(R.styleable.Emojicon_emojiconSize, getTextSize());
+        mEmojiconSize = (int) a.getDimension(R.styleable.Emojicon_emojiconSize, getmEmojiconSize());
         mEmojiconAlignment = a.getInt(R.styleable.Emojicon_emojiconAlignment, DynamicDrawableSpan.ALIGN_BASELINE);
         mUseSystemDefault = a.getBoolean(R.styleable.Emojicon_emojiconUseSystemDefault, false);
         a.recycle();
