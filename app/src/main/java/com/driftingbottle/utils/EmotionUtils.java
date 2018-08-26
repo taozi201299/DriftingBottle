@@ -25,14 +25,14 @@ public class EmotionUtils {
     static {
         EMPTY_GIF_MAP = new LinkedHashMap<>();
 
-        EMPTY_GIF_MAP.put("[微笑]", R.drawable.emotion_weixiao_gif);
-        EMPTY_GIF_MAP.put("[撇嘴]", R.drawable.emotion_biezui_gif);
-        EMPTY_GIF_MAP.put("[色]", R.drawable.emotion_se_gif);
-        EMPTY_GIF_MAP.put("[发呆]", R.drawable.emotion_fadai_gif);
-        EMPTY_GIF_MAP.put("[得意]", R.drawable.emotion_deyi_gif);
-        EMPTY_GIF_MAP.put("[流泪]", R.drawable.emotion_liulei_gif);
-        EMPTY_GIF_MAP.put("[害羞]", R.drawable.emotion_haixiu_gif);
-        EMPTY_GIF_MAP.put("[闭嘴]", R.drawable.emotion_bizui_gif);
+        EMPTY_GIF_MAP.put("[微笑]", R.drawable.emoji_1f0078);
+        EMPTY_GIF_MAP.put("[撇嘴]", R.drawable.emoji_1f0079);
+        EMPTY_GIF_MAP.put("[色]", R.drawable.emoji_1f0080);
+        EMPTY_GIF_MAP.put("[发呆]", R.drawable.emoji_1f0081);
+        EMPTY_GIF_MAP.put("[得意]",  R.drawable.emoji_1f0082);
+        EMPTY_GIF_MAP.put("[流泪]",  R.drawable.emoji_1f0083);
+        EMPTY_GIF_MAP.put("[害羞]",  R.drawable.emoji_1f0084);
+        EMPTY_GIF_MAP.put("[闭嘴]",  R.drawable.emoji_1f0085);
         EMPTY_GIF_MAP.put("[睡]", R.drawable.emotion_shui_gif);
         EMPTY_GIF_MAP.put("[大哭]", R.drawable.emotion_daku_gif);
         EMPTY_GIF_MAP.put("[尴尬]", R.drawable.emotion_ganga_gif);
@@ -168,14 +168,24 @@ public class EmotionUtils {
 
         EMOTION_STATIC_MAP = new LinkedHashMap<>();
 
-        EMOTION_STATIC_MAP.put("[微笑]", R.drawable.emotion_weixiao);
-        EMOTION_STATIC_MAP.put("[撇嘴]", R.drawable.emotion_biezui);
-        EMOTION_STATIC_MAP.put("[色]", R.drawable.emotion_se);
-        EMOTION_STATIC_MAP.put("[发呆]", R.drawable.emotion_fadai);
-        EMOTION_STATIC_MAP.put("[得意]", R.drawable.emotion_deyi);
-        EMOTION_STATIC_MAP.put("[流泪]", R.drawable.emotion_liulei);
-        EMOTION_STATIC_MAP.put("[害羞]", R.drawable.emotion_haixiu);
-        EMOTION_STATIC_MAP.put("[闭嘴]", R.drawable.emotion_bizui);
+
+
+        EMOTION_STATIC_MAP.put("[微笑]", R.drawable.new_smile);
+        EMOTION_STATIC_MAP.put("[撇嘴]", R.drawable.new_2);
+        EMOTION_STATIC_MAP.put("[色]", R.drawable.new_3);
+        EMOTION_STATIC_MAP.put("[发呆]", R.drawable.new_4);
+        EMOTION_STATIC_MAP.put("[得意]",  R.drawable.new_5);
+        EMOTION_STATIC_MAP.put("[流泪]",  R.drawable.emoji_1f0083);
+        EMOTION_STATIC_MAP.put("[害羞]",  R.drawable.emoji_1f0084);
+        EMOTION_STATIC_MAP.put("[闭嘴]",  R.drawable.emoji_1f0085);
+//        EMOTION_STATIC_MAP.put("[微笑]", R.drawable.emotion_weixiao);
+//        EMOTION_STATIC_MAP.put("[撇嘴]", R.drawable.emotion_biezui);
+//        EMOTION_STATIC_MAP.put("[色]", R.drawable.emotion_se);
+//        EMOTION_STATIC_MAP.put("[发呆]", R.drawable.emotion_fadai);
+//        EMOTION_STATIC_MAP.put("[得意]", R.drawable.emotion_deyi);
+//        EMOTION_STATIC_MAP.put("[流泪]", R.drawable.emotion_liulei);
+//        EMOTION_STATIC_MAP.put("[害羞]", R.drawable.emotion_haixiu);
+//        EMOTION_STATIC_MAP.put("[闭嘴]", R.drawable.emotion_bizui);
         EMOTION_STATIC_MAP.put("[睡]", R.drawable.emotion_shui);
         EMOTION_STATIC_MAP.put("[大哭]", R.drawable.emotion_daku);
         EMOTION_STATIC_MAP.put("[尴尬]", R.drawable.emotion_ganga);
@@ -310,8 +320,8 @@ public class EmotionUtils {
         EMOTION_STATIC_MAP.put("[青蛙]", R.drawable.emotion_qingwa);
     }
     private static  int[]emojiSize = {0,1,2,3,4,5};
-    private static int[]emojis ={R.mipmap.icon_chat_add,R.mipmap.icon_chat_add,R.mipmap.icon_chat_add,
-            R.mipmap.icon_chat_add,R.mipmap.icon_chat_add};
+    private static int[]emojis ={R.mipmap.icon_chat_add,R.mipmap.ic_audio_play_2,R.mipmap.icon_chat_voice,
+            R.mipmap.icon_chat_expression,R.mipmap.icon_voice_right1};
 
     private static  int getRandEmojiNum (){
         return (int)(Math.random()*emojiSize.length);

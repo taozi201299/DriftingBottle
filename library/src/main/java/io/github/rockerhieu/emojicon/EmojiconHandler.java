@@ -138,7 +138,7 @@ public final class EmojiconHandler {
         sEmojisMap.put(0x1f186, R.drawable.emoji_1f00186);
 
 
-        sEmojisMap.put(0x1f078, R.drawable.emoji_1f0078);
+        sEmojisMap.put(0x1f078, R.drawable.new_smile);
         sEmojisMap.put(0x1f079, R.drawable.emoji_1f0079);
         sEmojisMap.put(0x1f080, R.drawable.emoji_1f0080);
         sEmojisMap.put(0x1f081, R.drawable.emoji_1f0081);

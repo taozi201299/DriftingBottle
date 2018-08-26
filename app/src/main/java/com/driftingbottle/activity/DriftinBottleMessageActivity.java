@@ -43,6 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import io.github.rockerhieu.emojicon.EmojiconEditText;
 
 import static com.driftingbottle.utils.Constant.DEFAULT_BUNDLE_NAME;
 
@@ -66,7 +67,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
     @BindView(R.id.emotion_voice)
     ImageView emotionVoice;
     @BindView(R.id.edit_text)
-    EditText editText;
+    EmojiconEditText editText;
     @BindView(R.id.voice_text)
     TextView voiceText;
     @BindView(R.id.emotion_button)

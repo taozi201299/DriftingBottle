@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eee"
+    android:background="#F3F3F3"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_22dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:background="#F3F3F3"
         >
 
         <android.support.v4.view.ViewPager
@@ -27,52 +27,62 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:background="#F3F3F3"/>
-
-    <HorizontalScrollView
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:scrollbars="none">
+        android:layout_height="0.6dp"
+        android:background="#E2E2E2"/>
 
-        <RadioGroup
-            android:id="@+id/rg_tab"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40dp"
+        android:orientation="horizontal"
+        android:background="@color/tab_normal"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="@dimen/_80dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_chat_add"/>
+        <View
+            android:layout_width="0.6dp"
+            android:layout_height="wrap_content"
+            android:background="#E2E2E2"/>
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40dp"
+            android:layout_height="wrap_content"
+            android:background="@color/tab_normal"
+            android:scrollbars="none">
+            <RadioGroup
+                android:id="@+id/rg_tab"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingRight="11dp">
+                <RadioButton
+                    android:id="@+id/btn_emoji"
+                    android:layout_width="@dimen/_80dp"
+                    android:layout_height="@dimen/_40dp"
+                    android:background="@drawable/selector_bk_rb"
+                    android:button="@null"
+                    android:drawableTop="@mipmap/icon_chat_add"
+                    android:paddingTop="@dimen/_5dp" />
+                <View
+                    android:layout_width="0.6dp"
+                    android:layout_height="wrap_content"
+                    android:background="#E2E2E2"/>
 
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingRight="11dp">
+                <RadioButton
+                    android:id="@+id/btn_collection"
+                    android:layout_width="@dimen/_80dp"
+                    android:layout_height="@dimen/_40dp"
+                    android:background="@drawable/selector_bk_rb"
+                    android:button="@null"
+                    android:drawableTop="@mipmap/icon_chat_add"
+                    android:paddingTop="@dimen/_5dp" />
+            </RadioGroup>
+        </HorizontalScrollView>
+    </LinearLayout>
 
-            <RadioButton
-                android:id="@+id/btn_add"
-                android:layout_width="@dimen/_50dp"
-                android:layout_height="@dimen/_50dp"
-                android:background="@drawable/selector_bk_rb"
-                android:button="@null"
-                android:checked="true"
-                android:drawableTop="@mipmap/icon_chat_add"
-                android:paddingTop="@dimen/_10dp" />
 
-            <RadioButton
-                android:id="@+id/btn_emoji"
-                android:layout_width="@dimen/_50dp"
-                android:layout_height="@dimen/_50dp"
-                android:background="@drawable/selector_bk_rb"
-                android:layout_marginLeft="@dimen/_1dp"
-                android:button="@null"
-                android:drawableTop="@mipmap/icon_chat_add"
-                android:paddingTop="@dimen/_10dp" />
-
-            <RadioButton
-                android:id="@+id/btn_collection"
-                android:layout_width="@dimen/_50dp"
-                android:layout_height="@dimen/_50dp"
-                android:layout_marginLeft="@dimen/_1dp"
-                android:background="@drawable/selector_bk_rb"
-                android:button="@null"
-                android:drawableTop="@mipmap/icon_chat_add"
-                android:paddingTop="@dimen/_10dp" />
-        </RadioGroup>
-    </HorizontalScrollView>
 
 </LinearLayout>
