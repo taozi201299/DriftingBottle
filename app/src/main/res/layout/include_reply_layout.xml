@@ -46,6 +46,8 @@
             android:textCursorDrawable="@drawable/edit_text_cursor"
             android:textSize="16sp"
             emojicon:emojiconSize="22sp"
+            android:lineSpacingMultiplier="1"
+            android:lineSpacingExtra="5dp"
             android:focusable="true"
             android:focusableInTouchMode="true"/>
 
