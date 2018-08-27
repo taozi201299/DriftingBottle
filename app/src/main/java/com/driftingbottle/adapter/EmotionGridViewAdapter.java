@@ -53,7 +53,7 @@ public class EmotionGridViewAdapter extends BaseAdapter {
 
         //判断是否为最后一个item
         if (position == getCount() - 1) {
-            iv_emotion.setImageResource(R.drawable.compose_emotion_delete);
+            iv_emotion.setImageResource(R.mipmap.icon_delete);
         } else {
             String emotionName = emotionNames.get(position);
             iv_emotion.setImageResource(EmotionUtils.EMOTION_STATIC_MAP.get(emotionName));

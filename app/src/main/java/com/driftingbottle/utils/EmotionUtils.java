@@ -290,7 +290,8 @@ public class EmotionUtils {
     }
     public static ArrayList<Integer> getEmojis(){
         ArrayList list = new ArrayList();
-        int size = getRandEmojiNum();
+      //  int size = getRandEmojiNum();
+        int size = 5;
         for(int i = 0; i < size ; i++){
             int index =  (int)(Math.random()*emojis.length);
             if(list.contains(emojis[index])){

@@ -115,11 +115,12 @@ public class EmotionInputDetector {
         return this;
     }
 
-    public EmotionInputDetector bindToEmotionButton(View emotionButton) {
+    public EmotionInputDetector bindToEmotionButton(final View emotionButton) {
         emotionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mEmotionLayout.isShown()) {
+                    ((ImageView)emotionButton).setImageResource(R.mipmap.icon_chat_expression);
                     if (isShowAdd) {
                         mViewPager.setCurrentItem(0);
                         isShowEmotion = true;
@@ -131,6 +132,7 @@ public class EmotionInputDetector {
                         unlockContentHeightDelayed();
                     }
                 } else {
+                    ((ImageView)emotionButton).setImageResource(R.mipmap.icon_keyboard);
                     if (isSoftInputShown()) {
                         lockContentHeight();
                         showEmotionLayout();
@@ -334,6 +336,7 @@ public class EmotionInputDetector {
         hideSoftInput();
         mEmotionLayout.getLayoutParams().height = softInputHeight;
         mEmotionLayout.setVisibility(View.VISIBLE);
+
     }
 
     public void hideEmotionLayout(boolean showSoftInput) {

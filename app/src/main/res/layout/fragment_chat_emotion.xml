@@ -67,7 +67,7 @@
                     android:button="@null"
                     android:gravity="center_vertical"
                     android:drawableTop="@mipmap/icon_tab_smile"
-                    android:padding="@dimen/_8dp"/>
+                    android:padding="@dimen/_6dp"/>
                 <View
                     android:layout_width="0.6dp"
                     android:layout_height="wrap_content"

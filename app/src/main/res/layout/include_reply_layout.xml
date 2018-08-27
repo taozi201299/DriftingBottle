@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:emojicon="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:clickable="true"
     android:gravity="center_vertical"
     android:orientation="vertical">
@@ -19,33 +20,30 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingBottom="6dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:paddingTop="6dp">
 
         <ImageView
             android:id="@+id/emotion_voice"
-            android:layout_width="@dimen/_36dp"
-            android:layout_height="@dimen/_36dp"
-            android:layout_marginRight="@dimen/content_horizontal_margin"
+            android:layout_width="@dimen/_32dp"
+            android:layout_height="@dimen/_32dp"
+            android:layout_marginLeft="@dimen/content_horizontal_margin"
             android:clickable="true"
             android:scaleType="centerCrop"
             android:src="@mipmap/icon_chat_voice" />
 
         <io.github.rockerhieu.emojicon.EmojiconEditText
             android:id="@+id/edit_text"
-            android:layout_width="0dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:minHeight="36dp"
             android:paddingLeft="@dimen/content_horizontal_margin"
-            android:paddingRight="@dimen/content_horizontal_margin"
+            android:paddingRight="@dimen/_5dp"
             android:theme="@style/MyEditText"
             android:drawableBottom="@drawable/line"
             android:background="@null"
             android:textCursorDrawable="@drawable/edit_text_cursor"
             android:textSize="16sp"
-            emojicon:emojiconSize="18sp"
+            emojicon:emojiconSize="16sp"
             android:lineSpacingMultiplier="1"
             android:lineSpacingExtra="5dp"
             android:focusable="true"
@@ -59,7 +57,7 @@
             android:layout_weight="1"
             android:background="@drawable/corners_edit"
             android:gravity="center"
-            android:minHeight="36dp"
+            android:minHeight="32dp"
             android:paddingLeft="@dimen/content_horizontal_margin"
             android:paddingRight="@dimen/content_horizontal_margin"
             android:text="按住说话"
@@ -67,16 +65,16 @@
 
         <ImageView
             android:id="@+id/emotion_button"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginLeft="@dimen/_8dp"
             android:clickable="true"
             android:src="@mipmap/icon_chat_expression" />
 
         <ImageView
             android:id="@+id/emotion_add"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginLeft="@dimen/content_horizontal_margin"
             android:clickable="true"
             android:scaleType="centerCrop"
@@ -84,17 +82,17 @@
 
         <com.driftingbottle.widget.StateButton
             android:id="@+id/emotion_send"
-            android:layout_width="48dp"
+            android:layout_width="45dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="@dimen/_10dp"
+            android:layout_marginLeft="@dimen/_5dp"
             android:padding="1dp"
             android:text="发送"
             android:textColor="@color/white"
             android:visibility="gone"
+            tools:visibility="gone"
             app:normalBackgroundColor="#19AD17"
             app:pressedBackgroundColor="#19AD17"
             app:radius="3dp" />
-
     </LinearLayout>
 
     <LinearLayout
