@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RadioButton xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/_80dp"
-    android:layout_height="@dimen/_40dp"
+    android:layout_height="@dimen/_35dp"
     android:background="@drawable/selector_bk_rb"
     android:button="@null"
     android:paddingTop="@dimen/_8dp" />

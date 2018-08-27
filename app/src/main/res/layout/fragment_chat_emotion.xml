@@ -26,6 +26,7 @@
         android:layout_height="25dp"
         android:gravity="center"
         android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_7dp"
         android:background="#F3F3F3"/>
     <View
         android:layout_width="match_parent"
@@ -34,12 +35,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40dp"
+        android:layout_height="@dimen/_35dp"
         android:orientation="horizontal"
         android:background="@color/tab_normal"
         android:gravity="center">
         <ImageView
-            android:layout_width="@dimen/_80dp"
+            android:layout_width="@dimen/_75dp"
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_tab_add"/>
         <View
@@ -54,13 +55,13 @@
             <RadioGroup
                 android:id="@+id/rg_tab"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_40dp"
+                android:layout_height="@dimen/_35dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingRight="11dp">
                 <RadioButton
                     android:id="@+id/btn_emoji"
-                    android:layout_width="@dimen/_80dp"
+                    android:layout_width="@dimen/_75dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_bk_rb"
                     android:button="@null"
@@ -74,8 +75,8 @@
 
                 <RadioButton
                     android:id="@+id/btn_collection"
-                    android:layout_width="@dimen/_80dp"
-                    android:layout_height="@dimen/_40dp"
+                    android:layout_width="@dimen/_75dp"
+                    android:layout_height="@dimen/_35dp"
                     android:background="@drawable/selector_bk_rb"
                     android:button="@null"
                     android:drawableTop="@mipmap/icon_tab_collection"

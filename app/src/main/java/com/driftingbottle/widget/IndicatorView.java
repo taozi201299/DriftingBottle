@@ -20,7 +20,7 @@ public class IndicatorView extends LinearLayout {
     private Context mContext;
     private ArrayList<View> mImageViews;//所有指示器集合
     private int size = 6;
-    private int marginSize = 15;
+    private int marginSize = 12;
     private int pointSize;//指示器的大小
     private int marginLeft;//间距
 
@@ -76,7 +76,7 @@ public class IndicatorView extends LinearLayout {
         LayoutParams lp ;
 
         ViewNext.setBackgroundResource(R.drawable.bg_circle_white);
-        lp = new LayoutParams(pointSize +5, pointSize +5);
+        lp = new LayoutParams(pointSize +8, pointSize +8);
         if (nextPosition != 0)
             lp.leftMargin = marginLeft;
         ViewNext.setLayoutParams(lp);

@@ -25,299 +25,260 @@ public class EmotionUtils {
     static {
         EMPTY_GIF_MAP = new LinkedHashMap<>();
 
-        EMPTY_GIF_MAP.put("[微笑]", R.drawable.emoji_1f0078);
-        EMPTY_GIF_MAP.put("[撇嘴]", R.drawable.emoji_1f0079);
-        EMPTY_GIF_MAP.put("[色]", R.drawable.emoji_1f0080);
-        EMPTY_GIF_MAP.put("[发呆]", R.drawable.emoji_1f0081);
-        EMPTY_GIF_MAP.put("[得意]",  R.drawable.emoji_1f0082);
-        EMPTY_GIF_MAP.put("[流泪]",  R.drawable.emoji_1f0083);
-        EMPTY_GIF_MAP.put("[害羞]",  R.drawable.emoji_1f0084);
-        EMPTY_GIF_MAP.put("[闭嘴]",  R.drawable.emoji_1f0085);
-        EMPTY_GIF_MAP.put("[睡]", R.drawable.emotion_shui_gif);
-        EMPTY_GIF_MAP.put("[大哭]", R.drawable.emotion_daku_gif);
-        EMPTY_GIF_MAP.put("[尴尬]", R.drawable.emotion_ganga_gif);
-        EMPTY_GIF_MAP.put("[发怒]", R.drawable.emotion_fanu_gif);
-        EMPTY_GIF_MAP.put("[调皮]", R.drawable.emotion_tiaopi_gif);
-        EMPTY_GIF_MAP.put("[呲牙]", R.drawable.emotion_ciya_gif);
-        EMPTY_GIF_MAP.put("[惊讶]", R.drawable.emotion_jingya_gif);
-        EMPTY_GIF_MAP.put("[难过]", R.drawable.emotion_nanguo_gif);
-        EMPTY_GIF_MAP.put("[酷]", R.drawable.emotion_ku_gif);
-        EMPTY_GIF_MAP.put("[冷汗]", R.drawable.emotion_lenghan_gif);
-        EMPTY_GIF_MAP.put("[抓狂]", R.drawable.emotion_zhuakuang_gif);
-        EMPTY_GIF_MAP.put("[吐]", R.drawable.emotion_tu_gif);
-        EMPTY_GIF_MAP.put("[偷笑]", R.drawable.emotion_touxiao_gif);
-        EMPTY_GIF_MAP.put("[可爱]", R.drawable.emotion_keai_gif);
-        EMPTY_GIF_MAP.put("[白眼]", R.drawable.emotion_baiyan_gif);
-        EMPTY_GIF_MAP.put("[傲慢]", R.drawable.emotion_aoman_gif);
-        EMPTY_GIF_MAP.put("[饥饿]", R.drawable.emotion_jie_gif);
-        EMPTY_GIF_MAP.put("[困]", R.drawable.emotion_kun_gif);
-        EMPTY_GIF_MAP.put("[惊恐]", R.drawable.emotion_jingkong_gif);
-        EMPTY_GIF_MAP.put("[流汗]", R.drawable.emotion_liuhan_gif);
-        EMPTY_GIF_MAP.put("[憨笑]", R.drawable.emotion_hanxiao_gif);
-        EMPTY_GIF_MAP.put("[大兵]", R.drawable.emotion_dabing_gif);
-        EMPTY_GIF_MAP.put("[奋斗]", R.drawable.emotion_fendou_gif);
-        EMPTY_GIF_MAP.put("[咒骂]", R.drawable.emotion_zouma_gif);
-        EMPTY_GIF_MAP.put("[疑问]", R.drawable.emotion_yiwen_gif);
-        EMPTY_GIF_MAP.put("[嘘]", R.drawable.emotion_xu_gif);
-        EMPTY_GIF_MAP.put("[晕]", R.drawable.emotion_yun_gif);
-        EMPTY_GIF_MAP.put("[折磨]", R.drawable.emotion_fakuang_gif);
-        EMPTY_GIF_MAP.put("[衰]", R.drawable.emotion_shuai_gif);
-        EMPTY_GIF_MAP.put("[骷髅]", R.drawable.emotion_kulou_gif);
-        EMPTY_GIF_MAP.put("[敲打]", R.drawable.emotion_qiaoda_gif);
-        EMPTY_GIF_MAP.put("[再见]", R.drawable.emotion_zaijian_gif);
-        EMPTY_GIF_MAP.put("[擦汗]", R.drawable.emotion_cahan_gif);
-        EMPTY_GIF_MAP.put("[抠鼻]", R.drawable.emotion_koubi_gif);
-        EMPTY_GIF_MAP.put("[鼓掌]", R.drawable.emotion_guzhang_gif);
-        EMPTY_GIF_MAP.put("[糗大了]", R.drawable.emotion_qiudale_gif);
-        EMPTY_GIF_MAP.put("[坏笑]", R.drawable.emotion_huaixiao_gif);
-        EMPTY_GIF_MAP.put("[左哼哼]", R.drawable.emotion_zuohengheng_gif);
-        EMPTY_GIF_MAP.put("[右哼哼]", R.drawable.emotion_youhengheng_gif);
-        EMPTY_GIF_MAP.put("[哈欠]", R.drawable.emotion_haqian_gif);
-        EMPTY_GIF_MAP.put("[鄙视]", R.drawable.emotion_bishi_gif);
-        EMPTY_GIF_MAP.put("[委屈]", R.drawable.emotion_weiqu_gif);
-        EMPTY_GIF_MAP.put("[快哭了]", R.drawable.emotion_kuaikule_gif);
-        EMPTY_GIF_MAP.put("[阴险]", R.drawable.emotion_yingxian_gif);
-        EMPTY_GIF_MAP.put("[亲亲]", R.drawable.emotion_qinqin_gif);
-        EMPTY_GIF_MAP.put("[吓]", R.drawable.emotion_xia_gif);
-        EMPTY_GIF_MAP.put("[可怜]", R.drawable.emotion_kelian_gif);
-        EMPTY_GIF_MAP.put("[菜刀]", R.drawable.emotion_caidao_gif);
-        EMPTY_GIF_MAP.put("[西瓜]", R.drawable.emotion_xigua_gif);
-        EMPTY_GIF_MAP.put("[啤酒]", R.drawable.emotion_pijiu_gif);
-        EMPTY_GIF_MAP.put("[篮球]", R.drawable.emotion_lanqiu_gif);
-        EMPTY_GIF_MAP.put("[乒乓]", R.drawable.emotion_pingpang_gif);
-        EMPTY_GIF_MAP.put("[咖啡]", R.drawable.emotion_kafei_gif);
-        EMPTY_GIF_MAP.put("[饭]", R.drawable.emotion_fan_gif);
-        EMPTY_GIF_MAP.put("[猪头]", R.drawable.emotion_zhutou_gif);
-        EMPTY_GIF_MAP.put("[玫瑰]", R.drawable.emotion_meigui_gif);
-        EMPTY_GIF_MAP.put("[凋谢]", R.drawable.emotion_diaoxie_gif);
-        EMPTY_GIF_MAP.put("[示爱]", R.drawable.emotion_shiai_gif);
-        EMPTY_GIF_MAP.put("[爱心]", R.drawable.emotion_aixin_gif);
-        EMPTY_GIF_MAP.put("[心碎]", R.drawable.emotion_xinsui_gif);
-        EMPTY_GIF_MAP.put("[蛋糕]", R.drawable.emotion_dangao_gif);
-        EMPTY_GIF_MAP.put("[闪电]", R.drawable.emotion_shandian_gif);
-        EMPTY_GIF_MAP.put("[炸弹]", R.drawable.emotion_zhadan_gif);
-        EMPTY_GIF_MAP.put("[刀]", R.drawable.emotion_dao_gif);
-        EMPTY_GIF_MAP.put("[足球]", R.drawable.emotion_zhuqiu_gif);
-        EMPTY_GIF_MAP.put("[瓢虫]", R.drawable.emotion_pachong_gif);
-        EMPTY_GIF_MAP.put("[便便]", R.drawable.emotion_bianbian_gif);
-        EMPTY_GIF_MAP.put("[月亮]", R.drawable.emotion_yueliang_gif);
-        EMPTY_GIF_MAP.put("[太阳]", R.drawable.emotion_taiyang_gif);
-        EMPTY_GIF_MAP.put("[礼物]", R.drawable.emotion_liwu_gif);
-        EMPTY_GIF_MAP.put("[拥抱]", R.drawable.emotion_baobao_gif);
-        EMPTY_GIF_MAP.put("[强]", R.drawable.emotion_qiang_gif);
-        EMPTY_GIF_MAP.put("[弱]", R.drawable.emotion_ruo_gif);
-        EMPTY_GIF_MAP.put("[握手]", R.drawable.emotion_woshou_gif);
-        EMPTY_GIF_MAP.put("[胜利]", R.drawable.emotion_shengli_gif);
-        EMPTY_GIF_MAP.put("[抱拳]", R.drawable.emotion_baoquan_gif);
-        EMPTY_GIF_MAP.put("[勾引]", R.drawable.emotion_gouying_gif);
-        EMPTY_GIF_MAP.put("[拳头]", R.drawable.emotion_quantou_gif);
-        EMPTY_GIF_MAP.put("[差劲]", R.drawable.emotion_chajing_gif);
-        EMPTY_GIF_MAP.put("[爱你]", R.drawable.emotion_aini_gif);
-        EMPTY_GIF_MAP.put("[NO]", R.drawable.emotion_no_gif);
-        EMPTY_GIF_MAP.put("[OK]", R.drawable.emotion_ok_gif);
-        EMPTY_GIF_MAP.put("[爱情]", R.drawable.emotion_aiqing_gif);
-        EMPTY_GIF_MAP.put("[飞吻]", R.drawable.emotion_feiwen_gif);
-        EMPTY_GIF_MAP.put("[跳跳]", R.drawable.emotion_tiaotiao_gif);
-        EMPTY_GIF_MAP.put("[发抖]", R.drawable.emotion_fadou_gif);
-        EMPTY_GIF_MAP.put("[怄火]", R.drawable.emotion_ouhuo_gif);
-        EMPTY_GIF_MAP.put("[转圈]", R.drawable.emotion_zhuanquan_gif);
-        EMPTY_GIF_MAP.put("[磕头]", R.drawable.emotion_ketou_gif);
-        EMPTY_GIF_MAP.put("[回头]", R.drawable.emotion_huitou_gif);
-        EMPTY_GIF_MAP.put("[跳绳]", R.drawable.emotion_tiaosheng_gif);
-        EMPTY_GIF_MAP.put("[挥手]", R.drawable.emotion_huishou_gif);
-        EMPTY_GIF_MAP.put("[激动]", R.drawable.emotion_jidong_gif);
-        EMPTY_GIF_MAP.put("[街舞]", R.drawable.emotion_jiewu_gif);
-        EMPTY_GIF_MAP.put("[献吻]", R.drawable.emotion_xianwen_gif);
-        EMPTY_GIF_MAP.put("[左太极]", R.drawable.emotion_zuotaiji_gif);
-        EMPTY_GIF_MAP.put("[右太极]", R.drawable.emotion_youtaiji_gif);
-        EMPTY_GIF_MAP.put("[双喜]", R.drawable.emotion_shuangxi_gif);
-        EMPTY_GIF_MAP.put("[鞭炮]", R.drawable.emotion_bianpao_gif);
-        EMPTY_GIF_MAP.put("[灯笼]", R.drawable.emotion_denglong_gif);
-        EMPTY_GIF_MAP.put("[发财]", R.drawable.emotion_facai_gif);
-        EMPTY_GIF_MAP.put("[K歌]", R.drawable.emotion_kge_gif);
-        EMPTY_GIF_MAP.put("[购物]", R.drawable.emotion_gouwu_gif);
-        EMPTY_GIF_MAP.put("[邮件]", R.drawable.emotion_youjian_gif);
-        EMPTY_GIF_MAP.put("[帅]", R.drawable.emotion_dashuai_gif);
-        EMPTY_GIF_MAP.put("[喝彩]", R.drawable.emotion_hecai_gif);
-        EMPTY_GIF_MAP.put("[祈祷]", R.drawable.emotion_qidao_gif);
-        EMPTY_GIF_MAP.put("[爆筋]", R.drawable.emotion_baojing_gif);
-        EMPTY_GIF_MAP.put("[棒棒糖]", R.drawable.emotion_bangbangtang_gif);
-        EMPTY_GIF_MAP.put("[喝奶]", R.drawable.emotion_henai_gif);
-        EMPTY_GIF_MAP.put("[下面]", R.drawable.emotion_xiamian_gif);
-        EMPTY_GIF_MAP.put("[香蕉]", R.drawable.emotion_xiangjiao_gif);
-        EMPTY_GIF_MAP.put("[飞机]", R.drawable.emotion_feiji_gif);
-        EMPTY_GIF_MAP.put("[开车]", R.drawable.emotion_kaiche_gif);
-        EMPTY_GIF_MAP.put("[左车头]", R.drawable.emotion_zuochetou_gif);
-        EMPTY_GIF_MAP.put("[车厢]", R.drawable.emotion_chexiang_gif);
-        EMPTY_GIF_MAP.put("[右车头]", R.drawable.emotion_youchexiang_gif);
-        EMPTY_GIF_MAP.put("[多云]", R.drawable.emotion_duoyun_gif);
-        EMPTY_GIF_MAP.put("[下雨]", R.drawable.emotion_xiayu_gif);
-        EMPTY_GIF_MAP.put("[钞票]", R.drawable.emotion_chaopiao_gif);
-        EMPTY_GIF_MAP.put("[熊猫]", R.drawable.emotion_xiongmao_gif);
-        EMPTY_GIF_MAP.put("[灯泡]", R.drawable.emotion_dengpao_gif);
-        EMPTY_GIF_MAP.put("[风车]", R.drawable.emotion_fengche_gif);
-        EMPTY_GIF_MAP.put("[闹钟]", R.drawable.emotion_naozhong_gif);
-        EMPTY_GIF_MAP.put("[打伞]", R.drawable.emotion_dashan_gif);
-        EMPTY_GIF_MAP.put("[彩球]", R.drawable.emotion_caiqiu_gif);
-        EMPTY_GIF_MAP.put("[钻戒]", R.drawable.emotion_zhuanjie_gif);
-        EMPTY_GIF_MAP.put("[沙发]", R.drawable.emotion_shafa_gif);
-        EMPTY_GIF_MAP.put("[纸巾]", R.drawable.emotion_zhijing_gif);
-        EMPTY_GIF_MAP.put("[药]", R.drawable.emotion_yao_gif);
-        EMPTY_GIF_MAP.put("[手枪]", R.drawable.emotion_shouqiang_gif);
-        EMPTY_GIF_MAP.put("[青蛙]", R.drawable.emotion_qingwa_gif);
+        EMPTY_GIF_MAP.put("[微笑]", R.drawable.icon_weixin1);
+        EMPTY_GIF_MAP.put("[撇嘴]", R.drawable.icon_weixin2);
+        EMPTY_GIF_MAP.put("[色]", R.drawable.icon_weixin3);
+        EMPTY_GIF_MAP.put("[发呆]", R.drawable.icon_weixin4);
+        EMPTY_GIF_MAP.put("[得意]",  R.drawable.icon_weixin5);
+        EMPTY_GIF_MAP.put("[流泪]",  R.drawable.icon_weixin6);
+        EMPTY_GIF_MAP.put("[害羞]",  R.drawable.icon_weixin7);
+
+        EMPTY_GIF_MAP.put("[闭嘴]",  R.drawable.icon_weixin8);
+        EMPTY_GIF_MAP.put("[睡]", R.drawable.icon_weixin9);
+        EMPTY_GIF_MAP.put("[大哭]", R.drawable.icon_weixin10);
+        EMPTY_GIF_MAP.put("[尴尬]", R.drawable.icon_weixin11);
+        EMPTY_GIF_MAP.put("[发怒]", R.drawable.icon_weixin12);
+        EMPTY_GIF_MAP.put("[调皮]", R.drawable.icon_weixin13);
+        EMPTY_GIF_MAP.put("[呲牙]", R.drawable.icon_weixin14);
+
+        EMPTY_GIF_MAP.put("[惊讶]", R.drawable.icon_weixin15);
+        EMPTY_GIF_MAP.put("[难过]", R.drawable.icon_weixin16);
+        EMPTY_GIF_MAP.put("[囧]", R.drawable.icon_weixin17);
+        EMPTY_GIF_MAP.put("[抓狂]", R.drawable.icon_weixin18);
+        EMPTY_GIF_MAP.put("[吐]", R.drawable.icon_weixin19);
+        EMPTY_GIF_MAP.put("[偷笑]", R.drawable.icon_weixin20);
+
+        EMPTY_GIF_MAP.put("[愉快]", R.drawable.icon_weixin21);
+        EMPTY_GIF_MAP.put("[白眼]", R.drawable.icon_weixin22);
+        EMPTY_GIF_MAP.put("[傲慢]", R.drawable.icon_weixin23);
+        EMPTY_GIF_MAP.put("[困]", R.drawable.icon_weixin24);
+        EMPTY_GIF_MAP.put("[惊恐]", R.drawable.icon_weixin25);
+        EMPTY_GIF_MAP.put("[流汗]", R.drawable.icon_weixin26);
+        EMPTY_GIF_MAP.put("[憨笑]", R.drawable.icon_weixin27);
+
+
+        EMPTY_GIF_MAP.put("[悠闲]", R.drawable.icon_weixin28);
+        EMPTY_GIF_MAP.put("[奋斗]", R.drawable.icon_weixin29);
+        EMPTY_GIF_MAP.put("[咒骂]", R.drawable.icon_weixin30);
+        EMPTY_GIF_MAP.put("[疑问]", R.drawable.icon_weixin31);
+        EMPTY_GIF_MAP.put("[嘘]", R.drawable.icon_weixin32);
+        EMPTY_GIF_MAP.put("[晕]", R.drawable.icon_weixin33);
+        EMPTY_GIF_MAP.put("[衰]", R.drawable.icon_weixin34);
+
+
+        EMPTY_GIF_MAP.put("[骷髅]", R.drawable.icon_weixin35);
+        EMPTY_GIF_MAP.put("[敲打]", R.drawable.icon_weixin36);
+        EMPTY_GIF_MAP.put("[再见]", R.drawable.icon_weixin37);
+        EMPTY_GIF_MAP.put("[擦汗]", R.drawable.icon_weixin38);
+        EMPTY_GIF_MAP.put("[抠鼻]", R.drawable.icon_weixin39);
+        EMPTY_GIF_MAP.put("[鼓掌]", R.drawable.icon_weixin40);
+
+
+        EMPTY_GIF_MAP.put("[坏笑]", R.drawable.icon_weixin41);
+        EMPTY_GIF_MAP.put("[左哼哼]", R.drawable.icon_weixin41_1);
+        EMPTY_GIF_MAP.put("[右哼哼]", R.drawable.icon_weixin41_2);
+        EMPTY_GIF_MAP.put("[哈欠]", R.drawable.icon_weixin41_3);
+        EMPTY_GIF_MAP.put("[鄙视]", R.drawable.icon_weixin41_4);
+        EMPTY_GIF_MAP.put("[委屈]", R.drawable.icon_weixin41_5);
+        EMPTY_GIF_MAP.put("[快哭了]", R.drawable.icon_weixin41_6);
+
+
+        EMPTY_GIF_MAP.put("[阴险]", R.drawable.icon_weixin41_7);
+        EMPTY_GIF_MAP.put("[亲亲]", R.drawable.icon_weixin42);
+        EMPTY_GIF_MAP.put("[可怜]", R.drawable.icon_weixin43);
+        EMPTY_GIF_MAP.put("[菜刀]", R.drawable.icon_weixin44);
+        EMPTY_GIF_MAP.put("[西瓜]", R.drawable.icon_weixin45);
+        EMPTY_GIF_MAP.put("[啤酒]", R.drawable.icon_weixin46);
+        EMPTY_GIF_MAP.put("[咖啡]", R.drawable.icon_weixin47);
+
+
+        EMPTY_GIF_MAP.put("[猪头]", R.drawable.icon_weixin48);
+        EMPTY_GIF_MAP.put("[玫瑰]", R.drawable.icon_weixin49);
+        EMPTY_GIF_MAP.put("[凋谢]", R.drawable.icon_weixin50);
+        EMPTY_GIF_MAP.put("[嘴唇]", R.drawable.icon_weixin51);
+        EMPTY_GIF_MAP.put("[爱心]", R.drawable.icon_weixin52);
+        EMPTY_GIF_MAP.put("[心碎]", R.drawable.icon_weixin53);
+
+
+        EMPTY_GIF_MAP.put("[蛋糕]", R.drawable.icon_weixin54);
+        EMPTY_GIF_MAP.put("[炸弹]", R.drawable.icon_weixin55);
+        EMPTY_GIF_MAP.put("[便便]", R.drawable.icon_weixin56);
+        EMPTY_GIF_MAP.put("[月亮]", R.drawable.icon_weixin57);
+        EMPTY_GIF_MAP.put("[太阳]", R.drawable.icon_weixin58);
+        EMPTY_GIF_MAP.put("[拥抱]", R.drawable.icon_weixin59);
+        EMPTY_GIF_MAP.put("[强]", R.drawable.icon_weixin60);
+
+
+        EMPTY_GIF_MAP.put("[弱]", R.drawable.icon_weixin61);
+        EMPTY_GIF_MAP.put("[握手]", R.drawable.icon_weixin62);
+        EMPTY_GIF_MAP.put("[胜利]", R.drawable.icon_weixin63);
+        EMPTY_GIF_MAP.put("[抱拳]", R.drawable.icon_weixin64);
+        EMPTY_GIF_MAP.put("[勾引]", R.drawable.icon_weixin65);
+        EMPTY_GIF_MAP.put("[拳头]", R.drawable.icon_weixin66);
+        EMPTY_GIF_MAP.put("[OK]", R.drawable.icon_weixin67);
+
+
+        EMPTY_GIF_MAP.put("[跳跳]", R.drawable.icon_weixin68);
+        EMPTY_GIF_MAP.put("[发抖]", R.drawable.icon_weixin69);
+        EMPTY_GIF_MAP.put("[怄火]", R.drawable.icon_weixin70);
+        EMPTY_GIF_MAP.put("[转圈]", R.drawable.icon_weixin71);
+
+
+
+        EMPTY_GIF_MAP.put("[微信72]", R.drawable.icon_weixin72);
+        EMPTY_GIF_MAP.put("[微信73]", R.drawable.icon_weixin73);
+        EMPTY_GIF_MAP.put("[微信74]", R.drawable.icon_weixin74);
+        EMPTY_GIF_MAP.put("[微信75]", R.drawable.icon_weixin75);
+        EMPTY_GIF_MAP.put("[微信76]", R.drawable.icon_weixin76);
+        EMPTY_GIF_MAP.put("[微信77]", R.drawable.icon_weixin77);
+        EMPTY_GIF_MAP.put("[微信78]", R.drawable.icon_weixin78);
+        EMPTY_GIF_MAP.put("[微信79]", R.drawable.icon_weixin79);
+        EMPTY_GIF_MAP.put("[嘿哈]", R.drawable.icon_weixin80);
+
+        EMPTY_GIF_MAP.put("[捂脸]", R.drawable.icon_weixin81);
+        EMPTY_GIF_MAP.put("[奸笑]", R.drawable.icon_weixin82);
+        EMPTY_GIF_MAP.put("[机智]", R.drawable.icon_weixin83);
+        EMPTY_GIF_MAP.put("[皱眉]", R.drawable.icon_weixin84);
+        EMPTY_GIF_MAP.put("[耶]", R.drawable.icon_weixin85);
+
+
+        EMPTY_GIF_MAP.put("[欢呼]", R.drawable.icon_weixin86);
+        EMPTY_GIF_MAP.put("[祈祷]", R.drawable.icon_weixin87);
+        EMPTY_GIF_MAP.put("[肌肉]", R.drawable.icon_weixin88);
+        EMPTY_GIF_MAP.put("[喝彩]", R.drawable.icon_weixin89);
+        EMPTY_GIF_MAP.put("[礼物]", R.drawable.icon_weixin90);
+        EMPTY_GIF_MAP.put("[红包]", R.drawable.icon_weixin91);
+        EMPTY_GIF_MAP.put("[發]", R.drawable.icon_weixin92);
+        EMPTY_GIF_MAP.put("[小狗]", R.drawable.icon_weixin93);
 
         EMOTION_STATIC_MAP = new LinkedHashMap<>();
 
 
 
-        EMOTION_STATIC_MAP.put("[微笑]", R.drawable.new_smile);
-        EMOTION_STATIC_MAP.put("[撇嘴]", R.drawable.new_2);
-        EMOTION_STATIC_MAP.put("[色]", R.drawable.new_3);
-        EMOTION_STATIC_MAP.put("[发呆]", R.drawable.new_4);
-        EMOTION_STATIC_MAP.put("[得意]",  R.drawable.new_5);
-        EMOTION_STATIC_MAP.put("[流泪]",  R.drawable.emoji_1f0083);
-        EMOTION_STATIC_MAP.put("[害羞]",  R.drawable.emoji_1f0084);
-        EMOTION_STATIC_MAP.put("[闭嘴]",  R.drawable.emoji_1f0085);
-//        EMOTION_STATIC_MAP.put("[微笑]", R.drawable.emotion_weixiao);
-//        EMOTION_STATIC_MAP.put("[撇嘴]", R.drawable.emotion_biezui);
-//        EMOTION_STATIC_MAP.put("[色]", R.drawable.emotion_se);
-//        EMOTION_STATIC_MAP.put("[发呆]", R.drawable.emotion_fadai);
-//        EMOTION_STATIC_MAP.put("[得意]", R.drawable.emotion_deyi);
-//        EMOTION_STATIC_MAP.put("[流泪]", R.drawable.emotion_liulei);
-//        EMOTION_STATIC_MAP.put("[害羞]", R.drawable.emotion_haixiu);
-//        EMOTION_STATIC_MAP.put("[闭嘴]", R.drawable.emotion_bizui);
-        EMOTION_STATIC_MAP.put("[睡]", R.drawable.emotion_shui);
-        EMOTION_STATIC_MAP.put("[大哭]", R.drawable.emotion_daku);
-        EMOTION_STATIC_MAP.put("[尴尬]", R.drawable.emotion_ganga);
-        EMOTION_STATIC_MAP.put("[发怒]", R.drawable.emotion_fanu);
-        EMOTION_STATIC_MAP.put("[调皮]", R.drawable.emotion_tiaopi);
-        EMOTION_STATIC_MAP.put("[呲牙]", R.drawable.emotion_ciya);
-        EMOTION_STATIC_MAP.put("[惊讶]", R.drawable.emotion_jingya);
-        EMOTION_STATIC_MAP.put("[难过]", R.drawable.emotion_nanguo);
-        EMOTION_STATIC_MAP.put("[酷]", R.drawable.emotion_ku);
-        EMOTION_STATIC_MAP.put("[冷汗]", R.drawable.emotion_lenghan);
-        EMOTION_STATIC_MAP.put("[抓狂]", R.drawable.emotion_zhuakuang);
-        EMOTION_STATIC_MAP.put("[吐]", R.drawable.emotion_tu);
-        EMOTION_STATIC_MAP.put("[偷笑]", R.drawable.emotion_touxiao);
-        EMOTION_STATIC_MAP.put("[可爱]", R.drawable.emotion_keai);
-        EMOTION_STATIC_MAP.put("[白眼]", R.drawable.emotion_baiyan);
-        EMOTION_STATIC_MAP.put("[傲慢]", R.drawable.emotion_aoman);
-        EMOTION_STATIC_MAP.put("[饥饿]", R.drawable.emotion_jie);
-        EMOTION_STATIC_MAP.put("[困]", R.drawable.emotion_kun);
-        EMOTION_STATIC_MAP.put("[惊恐]", R.drawable.emotion_jingkong);
-        EMOTION_STATIC_MAP.put("[流汗]", R.drawable.emotion_liuhan);
-        EMOTION_STATIC_MAP.put("[憨笑]", R.drawable.emotion_hanxiao);
-        EMOTION_STATIC_MAP.put("[大兵]", R.drawable.emotion_dabing);
-        EMOTION_STATIC_MAP.put("[奋斗]", R.drawable.emotion_fendou);
-        EMOTION_STATIC_MAP.put("[咒骂]", R.drawable.emotion_zouma);
-        EMOTION_STATIC_MAP.put("[疑问]", R.drawable.emotion_yiwen);
-        EMOTION_STATIC_MAP.put("[嘘]", R.drawable.emotion_xu);
-        EMOTION_STATIC_MAP.put("[晕]", R.drawable.emotion_yun);
-        EMOTION_STATIC_MAP.put("[折磨]", R.drawable.emotion_fakuang);
-        EMOTION_STATIC_MAP.put("[衰]", R.drawable.emotion_shuai);
-        EMOTION_STATIC_MAP.put("[骷髅]", R.drawable.emotion_kulou);
-        EMOTION_STATIC_MAP.put("[敲打]", R.drawable.emotion_qiaoda);
-        EMOTION_STATIC_MAP.put("[再见]", R.drawable.emotion_zaijian);
-        EMOTION_STATIC_MAP.put("[擦汗]", R.drawable.emotion_cahan);
-        EMOTION_STATIC_MAP.put("[抠鼻]", R.drawable.emotion_koubi);
-        EMOTION_STATIC_MAP.put("[鼓掌]", R.drawable.emotion_guzhang);
-        EMOTION_STATIC_MAP.put("[糗大了]", R.drawable.emotion_qiudale);
-        EMOTION_STATIC_MAP.put("[坏笑]", R.drawable.emotion_huaixiao);
-        EMOTION_STATIC_MAP.put("[左哼哼]", R.drawable.emotion_zuohengheng);
-        EMOTION_STATIC_MAP.put("[右哼哼]", R.drawable.emotion_youhengheng);
-        EMOTION_STATIC_MAP.put("[哈欠]", R.drawable.emotion_haqian);
-        EMOTION_STATIC_MAP.put("[鄙视]", R.drawable.emotion_bishi);
-        EMOTION_STATIC_MAP.put("[委屈]", R.drawable.emotion_weiqu);
-        EMOTION_STATIC_MAP.put("[快哭了]", R.drawable.emotion_kuaikule);
-        EMOTION_STATIC_MAP.put("[阴险]", R.drawable.emotion_yingxian);
-        EMOTION_STATIC_MAP.put("[亲亲]", R.drawable.emotion_qinqin);
-        EMOTION_STATIC_MAP.put("[吓]", R.drawable.emotion_xia);
-        EMOTION_STATIC_MAP.put("[可怜]", R.drawable.emotion_kelian);
-        EMOTION_STATIC_MAP.put("[菜刀]", R.drawable.emotion_caidao);
-        EMOTION_STATIC_MAP.put("[西瓜]", R.drawable.emotion_xigua);
-        EMOTION_STATIC_MAP.put("[啤酒]", R.drawable.emotion_pijiu);
-        EMOTION_STATIC_MAP.put("[篮球]", R.drawable.emotion_lanqiu);
-        EMOTION_STATIC_MAP.put("[乒乓]", R.drawable.emotion_pingpang);
-        EMOTION_STATIC_MAP.put("[咖啡]", R.drawable.emotion_kafei);
-        EMOTION_STATIC_MAP.put("[饭]", R.drawable.emotion_fan);
-        EMOTION_STATIC_MAP.put("[猪头]", R.drawable.emotion_zhutou);
-        EMOTION_STATIC_MAP.put("[玫瑰]", R.drawable.emotion_meigui);
-        EMOTION_STATIC_MAP.put("[凋谢]", R.drawable.emotion_diaoxie);
-        EMOTION_STATIC_MAP.put("[示爱]", R.drawable.emotion_shiai);
-        EMOTION_STATIC_MAP.put("[爱心]", R.drawable.emotion_aixin);
-        EMOTION_STATIC_MAP.put("[心碎]", R.drawable.emotion_xinsui);
-        EMOTION_STATIC_MAP.put("[蛋糕]", R.drawable.emotion_dangao);
-        EMOTION_STATIC_MAP.put("[闪电]", R.drawable.emotion_shandian);
-        EMOTION_STATIC_MAP.put("[炸弹]", R.drawable.emotion_zhadan);
-        EMOTION_STATIC_MAP.put("[刀]", R.drawable.emotion_dao);
-        EMOTION_STATIC_MAP.put("[足球]", R.drawable.emotion_zhuqiu);
-        EMOTION_STATIC_MAP.put("[瓢虫]", R.drawable.emotion_pachong);
-        EMOTION_STATIC_MAP.put("[便便]", R.drawable.emotion_bianbian);
-        EMOTION_STATIC_MAP.put("[月亮]", R.drawable.emotion_yueliang);
-        EMOTION_STATIC_MAP.put("[太阳]", R.drawable.emotion_taiyang);
-        EMOTION_STATIC_MAP.put("[礼物]", R.drawable.emotion_liwu);
-        EMOTION_STATIC_MAP.put("[拥抱]", R.drawable.emotion_baobao);
-        EMOTION_STATIC_MAP.put("[强]", R.drawable.emotion_qiang);
-        EMOTION_STATIC_MAP.put("[弱]", R.drawable.emotion_ruo);
-        EMOTION_STATIC_MAP.put("[握手]", R.drawable.emotion_woshou);
-        EMOTION_STATIC_MAP.put("[胜利]", R.drawable.emotion_shengli);
-        EMOTION_STATIC_MAP.put("[抱拳]", R.drawable.emotion_baoquan);
-        EMOTION_STATIC_MAP.put("[勾引]", R.drawable.emotion_gouying);
-        EMOTION_STATIC_MAP.put("[拳头]", R.drawable.emotion_quantou);
-        EMOTION_STATIC_MAP.put("[差劲]", R.drawable.emotion_chajing);
-        EMOTION_STATIC_MAP.put("[爱你]", R.drawable.emotion_aini);
-        EMOTION_STATIC_MAP.put("[NO]", R.drawable.emotion_no);
-        EMOTION_STATIC_MAP.put("[OK]", R.drawable.emotion_ok);
-        EMOTION_STATIC_MAP.put("[爱情]", R.drawable.emotion_aiqing);
-        EMOTION_STATIC_MAP.put("[飞吻]", R.drawable.emotion_feiwen);
-        EMOTION_STATIC_MAP.put("[跳跳]", R.drawable.emotion_tiaotiao);
-        EMOTION_STATIC_MAP.put("[发抖]", R.drawable.emotion_fadou);
-        EMOTION_STATIC_MAP.put("[怄火]", R.drawable.emotion_ouhuo);
-        EMOTION_STATIC_MAP.put("[转圈]", R.drawable.emotion_zhuanquan);
-        EMOTION_STATIC_MAP.put("[磕头]", R.drawable.emotion_ketou);
-        EMOTION_STATIC_MAP.put("[回头]", R.drawable.emotion_huitou);
-        EMOTION_STATIC_MAP.put("[跳绳]", R.drawable.emotion_tiaosheng);
-        EMOTION_STATIC_MAP.put("[挥手]", R.drawable.emotion_huishou);
-        EMOTION_STATIC_MAP.put("[激动]", R.drawable.emotion_jidong);
-        EMOTION_STATIC_MAP.put("[街舞]", R.drawable.emotion_jiewu);
-        EMOTION_STATIC_MAP.put("[献吻]", R.drawable.emotion_xianwen);
-        EMOTION_STATIC_MAP.put("[左太极]", R.drawable.emotion_zuotaiji);
-        EMOTION_STATIC_MAP.put("[右太极]", R.drawable.emotion_youtaiji);
-        EMOTION_STATIC_MAP.put("[双喜]", R.drawable.emotion_shuangxi);
-        EMOTION_STATIC_MAP.put("[鞭炮]", R.drawable.emotion_bianpao);
-        EMOTION_STATIC_MAP.put("[灯笼]", R.drawable.emotion_denglong);
-        EMOTION_STATIC_MAP.put("[发财]", R.drawable.emotion_facai);
-        EMOTION_STATIC_MAP.put("[K歌]", R.drawable.emotion_kge);
-        EMOTION_STATIC_MAP.put("[购物]", R.drawable.emotion_gouwu);
-        EMOTION_STATIC_MAP.put("[邮件]", R.drawable.emotion_youjian);
-        EMOTION_STATIC_MAP.put("[帅]", R.drawable.emotion_dashuai);
-        EMOTION_STATIC_MAP.put("[喝彩]", R.drawable.emotion_hecai);
-        EMOTION_STATIC_MAP.put("[祈祷]", R.drawable.emotion_qidao);
-        EMOTION_STATIC_MAP.put("[爆筋]", R.drawable.emotion_baojing);
-        EMOTION_STATIC_MAP.put("[棒棒糖]", R.drawable.emotion_bangbangtang);
-        EMOTION_STATIC_MAP.put("[喝奶]", R.drawable.emotion_henai);
-        EMOTION_STATIC_MAP.put("[下面]", R.drawable.emotion_xiamian);
-        EMOTION_STATIC_MAP.put("[香蕉]", R.drawable.emotion_xiangjiao);
-        EMOTION_STATIC_MAP.put("[飞机]", R.drawable.emotion_feiji);
-        EMOTION_STATIC_MAP.put("[开车]", R.drawable.emotion_kaiche);
-        EMOTION_STATIC_MAP.put("[左车头]", R.drawable.emotion_zuochetou);
-        EMOTION_STATIC_MAP.put("[车厢]", R.drawable.emotion_chexiang);
-        EMOTION_STATIC_MAP.put("[右车头]", R.drawable.emotion_youchexiang);
-        EMOTION_STATIC_MAP.put("[多云]", R.drawable.emotion_duoyun);
-        EMOTION_STATIC_MAP.put("[下雨]", R.drawable.emotion_xiayu);
-        EMOTION_STATIC_MAP.put("[钞票]", R.drawable.emotion_chaopiao);
-        EMOTION_STATIC_MAP.put("[熊猫]", R.drawable.emotion_xiongmao);
-        EMOTION_STATIC_MAP.put("[灯泡]", R.drawable.emotion_dengpao);
-        EMOTION_STATIC_MAP.put("[风车]", R.drawable.emotion_fengche);
-        EMOTION_STATIC_MAP.put("[闹钟]", R.drawable.emotion_naozhong);
-        EMOTION_STATIC_MAP.put("[打伞]", R.drawable.emotion_dashan);
-        EMOTION_STATIC_MAP.put("[彩球]", R.drawable.emotion_caiqiu);
-        EMOTION_STATIC_MAP.put("[钻戒]", R.drawable.emotion_zhuanjie);
-        EMOTION_STATIC_MAP.put("[沙发]", R.drawable.emotion_shafa);
-        EMOTION_STATIC_MAP.put("[纸巾]", R.drawable.emotion_zhijing);
-        EMOTION_STATIC_MAP.put("[药]", R.drawable.emotion_yao);
-        EMOTION_STATIC_MAP.put("[手枪]", R.drawable.emotion_shouqiang);
-        EMOTION_STATIC_MAP.put("[青蛙]", R.drawable.emotion_qingwa);
+        EMOTION_STATIC_MAP.put("[微笑]", R.drawable.icon_weixin1);
+        EMOTION_STATIC_MAP.put("[撇嘴]", R.drawable.icon_weixin2);
+        EMOTION_STATIC_MAP.put("[色]", R.drawable.icon_weixin3);
+        EMOTION_STATIC_MAP.put("[发呆]", R.drawable.icon_weixin4);
+        EMOTION_STATIC_MAP.put("[得意]",  R.drawable.icon_weixin5);
+        EMOTION_STATIC_MAP.put("[流泪]",  R.drawable.icon_weixin6);
+        EMOTION_STATIC_MAP.put("[害羞]",  R.drawable.icon_weixin7);
+
+        EMOTION_STATIC_MAP.put("[闭嘴]",  R.drawable.icon_weixin8);
+        EMOTION_STATIC_MAP.put("[睡]", R.drawable.icon_weixin9);
+        EMOTION_STATIC_MAP.put("[大哭]", R.drawable.icon_weixin10);
+        EMOTION_STATIC_MAP.put("[尴尬]", R.drawable.icon_weixin11);
+        EMOTION_STATIC_MAP.put("[发怒]", R.drawable.icon_weixin12);
+        EMOTION_STATIC_MAP.put("[调皮]", R.drawable.icon_weixin13);
+        EMOTION_STATIC_MAP.put("[呲牙]", R.drawable.icon_weixin14);
+
+        EMOTION_STATIC_MAP.put("[惊讶]", R.drawable.icon_weixin15);
+        EMOTION_STATIC_MAP.put("[难过]", R.drawable.icon_weixin16);
+        EMOTION_STATIC_MAP.put("[囧]", R.drawable.icon_weixin17);
+        EMOTION_STATIC_MAP.put("[抓狂]", R.drawable.icon_weixin18);
+        EMOTION_STATIC_MAP.put("[吐]", R.drawable.icon_weixin19);
+        EMOTION_STATIC_MAP.put("[偷笑]", R.drawable.icon_weixin20);
+
+        EMOTION_STATIC_MAP.put("[愉快]", R.drawable.icon_weixin21);
+        EMOTION_STATIC_MAP.put("[白眼]", R.drawable.icon_weixin22);
+        EMOTION_STATIC_MAP.put("[傲慢]", R.drawable.icon_weixin23);
+        EMOTION_STATIC_MAP.put("[困]", R.drawable.icon_weixin24);
+        EMOTION_STATIC_MAP.put("[惊恐]", R.drawable.icon_weixin25);
+        EMOTION_STATIC_MAP.put("[流汗]", R.drawable.icon_weixin26);
+        EMOTION_STATIC_MAP.put("[憨笑]", R.drawable.icon_weixin27);
+
+
+        EMOTION_STATIC_MAP.put("[悠闲]", R.drawable.icon_weixin28);
+        EMOTION_STATIC_MAP.put("[奋斗]", R.drawable.icon_weixin29);
+        EMOTION_STATIC_MAP.put("[咒骂]", R.drawable.icon_weixin30);
+        EMOTION_STATIC_MAP.put("[疑问]", R.drawable.icon_weixin31);
+        EMOTION_STATIC_MAP.put("[嘘]", R.drawable.icon_weixin32);
+        EMOTION_STATIC_MAP.put("[晕]", R.drawable.icon_weixin33);
+        EMOTION_STATIC_MAP.put("[衰]", R.drawable.icon_weixin34);
+
+
+        EMOTION_STATIC_MAP.put("[骷髅]", R.drawable.icon_weixin35);
+        EMOTION_STATIC_MAP.put("[敲打]", R.drawable.icon_weixin36);
+        EMOTION_STATIC_MAP.put("[再见]", R.drawable.icon_weixin37);
+        EMOTION_STATIC_MAP.put("[擦汗]", R.drawable.icon_weixin38);
+        EMOTION_STATIC_MAP.put("[抠鼻]", R.drawable.icon_weixin39);
+        EMOTION_STATIC_MAP.put("[鼓掌]", R.drawable.icon_weixin40);
+
+
+        EMOTION_STATIC_MAP.put("[坏笑]", R.drawable.icon_weixin41);
+        EMOTION_STATIC_MAP.put("[左哼哼]", R.drawable.icon_weixin41_1);
+        EMOTION_STATIC_MAP.put("[右哼哼]", R.drawable.icon_weixin41_2);
+        EMOTION_STATIC_MAP.put("[哈欠]", R.drawable.icon_weixin41_3);
+        EMOTION_STATIC_MAP.put("[鄙视]", R.drawable.icon_weixin41_4);
+        EMOTION_STATIC_MAP.put("[委屈]", R.drawable.icon_weixin41_5);
+        EMOTION_STATIC_MAP.put("[快哭了]", R.drawable.icon_weixin41_6);
+
+
+        EMOTION_STATIC_MAP.put("[阴险]", R.drawable.icon_weixin41_7);
+        EMOTION_STATIC_MAP.put("[亲亲]", R.drawable.icon_weixin42);
+        EMOTION_STATIC_MAP.put("[可怜]", R.drawable.icon_weixin43);
+        EMOTION_STATIC_MAP.put("[菜刀]", R.drawable.icon_weixin44);
+        EMOTION_STATIC_MAP.put("[西瓜]", R.drawable.icon_weixin45);
+        EMOTION_STATIC_MAP.put("[啤酒]", R.drawable.icon_weixin46);
+        EMOTION_STATIC_MAP.put("[咖啡]", R.drawable.icon_weixin47);
+
+
+        EMOTION_STATIC_MAP.put("[猪头]", R.drawable.icon_weixin48);
+        EMOTION_STATIC_MAP.put("[玫瑰]", R.drawable.icon_weixin49);
+        EMOTION_STATIC_MAP.put("[凋谢]", R.drawable.icon_weixin50);
+        EMOTION_STATIC_MAP.put("[嘴唇]", R.drawable.icon_weixin51);
+        EMOTION_STATIC_MAP.put("[爱心]", R.drawable.icon_weixin52);
+        EMOTION_STATIC_MAP.put("[心碎]", R.drawable.icon_weixin53);
+
+
+        EMOTION_STATIC_MAP.put("[蛋糕]", R.drawable.icon_weixin54);
+        EMOTION_STATIC_MAP.put("[炸弹]", R.drawable.icon_weixin55);
+        EMOTION_STATIC_MAP.put("[便便]", R.drawable.icon_weixin56);
+        EMOTION_STATIC_MAP.put("[月亮]", R.drawable.icon_weixin57);
+        EMOTION_STATIC_MAP.put("[太阳]", R.drawable.icon_weixin58);
+        EMOTION_STATIC_MAP.put("[拥抱]", R.drawable.icon_weixin59);
+        EMOTION_STATIC_MAP.put("[强]", R.drawable.icon_weixin60);
+
+
+        EMOTION_STATIC_MAP.put("[弱]", R.drawable.icon_weixin61);
+        EMOTION_STATIC_MAP.put("[握手]", R.drawable.icon_weixin62);
+        EMOTION_STATIC_MAP.put("[胜利]", R.drawable.icon_weixin63);
+        EMOTION_STATIC_MAP.put("[抱拳]", R.drawable.icon_weixin64);
+        EMOTION_STATIC_MAP.put("[勾引]", R.drawable.icon_weixin65);
+        EMOTION_STATIC_MAP.put("[拳头]", R.drawable.icon_weixin66);
+        EMOTION_STATIC_MAP.put("[OK]", R.drawable.icon_weixin67);
+
+
+        EMOTION_STATIC_MAP.put("[跳跳]", R.drawable.icon_weixin68);
+        EMOTION_STATIC_MAP.put("[发抖]", R.drawable.icon_weixin69);
+        EMOTION_STATIC_MAP.put("[怄火]", R.drawable.icon_weixin70);
+        EMOTION_STATIC_MAP.put("[转圈]", R.drawable.icon_weixin71);
+
+
+
+        EMOTION_STATIC_MAP.put("[微信72]", R.drawable.icon_weixin72);
+        EMOTION_STATIC_MAP.put("[微信73]", R.drawable.icon_weixin73);
+        EMOTION_STATIC_MAP.put("[微信74]", R.drawable.icon_weixin74);
+        EMOTION_STATIC_MAP.put("[微信75]", R.drawable.icon_weixin75);
+        EMOTION_STATIC_MAP.put("[微信76]", R.drawable.icon_weixin76);
+        EMOTION_STATIC_MAP.put("[微信77]", R.drawable.icon_weixin77);
+        EMOTION_STATIC_MAP.put("[微信78]", R.drawable.icon_weixin78);
+        EMOTION_STATIC_MAP.put("[微信79]", R.drawable.icon_weixin79);
+        EMOTION_STATIC_MAP.put("[嘿哈]", R.drawable.icon_weixin80);
+
+        EMOTION_STATIC_MAP.put("[捂脸]", R.drawable.icon_weixin81);
+        EMOTION_STATIC_MAP.put("[奸笑]", R.drawable.icon_weixin82);
+        EMOTION_STATIC_MAP.put("[机智]", R.drawable.icon_weixin83);
+        EMOTION_STATIC_MAP.put("[皱眉]", R.drawable.icon_weixin84);
+        EMOTION_STATIC_MAP.put("[耶]", R.drawable.icon_weixin85);
+
+        EMOTION_STATIC_MAP.put("[欢呼]", R.drawable.icon_weixin86);
+        EMOTION_STATIC_MAP.put("[祈祷]", R.drawable.icon_weixin87);
+        EMOTION_STATIC_MAP.put("[肌肉]", R.drawable.icon_weixin88);
+        EMOTION_STATIC_MAP.put("[喝彩]", R.drawable.icon_weixin89);
+        EMOTION_STATIC_MAP.put("[礼物]", R.drawable.icon_weixin90);
+        EMOTION_STATIC_MAP.put("[红包]", R.drawable.icon_weixin91);
+        EMOTION_STATIC_MAP.put("[發]", R.drawable.icon_weixin92);
+        EMOTION_STATIC_MAP.put("[小狗]", R.drawable.icon_weixin93);
     }
     private static  int[]emojiSize = {0,1,2,3,4,5};
     private static int[]emojis ={R.mipmap.icon_tab0,R.mipmap.icon_tab1,R.mipmap.icon_tab2,
