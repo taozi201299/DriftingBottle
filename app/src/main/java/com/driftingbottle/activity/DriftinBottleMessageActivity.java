@@ -163,6 +163,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
 
     @Override
     public void initData() {
+        datas.clear();
         Bundle bundle = getIntent().getBundleExtra(DEFAULT_BUNDLE_NAME);
         bottleBean = (BottleBean0) bundle.getSerializable("key");
         chatAdapter.setMyImage(App.strIp + bottleBean.headimage);
@@ -231,33 +232,33 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         xRefreshView.setPullLoadEnable(false);
         xRefreshView.setMoveHeadWhenDisablePullRefresh(false);
         xRefreshView.setDividerPadding(20);
-        xRefreshView.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
-            @Override
-            public void onRefresh() {
-                iPageIndex ++ ;
-                getMessage();
-            }
-
-            @Override
-            public void onRefresh(boolean isPullDown) {
-
-            }
-
-            @Override
-            public void onLoadMore(boolean isSilence) {
-
-            }
-
-            @Override
-            public void onRelease(float direction) {
-
-            }
-
-            @Override
-            public void onHeaderMove(double headerMovePercent, int offsetY) {
-
-            }
-        });
+//        xRefreshView.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
+//            @Override
+//            public void onRefresh() {
+//                iPageIndex ++ ;
+//                getMessage();
+//            }
+//
+//            @Override
+//            public void onRefresh(boolean isPullDown) {
+//
+//            }
+//
+//            @Override
+//            public void onLoadMore(boolean isSilence) {
+//
+//            }
+//
+//            @Override
+//            public void onRelease(float direction) {
+//
+//            }
+//
+//            @Override
+//            public void onHeaderMove(double headerMovePercent, int offsetY) {
+//
+//            }
+//        });
         initWidget();
 
     }

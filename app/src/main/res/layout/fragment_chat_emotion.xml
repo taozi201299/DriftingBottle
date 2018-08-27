@@ -41,7 +41,7 @@
         <ImageView
             android:layout_width="@dimen/_80dp"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_chat_add"/>
+            android:src="@mipmap/icon_tab_add"/>
         <View
             android:layout_width="0.6dp"
             android:layout_height="wrap_content"
@@ -61,11 +61,12 @@
                 <RadioButton
                     android:id="@+id/btn_emoji"
                     android:layout_width="@dimen/_80dp"
-                    android:layout_height="@dimen/_40dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/selector_bk_rb"
                     android:button="@null"
-                    android:drawableTop="@mipmap/icon_chat_add"
-                    android:paddingTop="@dimen/_5dp" />
+                    android:gravity="center_vertical"
+                    android:drawableTop="@mipmap/icon_tab_smile"
+                    android:padding="@dimen/_8dp"/>
                 <View
                     android:layout_width="0.6dp"
                     android:layout_height="wrap_content"
@@ -77,8 +78,8 @@
                     android:layout_height="@dimen/_40dp"
                     android:background="@drawable/selector_bk_rb"
                     android:button="@null"
-                    android:drawableTop="@mipmap/icon_chat_add"
-                    android:paddingTop="@dimen/_5dp" />
+                    android:drawableTop="@mipmap/icon_tab_collection"
+                    android:paddingTop="@dimen/_8dp" />
             </RadioGroup>
         </HorizontalScrollView>
     </LinearLayout>

@@ -4,5 +4,4 @@
     android:layout_height="@dimen/_40dp"
     android:background="@drawable/selector_bk_rb"
     android:button="@null"
-    android:drawableTop="@mipmap/icon_chat_voice"
-    android:paddingTop="@dimen/_5dp" />
+    android:paddingTop="@dimen/_8dp" />

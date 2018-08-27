@@ -320,8 +320,9 @@ public class EmotionUtils {
         EMOTION_STATIC_MAP.put("[青蛙]", R.drawable.emotion_qingwa);
     }
     private static  int[]emojiSize = {0,1,2,3,4,5};
-    private static int[]emojis ={R.mipmap.icon_chat_add,R.mipmap.ic_audio_play_2,R.mipmap.icon_chat_voice,
-            R.mipmap.icon_chat_expression,R.mipmap.icon_voice_right1};
+    private static int[]emojis ={R.mipmap.icon_tab0,R.mipmap.icon_tab1,R.mipmap.icon_tab2,
+            R.mipmap.icon_tab3,R.mipmap.icon_tab4,R.mipmap.icon_tab5,R.mipmap.icon_tab6,
+    R.mipmap.icon_tab7, R.mipmap.icon_tab8,R.mipmap.icon_tab9,R.mipmap.icon_tab10};
 
     private static  int getRandEmojiNum (){
         return (int)(Math.random()*emojiSize.length);
