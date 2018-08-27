@@ -45,7 +45,7 @@
             android:background="@null"
             android:textCursorDrawable="@drawable/edit_text_cursor"
             android:textSize="16sp"
-            emojicon:emojiconSize="22sp"
+            emojicon:emojiconSize="20sp"
             android:lineSpacingMultiplier="1"
             android:lineSpacingExtra="5dp"
             android:focusable="true"
@@ -84,15 +84,15 @@
 
         <com.driftingbottle.widget.StateButton
             android:id="@+id/emotion_send"
-            android:layout_width="40dp"
+            android:layout_width="45dp"
             android:layout_height="30dp"
             android:layout_marginLeft="@dimen/content_horizontal_margin"
             android:padding="1dp"
             android:text="发送"
             android:textColor="@color/white"
             android:visibility="gone"
-            app:normalBackgroundColor="#62A353"
-            app:pressedBackgroundColor="#62A353"
+            app:normalBackgroundColor="#19AD17"
+            app:pressedBackgroundColor="#19AD17"
             app:radius="5dp" />
 
     </LinearLayout>

@@ -30,7 +30,7 @@
 
     <style name="MyEditText" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">#DFDFDF</item>
-        <item name="colorControlActivated">#62A353</item>
+        <item name="colorControlActivated">#19AD17</item>
     </style>
 
 </resources>
