@@ -163,7 +163,7 @@ public class ChatEmotionFragment extends BaseFragment {
             ((RadioButton)view).setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
             view.setId(App.emojis.get(i));
             View line = LayoutInflater.from(App.globalContext()).inflate(R.layout.line_layout,null);
-            int w = CommonUtils.dp2px(App.globalContext(),80);
+            int w = CommonUtils.dp2px(App.globalContext(),60);
             int h = CommonUtils.dp2px(App.globalContext(),40);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(w,h);
             int lineW = CommonUtils.dp2px(App.globalContext(), Float.valueOf("0.6"));
@@ -175,7 +175,7 @@ public class ChatEmotionFragment extends BaseFragment {
         }
         View radioButton = LayoutInflater.from(App.globalContext()).inflate(R.layout.tab_bar_item,null );
         View line = LayoutInflater.from(App.globalContext()).inflate(R.layout.line_layout,null);
-        int w = CommonUtils.dp2px(App.globalContext(),80);
+        int w = CommonUtils.dp2px(App.globalContext(),60);
         int h = CommonUtils.dp2px(App.globalContext(),40);
         Drawable drawable = this.getResources().getDrawable(R.mipmap.icon_tab_setting);
         ((RadioButton)radioButton).setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
