@@ -38,16 +38,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_7dp"
             android:minHeight="36dp"
-            android:paddingLeft="@dimen/_10dp"
-            android:paddingRight="@dimen/_5dp"
+            android:paddingLeft="@dimen/_8dp"
+            android:paddingRight="@dimen/_7dp"
             android:theme="@style/MyEditText"
             android:drawableBottom="@drawable/line"
             android:background="@null"
             android:textCursorDrawable="@drawable/edit_text_cursor"
             android:textSize="16sp"
             emojicon:emojiconSize="20sp"
-            android:lineSpacingMultiplier="1.2"
-            android:lineSpacingExtra="5dp"
             android:focusable="true"
             android:focusableInTouchMode="true"/>
 

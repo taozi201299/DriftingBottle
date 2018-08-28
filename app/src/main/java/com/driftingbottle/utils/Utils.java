@@ -55,12 +55,15 @@ public class Utils {
             Integer imgRes = EmotionUtils.EMOTION_STATIC_MAP.get(key);
             if (imgRes != null) {
                 // 压缩表情图片
-                int size = CommonUtils.dp2px(context,19);
+                int size = CommonUtils.dp2px(context,21);
                 Bitmap bitmap = BitmapFactory.decodeResource(res, imgRes);
                 Bitmap scaleBitmap = Bitmap.createScaledBitmap(bitmap, size, size, true);
-
                 ImageSpan span = new ImageSpan(context, scaleBitmap);
+                int width = span.getDrawable().getIntrinsicWidth();
+                int height = span.getDrawable().getIntrinsicHeight();
+                span.getDrawable().setBounds(5, 5, width > 0 ? width : 0, height > 0 ? height-5 : 0);
                 spannableString.setSpan(span, start, start + key.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
             }
         }
         return spannableString;
