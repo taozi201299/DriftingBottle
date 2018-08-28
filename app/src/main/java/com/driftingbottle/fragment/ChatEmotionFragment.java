@@ -179,7 +179,7 @@ public class ChatEmotionFragment extends BaseFragment {
         int h = CommonUtils.dp2px(App.globalContext(),40);
         Drawable drawable = this.getResources().getDrawable(R.mipmap.icon_tab_setting);
         ((RadioButton)radioButton).setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
-        radioButton.setId(R.mipmap.icon_tab_setting);
+        radioButton.setId(R.id.tab_setting);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(w,h);
         radioButton.setLayoutParams(layoutParams);
         int lineW = CommonUtils.dp2px(App.globalContext(), Float.valueOf("0.6"));
