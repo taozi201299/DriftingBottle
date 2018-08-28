@@ -55,7 +55,7 @@ public class Utils {
             Integer imgRes = EmotionUtils.EMOTION_STATIC_MAP.get(key);
             if (imgRes != null) {
                 // 压缩表情图片
-                int size = CommonUtils.dp2px(context,22);
+                int size = CommonUtils.dp2px(context,19);
                 Bitmap bitmap = BitmapFactory.decodeResource(res, imgRes);
                 Bitmap scaleBitmap = Bitmap.createScaledBitmap(bitmap, size, size, true);
 

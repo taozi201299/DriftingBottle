@@ -141,7 +141,7 @@ public class ChatEmotionFragment extends BaseFragment {
         gv.setSelector(android.R.color.transparent);
         //设置7列
         gv.setNumColumns(7);
-        gv.setPadding(padding, padding, padding, padding);
+        gv.setPadding(22, padding, 22, padding);
         gv.setHorizontalSpacing(padding);
         gv.setVerticalSpacing(padding + 8);
         //设置GridView的宽高
