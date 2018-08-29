@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -55,8 +55,6 @@ import static com.driftingbottle.utils.Constant.DEFAULT_BUNDLE_NAME;
 public class DriftinBottleMessageActivity extends BaseActivity implements PullRecyclerView.OnPullRefreshListener {
     @BindView(R.id.chatRecyclerView)
     RecyclerView chatRecyclerView;
-    @BindView(R.id.xRefreshView)
-    XRefreshView xRefreshView;
     @BindView(R.id.layout_bar)
     LinearLayout action_bar;
     @BindView(R.id.index_set)
@@ -113,8 +111,6 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         super.onDestroy();
         iPageIndex = 0;
         bFinish = false;
-        xRefreshView.setPullRefreshEnable(false);
-        xRefreshView.setPullLoadEnable(false);
     }
 
     private void initWidget() {
@@ -187,7 +183,6 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                     @Override
                     public void run() {
                         closeDataDialog();
-                        xRefreshView.stopRefresh();
                         Gson gson = new Gson();
                         datas = gson.fromJson(finalResult,new TypeToken<List<MessageBean0>>(){}.getType());
                         if(datas.size() == 0){
@@ -205,7 +200,6 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                             @Override
                             public void run() {
                                 closeDataDialog();
-                                xRefreshView.stopRefresh(false);
                                 ToastUtils.show(errorInfo.getMessage());
                             };
                         });
@@ -223,37 +217,6 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
         chatRecyclerView.setLayoutManager(layoutmanager);
         chatAdapter = new ChatAdapter(this);
         chatRecyclerView.setAdapter(chatAdapter);
-        xRefreshView.setPullRefreshEnable(false);
-        xRefreshView.setPullLoadEnable(false);
-        xRefreshView.setMoveHeadWhenDisablePullRefresh(false);
-        xRefreshView.setDividerPadding(20);
-//        xRefreshView.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
-//            @Override
-//            public void onRefresh() {
-//                iPageIndex ++ ;
-//                getMessage();
-//            }
-//
-//            @Override
-//            public void onRefresh(boolean isPullDown) {
-//
-//            }
-//
-//            @Override
-//            public void onLoadMore(boolean isSilence) {
-//
-//            }
-//
-//            @Override
-//            public void onRelease(float direction) {
-//
-//            }
-//
-//            @Override
-//            public void onHeaderMove(double headerMovePercent, int offsetY) {
-//
-//            }
-//        });
         initWidget();
 
     }
@@ -332,5 +295,15 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                 }
             }
         }
+    }
+    //处理后退键的情况
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode== KeyEvent.KEYCODE_BACK ){
+            if (mDetector.interceptBackPress()){
+                return  true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

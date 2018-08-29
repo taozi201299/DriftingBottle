@@ -52,6 +52,8 @@ public class EmotionInputDetector {
     private PopupWindowFactory mVoicePop;
     private TextView mPopVoiceText;
 
+    private View mEmotionButton;
+
     private EmotionInputDetector() {
     }
 
@@ -116,11 +118,11 @@ public class EmotionInputDetector {
     }
 
     public EmotionInputDetector bindToEmotionButton(final View emotionButton) {
+        mEmotionButton = emotionButton;
         emotionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mEmotionLayout.isShown()) {
-                    ((ImageView)emotionButton).setImageResource(R.mipmap.icon_chat_expression);
                     if (isShowAdd) {
                         mViewPager.setCurrentItem(0);
                         isShowEmotion = true;
@@ -132,7 +134,7 @@ public class EmotionInputDetector {
                         unlockContentHeightDelayed();
                     }
                 } else {
-                    ((ImageView)emotionButton).setImageResource(R.mipmap.icon_keyboard);
+
                     if (isSoftInputShown()) {
                         lockContentHeight();
                         showEmotionLayout();
@@ -142,6 +144,11 @@ public class EmotionInputDetector {
                     }
                     mViewPager.setCurrentItem(0);
                     isShowEmotion = true;
+                }
+                if(mEmotionLayout.isShown()){
+                    ((ImageView)emotionButton).setImageResource(R.mipmap.icon_keyboard);
+                }else {
+                    ((ImageView)emotionButton).setImageResource(R.mipmap.icon_chat_expression);
                 }
             }
         });
@@ -321,6 +328,7 @@ public class EmotionInputDetector {
     }
 
     public boolean interceptBackPress() {
+        ((ImageView)mEmotionButton).setImageResource(R.mipmap.icon_chat_expression);
         if (mEmotionLayout.isShown()) {
             hideEmotionLayout(false);
             return true;
@@ -349,18 +357,18 @@ public class EmotionInputDetector {
     }
 
     private void lockContentHeight() {
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mContentView.getLayoutParams();
-        params.height = mContentView.getHeight();
-        params.weight = 0.0F;
+//        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mContentView.getLayoutParams();
+//        params.height = mContentView.getHeight();
+//        params.weight = 0.0F;
     }
 
     private void unlockContentHeightDelayed() {
-        mEditText.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ((LinearLayout.LayoutParams) mContentView.getLayoutParams()).weight = 1.0F;
-            }
-        }, 200L);
+//        mEditText.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                ((LinearLayout.LayoutParams) mContentView.getLayoutParams()).weight = 1.0F;
+//            }
+//        }, 200L);
     }
 
     private void showSoftInput() {

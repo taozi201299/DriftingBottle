@@ -15,6 +15,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/dialog_bg_shape"
         android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/_7dp"
         android:padding="3dp"
         android:text=""
         android:textColor="@color/write"
