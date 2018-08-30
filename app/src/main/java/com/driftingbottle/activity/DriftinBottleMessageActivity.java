@@ -134,6 +134,7 @@ public class DriftinBottleMessageActivity extends BaseActivity implements PullRe
                 Drawable bottom = getResources().getDrawable(R.drawable.line);// 获取res下的图片drawable
                 bottom.setBounds(0, 0, bottom.getMinimumWidth(), bottom.getMinimumHeight());// 一定要设置setBounds();
                 editText.setCompoundDrawables(null, null, null, bottom);
+                ((ImageView)emotionButton).setImageResource(R.mipmap.icon_chat_expression);
             }
         });
         mDetector = EmotionInputDetector.with(this)
