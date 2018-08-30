@@ -39,7 +39,7 @@ public class  App extends Application {
     public static String strIp = "http://118.190.155.234:8080";
     public static double IRand = 0.2;
 
-    public static ArrayList<Integer>emojis = EmotionUtils.getEmojis();
+    public static ArrayList<Integer>emojis ;
 
     /**
      * 屏幕宽度
@@ -69,6 +69,7 @@ public class  App extends Application {
         OkHttpUtils.init(this);
         OkHttpUtils.getInstance().setConnectTimeout(10000);
         initScreenSize();
+        emojis =  EmotionUtils.getEmojis();
 
     }
 

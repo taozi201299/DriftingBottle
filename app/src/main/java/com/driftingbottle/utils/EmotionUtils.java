@@ -3,8 +3,10 @@ package com.driftingbottle.utils;
 
 import com.driftingbottle.App;
 import com.driftingbottle.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 /**
@@ -291,14 +293,36 @@ public class EmotionUtils {
     public static ArrayList<Integer> getEmojis(){
         ArrayList list = new ArrayList();
         int size = getRandEmojiNum();
-        for(int i = 0; i < size ; i++){
-            int index =  (int)(Math.random()*emojis.length);
-            if(list.contains(emojis[index])){
-                i--;
-                continue;
+        String strEmoji = "";
+        String json = (String) SPUtils.get("tab","");
+        if(json == null || json.isEmpty()) {
+            for (int i = 0; i < size; i++) {
+                int index = (int) (Math.random() * emojis.length);
+                if (list.contains(emojis[index])) {
+                    i--;
+                    continue;
+                }
+                list.add(emojis[index]);
+                strEmoji += emojis[index];
+                strEmoji +=",";
             }
-            list.add(emojis[index]);
+        }else {
+            Gson gson = new Gson();
+            HashMap<String,String>value = gson.fromJson(json,HashMap.class);
+            int count = Integer.parseInt(value.get("size"));
+            if (count == 0) return list;
+            String[]array = value.get("value").split(",");
+            for(int i = 0; i< count ; i++){
+                list.add(Integer.valueOf(array[i]));
+            }
+            return list;
         }
+        Gson gson = new Gson();
+        HashMap<String ,String >map = new HashMap<>();
+        map.put("size",String.valueOf(size));
+        map.put("value",strEmoji);
+        SPUtils.put("tab",gson.toJson(map));
         return list;
     }
+
 }

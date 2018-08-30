@@ -43,6 +43,7 @@
             android:paddingRight="@dimen/_7dp"
             android:theme="@style/MyEditText"
             android:drawableBottom="@drawable/line"
+            android:text="99122288822222222222"
             android:background="@null"
             android:drawablePadding="@dimen/_5dp"
             android:textCursorDrawable="@drawable/edit_text_cursor"
@@ -86,7 +87,7 @@
         <com.driftingbottle.widget.StateButton
             android:id="@+id/emotion_send"
             android:layout_width="45dp"
-            android:layout_height="30dp"
+            android:layout_height="35dp"
             android:layout_marginLeft="@dimen/_7dp"
             android:layout_marginRight="@dimen/_7dp"
             android:padding="1dp"
@@ -99,10 +100,7 @@
             app:radius="3dp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider_line" />
+
 
     <RelativeLayout
         android:id="@+id/emotion_layout"
@@ -111,9 +109,16 @@
         android:background="@color/bg_content"
         android:orientation="vertical"
         android:visibility="gone">
+        <LinearLayout
+            android:id="@+id/ll_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="vertical"
+            android:background="@color/divider_line" />
 
         <com.driftingbottle.widget.NoScrollViewPager
             android:id="@+id/viewpager"
+            android:layout_below="@id/ll_line"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </RelativeLayout>
