@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
@@ -122,6 +123,10 @@ public class EmotionInputDetector {
         emotionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mEditText.setCursorVisible(true);
+                Drawable bottom = mActivity.getResources().getDrawable(R.drawable.line);// 获取res下的图片drawable
+                bottom.setBounds(0, 0, bottom.getMinimumWidth(), bottom.getMinimumHeight());// 一定要设置setBounds();
+                mEditText.setCompoundDrawables(null, null, null, bottom);
                 if (mEmotionLayout.isShown()) {
                     if (isShowAdd) {
                         mViewPager.setCurrentItem(0);

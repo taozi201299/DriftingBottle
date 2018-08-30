@@ -43,7 +43,7 @@
             android:paddingRight="@dimen/_7dp"
             android:theme="@style/MyEditText"
             android:drawableBottom="@drawable/line"
-            android:text="99122288822222222222"
+            android:text=""
             android:background="@null"
             android:drawablePadding="@dimen/_5dp"
             android:textCursorDrawable="@drawable/edit_text_cursor"
