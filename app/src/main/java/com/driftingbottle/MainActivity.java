@@ -583,6 +583,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
      * 数据重置
      */
     private void stopService(){
+        App.bottlesIds.clear();
+        App.isShow = true;
         bStart = 0;
         bFinish = false;
         iTotalCount = 0;

@@ -13,6 +13,7 @@ import com.bumptech.glide.request.target.Target;
 import com.driftinbottle.httputils.HttpUtils;
 import com.driftingbottle.App;
 import com.driftingbottle.R;
+import com.driftingbottle.activity.DriftinBottleListActivity;
 import com.driftingbottle.bean.BottleBean;
 import com.driftingbottle.bean.BottleBean0;
 import com.driftingbottle.utils.EmojiUtil;
@@ -59,8 +60,14 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
                     count ++;
                 }
             }
-            if("2".equals(bottleBean.answerType)){
-                bottleBean.bIsRead = false;
+            if(App.isShow) {
+                if ("2".equals(bottleBean.answerType)) {
+                    bottleBean.bIsRead = false;
+                }
+            }else {
+                if (!"2".equals(bottleBean.answerType) && DriftinBottleListActivity.bStart == 3) {
+                    bottleBean.bIsRead = true;
+                }
             }
         if(bottleBean.bIsRead){
             wei_du_xiao_xi.setVisibility(View.GONE);

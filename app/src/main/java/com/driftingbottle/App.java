@@ -39,7 +39,10 @@ public class  App extends Application {
     public static String strIp = "http://118.190.155.234:8080";
     public static double IRand = 0.2;
 
-    public static ArrayList<Integer>emojis ;
+    public static ArrayList<Integer>emojis;
+
+    public static ArrayList<String>bottlesIds = new ArrayList<>();
+    public static boolean isShow = true;
 
     /**
      * 屏幕宽度

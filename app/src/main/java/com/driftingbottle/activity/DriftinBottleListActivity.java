@@ -55,9 +55,11 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     Button index_set;
     @BindView(R.id.index_set1)
     Button index_set1;
+    @BindView(R.id.tv_activity_index_start)
+    TextView tv_activity_index_start;
     private ArrayList<BottleBean0> bottleBeans ;
     private BottleAdatper bottleAdatper;
-    int bStart = 0;
+    public static  int bStart = 0;
 
     @Override
     public int getLayoutId() {
@@ -73,6 +75,19 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     @Override
     public void initListener() {
         bottleAdatper.setOnItemClickListener(this);
+        tv_activity_index_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                App.isShow = !App.isShow;
+                App.bottlesIds.clear();
+                if(App.isShow){
+                    ToastUtils.show("角标长显");
+                }else {
+                    ToastUtils.show("关闭角标长显");
+                }
+                initData();
+            }
+        });
     }
 
     @Override
@@ -175,11 +190,21 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     }
 
     private void refreshUI(){
-        for(BottleBean0 item : bottleBeans){
-            if(bStart == 3){
-                item.bIsRead = true;
-            }else {
-                item.bIsRead = false;
+        if(App.isShow) {
+            for (BottleBean0 item : bottleBeans) {
+                if (bStart == 3) {
+                    item.bIsRead = true;
+                } else {
+                    item.bIsRead = false;
+                }
+            }
+        }else {
+            for(BottleBean0 bottleBean0 :bottleBeans){
+                if(App.bottlesIds.contains(bottleBean0.regionID)){
+                    bottleBean0.bIsRead = true;
+                }else {
+                    bottleBean0.bIsRead = false;
+                }
             }
         }
         bottleAdatper.setData(bottleBeans);
@@ -190,6 +215,9 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     @Override
     public void onItemClick(int position) {
         BottleBean0 item = bottleBeans.get(position);
+        if(!App.bottlesIds.contains(item.regionID)){
+            App.bottlesIds.add(item.regionID);
+        }
         Bundle bundle = new Bundle();
         bundle.putSerializable("key",item);
         intentActivity(this,DriftinBottleMessageActivity.class,false,bundle);
