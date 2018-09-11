@@ -51,5 +51,6 @@ dependencies {
     implementation 'me.iwf.photopicker:PhotoPicker:0.1.8'
     implementation 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    implementation 'com.android.support:cardview-v7:26.1.0'
 
 }

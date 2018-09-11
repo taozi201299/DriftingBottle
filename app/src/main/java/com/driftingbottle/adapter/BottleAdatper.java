@@ -72,8 +72,19 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
         if(bottleBean.bIsRead){
             wei_du_xiao_xi.setVisibility(View.GONE);
         }else {
-            wei_du_xiao_xi.setVisibility(View.VISIBLE);
-            wei_du_xiao_xi.setText(String.valueOf(count));
+            if (!"2".equals(bottleBean.answerType)) {
+                if(count >=2){
+                    wei_du_xiao_xi.setVisibility(View.VISIBLE);
+                    wei_du_xiao_xi.setText(String.valueOf(1));
+                }else {
+                    wei_du_xiao_xi.setVisibility(View.GONE);
+                }
+            }else {
+                // 二次回复
+                wei_du_xiao_xi.setVisibility(View.VISIBLE);
+                wei_du_xiao_xi.setText(String.valueOf(count));
+            }
+
         }
         Glide.with(mContext).load(App.strIp +bottleBean.headimage)
                 .placeholder(R.mipmap.dialog_loading_img)

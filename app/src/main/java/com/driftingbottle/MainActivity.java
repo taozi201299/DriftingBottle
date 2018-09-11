@@ -262,7 +262,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                         tv_activity_index_count.setVisibility(View.VISIBLE);
                         if(iCurrentCount >=100){
                             tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular));
-                        }else if(iCurrentCount > 0 && iCurrentCount < 100){
+                        }else if(iCurrentCount >=10 && iCurrentCount < 100){
+                            tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2));
+                        }else if(iCurrentCount > 0 && iCurrentCount <=9){
                             tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red));
                         }
                         tv_activity_index_count.setText(String.valueOf(iCurrentCount));

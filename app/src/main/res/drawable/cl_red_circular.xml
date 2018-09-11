@@ -2,13 +2,13 @@
 
     <item>
         <shape>
-            <corners android:radius="30dp" />
+            <corners android:radius="20dp" />
             <solid android:color="@color/dot" />
         </shape>
     </item>
 
 
-    <item android:left="110dp">
+    <item android:left="50dp">
         <shape>
             <solid android:color="@color/dot" />
             <padding
