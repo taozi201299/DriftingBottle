@@ -93,8 +93,8 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     @Override
     public void initData() {
         if(bStart == 0) return;
-        if(bStart == 1) {
-            showTitle("我的瓶子(" + MainActivity.iCurrentCount + ")");
+        if(bStart == 1 ) {
+            showTitle("我的瓶子");
         }else if(bStart == 3) {
             double count = MainActivity.iTotalCount * App.IRand;
             int icount = new Double(count).intValue();
@@ -190,6 +190,16 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     }
 
     private void refreshUI(){
+        setBottleNum();
+        if(bStart != 3) {
+            if (App.bottleNum == 0) {
+                showTitle("我的瓶子");
+            }else {
+                showTitle("我的瓶子(" + App.bottleNum + ")");
+            }
+        }else {
+            showTitle("我的瓶子(" + App.bottle2Num + ")");
+        }
         if(App.isShow) {
             for (BottleBean0 item : bottleBeans) {
                 if (bStart == 3) {
@@ -223,4 +233,38 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
         intentActivity(this,DriftinBottleMessageActivity.class,false,bundle);
 
     }
+    private void setBottleNum(){
+        String strSplit = "#";
+        App.bottleNum = 0;
+        App.bottle2Num = 0;
+        int count;
+        for(BottleBean0 bottleBean0 :bottleBeans){
+            count = 1;
+            if ("0".equals(bottleBean0.dataType)) {
+                String data = bottleBean0.textData;
+                String array[];
+                if (data.contains(strSplit)) {
+                    array = data.split(strSplit);
+                    count += array.length;
+                    count--;
+                }
+            } else if ("3".equals(bottleBean0.dataType)) {
+                String data1 = bottleBean0.textData;
+                String array1[];
+                if (data1.contains(strSplit)) {
+                    array1 = data1.split(strSplit);
+                    count += array1.length;
+                }else {
+                    count ++;
+                }
+            }
+            if (!"2".equals(bottleBean0.answerType)) {
+                if(count >=2){
+                    App.bottleNum ++;
+                }
+            }else {
+                App.bottle2Num ++;
+            }
+            }
+        }
 }

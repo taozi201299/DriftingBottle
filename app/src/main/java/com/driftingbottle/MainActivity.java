@@ -274,6 +274,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                     ToastUtils.show("瓶子获取完成");
                     tv_activity_index_count.setText(String.valueOf(iTotalCount));
                     bWorking = false;
+                    App.bFinish = true;
                     break;
             }
         }
@@ -350,7 +351,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         animationDrawable = (AnimationDrawable) iv_shape.getDrawable();
         animationDrawable.start();
         mHandler.postDelayed(lightRunnable,11000);
-
+        if(App.bFinish){
+            if(App.bottleNum > 0) {
+                tv_activity_index_count.setVisibility(View.VISIBLE);
+                if(App.bottleNum  >=100){
+                    tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular));
+                }else if(App.bottleNum  >=10 && App.bottleNum  < 100){
+                    tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2));
+                }else if(App.bottleNum  > 0 && App.bottleNum  <=9){
+                    tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red));
+                }
+                tv_activity_index_count.setText(String.valueOf(App.bottleNum));
+            }
+        }
     }
 
     @Override
@@ -591,6 +604,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
      */
     private void stopService(){
         App.bottlesIds.clear();
+        App.bottleNum = 0;
+        App.bottle2Num = 0;
+        App.bFinish = false;
         App.isShow = true;
         bStart = 0;
         bFinish = false;
@@ -1036,6 +1052,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                    // ToastUtils.show("获取瓶子完成");
                     postFinish();
                     bWorking = false;
+                    App.bFinish = true;
                 }
             }
         }

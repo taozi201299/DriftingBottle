@@ -35,14 +35,17 @@ public class  App extends Application {
      */
     public static HashMap<String,String>bottles = new HashMap<>();
     public static HashMap<String,Integer>bottleCount = new HashMap<>();
-    public static String strIp = "http://118.190.155.234:8080"; // old server
- //   public  static String strIp = "http://47.105.59.177:8080";  // new server
+//    public static String strIp = "http://118.190.155.234:8080"; // old server
+    public  static String strIp = "http://47.105.59.177:8080";  // new server
     public static double IRand = 0.2;
 
     public static ArrayList<Integer>emojis;
 
     public static ArrayList<String>bottlesIds = new ArrayList<>();
     public static boolean isShow = true;
+    public static int bottleNum = 0;
+    public static int bottle2Num = 0;
+    public static boolean bFinish = false;
 
     /**
      * 屏幕宽度
