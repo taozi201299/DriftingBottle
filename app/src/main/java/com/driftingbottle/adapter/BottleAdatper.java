@@ -75,7 +75,7 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
             if (!"2".equals(bottleBean.answerType)) {
                 if(count >=2){
                     wei_du_xiao_xi.setVisibility(View.VISIBLE);
-                    wei_du_xiao_xi.setText(String.valueOf(1));
+                    wei_du_xiao_xi.setText(String.valueOf(count -1));
                 }else {
                     wei_du_xiao_xi.setVisibility(View.GONE);
                 }
