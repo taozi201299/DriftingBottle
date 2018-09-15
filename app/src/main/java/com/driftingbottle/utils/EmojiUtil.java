@@ -91,6 +91,7 @@ public class EmojiUtil {
             put("[鄙视]", R.drawable.emoji_1f00122);
             put("[哈欠]", R.drawable.emoji_1f00123);
             put("[快哭了]", R.drawable.emoji_1f00124);
+            put("[委屈]",R.drawable.emoji_1f00123);
 
 
             //8
@@ -134,6 +135,12 @@ public class EmojiUtil {
             put("[跳跳]", R.drawable.emoji_1f00152);
             put("[发抖]", R.drawable.emoji_1f00153);
             put("[转圈]", R.drawable.emoji_1f00154);
+            put("[怄火]",R.drawable.emoji_1f00161);
+
+            put("[肌肉]",R.drawable.emoji_1f00187);
+            put("[喝彩]",R.drawable.emoji_1f00188);
+            put("[礼物]",R.drawable.emoji_1f00189);
+            put("[小狗]",R.drawable.emoji_1f00190);
 
             // 13
             put("[捂脸]",R.drawable.emoji_1f00155);
@@ -144,6 +151,7 @@ public class EmojiUtil {
             put("[机智]",R.drawable.emoji_1f00160);
             put("[红包]",R.drawable.emoji_1f00172);
             put("[發]",R.drawable.emoji_1f00173);
+
 
 
         }
