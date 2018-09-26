@@ -94,7 +94,11 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     public void initData() {
         if(bStart == 0) return;
         if(bStart == 1 ) {
-            showTitle("我的瓶子");
+            if(App.bOld){
+                showTitle("我的瓶子(" + MainActivity.iCurrentCount + ")");
+            }else {
+                showTitle("我的瓶子");
+            }
         }else if(bStart == 3) {
             double count = MainActivity.iTotalCount * App.IRand;
             int icount = new Double(count).intValue();
@@ -190,15 +194,17 @@ public class DriftinBottleListActivity extends BaseActivity  implements CommonAd
     }
 
     private void refreshUI(){
-        setBottleNum();
-        if(bStart != 3) {
-            if (App.bottleNum == 0) {
-                showTitle("我的瓶子");
-            }else {
-                showTitle("我的瓶子(" + App.bottleNum + ")");
+        if(!App.bOld) {
+            setBottleNum();
+            if (bStart != 3) {
+                if (App.bottleNum == 0) {
+                    showTitle("我的瓶子");
+                } else {
+                    showTitle("我的瓶子(" + App.bottleNum + ")");
+                }
+            } else {
+                showTitle("我的瓶子(" + App.bottle2Num + ")");
             }
-        }else {
-            showTitle("我的瓶子(" + App.bottle2Num + ")");
         }
         if(App.isShow) {
             for (BottleBean0 item : bottleBeans) {

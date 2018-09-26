@@ -352,35 +352,37 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         animationDrawable = (AnimationDrawable) iv_shape.getDrawable();
         animationDrawable.start();
         mHandler.postDelayed(lightRunnable,11000);
-        if(App.bFinish){
-            if(bStart != 3) {
-                if(App.bottleNum == 0){
-                    tv_activity_index_count.setVisibility(View.GONE);
-                }else {
-                    tv_activity_index_count.setVisibility(View.VISIBLE);
+        if(!App.bOld) {
+            if (App.bFinish) {
+                if (bStart != 3) {
+                    if (App.bottleNum == 0) {
+                        tv_activity_index_count.setVisibility(View.GONE);
+                    } else {
+                        tv_activity_index_count.setVisibility(View.VISIBLE);
+                    }
+                    if (App.bottleNum >= 100) {
+                        tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular));
+                    } else if (App.bottleNum >= 10 && App.bottleNum < 100) {
+                        tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2));
+                    } else if (App.bottleNum > 0 && App.bottleNum <= 9) {
+                        tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red));
+                    }
+                    tv_activity_index_count.setText(String.valueOf(App.bottleNum));
+                } else if (bStart == 3) {
+                    if (App.bottle2Num == 0) {
+                        tv_activity_index_count.setVisibility(View.GONE);
+                    } else {
+                        tv_activity_index_count.setVisibility(View.VISIBLE);
+                    }
+                    if (App.bottle2Num >= 100) {
+                        tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular));
+                    } else if (App.bottle2Num >= 10 && App.bottle2Num < 100) {
+                        tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2));
+                    } else if (App.bottle2Num > 0 && App.bottle2Num <= 9) {
+                        tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red));
+                    }
+                    tv_activity_index_count.setText(String.valueOf(App.bottle2Num));
                 }
-                if(App.bottleNum  >=100){
-                    tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular));
-                }else if(App.bottleNum  >=10 && App.bottleNum  < 100){
-                    tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2));
-                }else if(App.bottleNum  > 0 && App.bottleNum  <=9){
-                    tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red));
-                }
-                tv_activity_index_count.setText(String.valueOf(App.bottleNum));
-            }else if(bStart == 3 ){
-                if(App.bottle2Num == 0){
-                    tv_activity_index_count.setVisibility(View.GONE);
-                }else {
-                    tv_activity_index_count.setVisibility(View.VISIBLE);
-                }
-                if(App.bottle2Num  >=100){
-                    tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular));
-                }else if(App.bottle2Num  >=10 && App.bottle2Num  < 100){
-                    tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2));
-                }else if(App.bottle2Num  > 0 && App.bottle2Num  <=9){
-                    tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red));
-                }
-                tv_activity_index_count.setText(String.valueOf(App.bottle2Num));
             }
         }
     }

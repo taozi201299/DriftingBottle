@@ -46,6 +46,7 @@ public class  App extends Application {
     public static int bottleNum = 0;
     public static int bottle2Num = 0;
     public static boolean bFinish = false;
+    public static boolean bOld = false;
 
     /**
      * 屏幕宽度

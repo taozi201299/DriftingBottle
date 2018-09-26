@@ -72,17 +72,22 @@ public class BottleAdatper extends CommonAdapter<BottleBean0> {
         if(bottleBean.bIsRead){
             wei_du_xiao_xi.setVisibility(View.GONE);
         }else {
-            if (!"2".equals(bottleBean.answerType)) {
-                if(count >=2){
-                    wei_du_xiao_xi.setVisibility(View.VISIBLE);
-                    wei_du_xiao_xi.setText(String.valueOf(count -1));
-                }else {
-                    wei_du_xiao_xi.setVisibility(View.GONE);
-                }
-            }else {
-                // 二次回复
+            if(App.bOld){
                 wei_du_xiao_xi.setVisibility(View.VISIBLE);
                 wei_du_xiao_xi.setText(String.valueOf(count));
+            }else {
+                if (!"2".equals(bottleBean.answerType)) {
+                    if (count >= 2) {
+                        wei_du_xiao_xi.setVisibility(View.VISIBLE);
+                        wei_du_xiao_xi.setText(String.valueOf(count - 1));
+                    } else {
+                        wei_du_xiao_xi.setVisibility(View.GONE);
+                    }
+                } else {
+                    // 二次回复
+                    wei_du_xiao_xi.setVisibility(View.VISIBLE);
+                    wei_du_xiao_xi.setText(String.valueOf(count));
+                }
             }
 
         }
