@@ -259,16 +259,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             }
             switch (msg.what){
                 case 0:
-                    if(iCurrentCount > 0) {
-                        tv_activity_index_count.setVisibility(View.VISIBLE);
-                        if(iCurrentCount >=100){
-                            tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular));
-                        }else if(iCurrentCount >=10 && iCurrentCount < 100){
-                            tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2));
-                        }else if(iCurrentCount > 0 && iCurrentCount <=9){
-                            tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red));
+                    if(!App.bOld) {
+                        if (iCurrentCount > 0) {
+                            tv_activity_index_count.setVisibility(View.VISIBLE);
+                            if (iCurrentCount >= 100) {
+                                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular));
+                            } else if (iCurrentCount >= 10 && iCurrentCount < 100) {
+                                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2));
+                            } else if (iCurrentCount > 0 && iCurrentCount <= 9) {
+                                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red));
+                            }
+                            tv_activity_index_count.setText(String.valueOf(iCurrentCount));
                         }
-                        tv_activity_index_count.setText(String.valueOf(iCurrentCount));
+                    }else {
+                        if (iCurrentCount > 0) {
+                            tv_activity_index_count.setVisibility(View.VISIBLE);
+                            if (iCurrentCount >= 100) {
+                                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_old));
+                            } else if (iCurrentCount >= 10 && iCurrentCount < 100) {
+                                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2_old));
+                            } else if (iCurrentCount > 0 && iCurrentCount <= 9) {
+                                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_old));
+                            }
+                            tv_activity_index_count.setText(String.valueOf(iCurrentCount));
+                        }
                     }
                     break;
                 case 1:

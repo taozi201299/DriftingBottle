@@ -158,7 +158,7 @@
                     android:visibility="gone"
                     tools:visibility="visible"
                     android:textStyle="bold"
-                    android:background="@drawable/cl_red_circular"
+                    android:background="@drawable/cl_red_circular_old"
                     android:layout_centerHorizontal="true"
                     android:layout_centerInParent="true"
                     android:text=""
@@ -392,6 +392,7 @@
                 ></LinearLayout>
 
         </LinearLayout>
+
         <FrameLayout
             android:id="@+id/emojicons"
             android:layout_width="match_parent"
