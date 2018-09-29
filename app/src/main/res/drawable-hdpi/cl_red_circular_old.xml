@@ -13,9 +13,9 @@
             <solid android:color="@color/dot" />
             <padding
                 android:left="1.5dp"
-                android:top="1.7dp"
+                android:top="1.5dp"
                 android:right="1.5dp"
-                android:bottom="1.7dp" />
+                android:bottom="1.5dp" />
         </shape>
 
     </item>

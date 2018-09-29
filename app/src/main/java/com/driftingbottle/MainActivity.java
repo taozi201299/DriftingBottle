@@ -287,6 +287,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                     break;
                 case 1:
                     ToastUtils.show("瓶子获取完成");
+                    if(!App.bOld) {
+                        if (iTotalCount > 0) {
+                            tv_activity_index_count.setVisibility(View.VISIBLE);
+                            if (iTotalCount >= 100) {
+                                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular));
+                            } else if (iTotalCount >= 10 && iTotalCount < 100) {
+                                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2));
+                            } else if (iTotalCount > 0 && iTotalCount <= 9) {
+                                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red));
+                            }
+                        }
+                    }else {
+                        if (iTotalCount > 0) {
+                            tv_activity_index_count.setVisibility(View.VISIBLE);
+                            if (iTotalCount >= 100) {
+                                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_old));
+                            } else if (iTotalCount >= 10 && iTotalCount < 100) {
+                                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2_old));
+                            } else if (iTotalCount > 0 && iTotalCount <= 9) {
+                                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_old));
+                            }
+                        }
+                    }
                     tv_activity_index_count.setText(String.valueOf(iTotalCount));
                     bWorking = false;
                     App.bFinish = true;
@@ -443,7 +466,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         String brand = android.os.Build.BRAND;
         String model = Build.MODEL;
         if(model != null ) {
-            if (model.toLowerCase().contains("huawei") || model.toUpperCase().contains("GRA-CL00")) {
+            ToastUtils.show(model);
+            if(model.toLowerCase().equals("Redmi 4A")){
+                ToastUtils.show("=================");
+            }
+            if (model.toLowerCase().contains("huawei") || model.toUpperCase().contains("GRA-CL00")
+                    || model.toLowerCase().equals("Redmi 4A")) {
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(iv_shape.getLayoutParams());
                 lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 lp.setMargins(0, dp2px(this, 125), dp2px(this, 100), 0);
@@ -492,7 +520,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             String brand = android.os.Build.BRAND;
             String model = Build.MODEL;
             if(model != null ) {
-                if (model.toLowerCase().contains("huawei") || model.toUpperCase().contains("GRA-CL00")) {
+                ToastUtils.show(model);
+                if(model.toLowerCase().equals("Redmi 4A")){
+                    ToastUtils.show("=================");
+                }
+                if (model.toLowerCase().contains("huawei") || model.toUpperCase().contains("GRA-CL00")
+                        || model.toLowerCase().equals("Redmi 4A")) {
                     RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(iv_shape.getLayoutParams());
                     lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                     lp.setMargins(0, dp2px(this, 125), dp2px(this, 100), 0);
@@ -698,6 +731,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 if(bottleCountBean != null && bottleCountBean.size() >0){
                     int count = Integer.valueOf(bottleCountBean.get(0).bottleCount);
                     iTotalCount  = count;
+                  //  iTotalCount = 124;
                     int time = Integer.valueOf(bottleCountBean.get(0).buildMinutes);
                   //  interval = (time * 60 *1000 ) /(count -1);
                     interval = Integer.valueOf(bottleCountBean.get(0).onePerSeconds);

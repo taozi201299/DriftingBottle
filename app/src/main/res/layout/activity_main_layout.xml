@@ -143,7 +143,7 @@
                     android:textSize="@dimen/_12sp"
                     android:layout_below="@id/iv_three"
                     android:gravity="center_horizontal"
-                    android:text="    我的瓶子"
+                    android:text="  我的瓶子"
                     android:textColor="@color/write" />
                 <TextView
                     android:id="@+id/tv_activity_index_count"
@@ -153,8 +153,8 @@
                     android:layout_alignParentRight="true"
                     android:gravity="center_horizontal|center_vertical"
                     android:textSize="11sp"
-                    android:layout_marginBottom="25dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="23dp"
+                    android:layout_marginRight="29dp"
                     android:visibility="gone"
                     tools:visibility="visible"
                     android:textStyle="bold"
