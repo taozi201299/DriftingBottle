@@ -466,12 +466,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         String brand = android.os.Build.BRAND;
         String model = Build.MODEL;
         if(model != null ) {
-            ToastUtils.show(model);
-            if(model.toLowerCase().equals("Redmi 4A")){
-                ToastUtils.show("=================");
-            }
             if (model.toLowerCase().contains("huawei") || model.toUpperCase().contains("GRA-CL00")
-                    || model.toLowerCase().equals("Redmi 4A")) {
+                    || model.equals("Redmi 4A")) {
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(iv_shape.getLayoutParams());
                 lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 lp.setMargins(0, dp2px(this, 125), dp2px(this, 100), 0);
@@ -520,12 +516,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             String brand = android.os.Build.BRAND;
             String model = Build.MODEL;
             if(model != null ) {
-                ToastUtils.show(model);
-                if(model.toLowerCase().equals("Redmi 4A")){
-                    ToastUtils.show("=================");
-                }
                 if (model.toLowerCase().contains("huawei") || model.toUpperCase().contains("GRA-CL00")
-                        || model.toLowerCase().equals("Redmi 4A")) {
+                        || model.equals("Redmi 4A")) {
                     RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(iv_shape.getLayoutParams());
                     lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                     lp.setMargins(0, dp2px(this, 125), dp2px(this, 100), 0);
