@@ -142,26 +142,24 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_12sp"
                     android:layout_below="@id/iv_three"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:text="  我的瓶子"
                     android:textColor="@color/write" />
                 <TextView
                     android:id="@+id/tv_activity_index_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignRight = "@id/iv_three"
+                    android:layout_marginRight="@dimen/_10dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
                     android:gravity="center_horizontal|center_vertical"
                     android:textSize="11sp"
                     android:layout_marginBottom="23dp"
-                    android:layout_marginRight="29dp"
                     android:visibility="gone"
                     tools:visibility="visible"
                     android:textStyle="bold"
                     android:background="@drawable/cl_red_circular_old"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerInParent="true"
-                    android:text=""
+                    android:text="111"
                     android:textColor="@color/write" />
             </RelativeLayout>
         </LinearLayout>
