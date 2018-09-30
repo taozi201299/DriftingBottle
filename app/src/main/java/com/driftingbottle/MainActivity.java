@@ -471,7 +471,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         String model = Build.MODEL;
         if(model != null ) {
             if (model.toLowerCase().contains("huawei") || model.toUpperCase().contains("GRA-CL00")
-                    || model.equals("Redmi 4A")) {
+                    || model.equals("Redmi 4A") || model.equals("MI 4LTE")) {
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(iv_shape.getLayoutParams());
                 lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 lp.setMargins(0, dp2px(this, 125), dp2px(this, 100), 0);
@@ -521,7 +521,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             String model = Build.MODEL;
             if(model != null ) {
                 if (model.toLowerCase().contains("huawei") || model.toUpperCase().contains("GRA-CL00")
-                        || model.equals("Redmi 4A")) {
+                        || model.equals("Redmi 4A") ||model.equals("MI 4LTE")) {
                     RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(iv_shape.getLayoutParams());
                     lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                     lp.setMargins(0, dp2px(this, 125), dp2px(this, 100), 0);
