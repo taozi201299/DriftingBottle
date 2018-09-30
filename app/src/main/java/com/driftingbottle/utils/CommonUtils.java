@@ -1,5 +1,6 @@
 package com.driftingbottle.utils;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.ComponentName;
@@ -26,6 +27,7 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
@@ -34,6 +36,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
@@ -104,7 +107,8 @@ public class CommonUtils {
         int week = calendar.get(Calendar.DAY_OF_WEEK);
         return hour;
     }
-    public static  int getDay(){
+
+    public static int getDay() {
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         return day;
@@ -375,7 +379,7 @@ public class CommonUtils {
 
             // Date().getTime()减去以前的时间距离1970年的时间间隔d1.getTime()得出的就是以前的时间与现在时间的时间间隔
             long time = d1.getTime() - last.getTime();// 得出的时间间隔是毫秒
-          //  m = (int) ((time % 3600000) / 60000);// 得出的时间间隔的单位是分钟
+            //  m = (int) ((time % 3600000) / 60000);// 得出的时间间隔的单位是分钟
             m = (int) (time / 60000);
         } catch (Exception e) {
             return 0;
@@ -497,8 +501,12 @@ public class CommonUtils {
     }
 
     public static String getUniqueId(Context context) {
-        String androidID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-        String id = androidID + Build.SERIAL;
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
+        String imei = telephonyManager.getDeviceId();
+        Log.d("11111111111111",imei);
+
+        String id = imei + Build.SERIAL;
+        Log.d("1111111111111",Build.SERIAL);
         return id;
     }
     /**

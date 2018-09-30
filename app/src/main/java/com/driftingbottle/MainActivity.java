@@ -1,5 +1,7 @@
 package com.driftingbottle;
 
+import android.*;
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -244,6 +246,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             put(31, R.mipmap.a31);
         }
     };
+    private final int RC_PERM = 110;
+    public static final String[] requestPermissions = {android.Manifest.permission.ACCESS_COARSE_LOCATION};
     /**
      * 主线程handler 用户更新瓶子数量
      */
@@ -575,7 +579,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 stopService();
                 break;
             case R.id.tv_activity_index_start:
-                startService();
+                requestReadStatusPermission();
                 break;
             case R.id.index_set:
                 go2SettingActivity();
@@ -915,6 +919,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 .commit();
     }
 
+    private boolean requestReadStatusPermission(){
+        String[]permissions = {Manifest.permission.READ_PHONE_STATE};
+        if (EasyPermissions.hasPermissions(mContext, permissions)) {
+            startService();
+            return true;
+        } else {
+            // Ask for one permission
+            EasyPermissions.requestPermissions((Activity) mContext, "需要申请权限",
+                    RC_PERM, permissions);
+        }
+        return false;
+    }
+
     /**
      * 权限请求
      * @return
@@ -944,12 +961,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     public void onPermissionsGranted(int requestCode, List<String> perms) {
         if(requestCode == RC_CAMERA_PERM){
             startFile();
+        }else if(requestCode == RC_PERM){
+            startService();
         }
     }
 
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         if(requestCode == RC_CAMERA_PERM){
+            ToastUtils.show("权限被拒绝");
+        }
+        if(requestCode == RC_PERM){
             ToastUtils.show("权限被拒绝");
         }
     }
@@ -1155,5 +1177,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+    /**
+     * 请求多个权限
+     */
+    public void requestMulti() {
+        EasyPermissions.requestPermissions(this, "需要申请功能", RC_PERM, requestPermissions);
     }
 }
