@@ -322,6 +322,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         }
     };
 
+    private void setTotalCountView(){
+        if (iTotalCount > 0) {
+            tv_activity_index_count.setVisibility(View.VISIBLE);
+            if (iTotalCount >= 100) {
+                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular));
+            } else if (iTotalCount >= 10 && iTotalCount < 100) {
+                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2));
+            } else if (iTotalCount > 0 && iTotalCount <= 9) {
+                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red));
+            }
+            tv_activity_index_count.setText(String.valueOf(iTotalCount));
+        }
+    }
+    private void set1View(){
+        if (App.bottleNum == 0) {
+            tv_activity_index_count.setVisibility(View.GONE);
+            setTotalCountView();
+        } else {
+            tv_activity_index_count.setVisibility(View.VISIBLE);
+            if (App.bottleNum >= 100) {
+                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular));
+            } else if (App.bottleNum >= 10 && App.bottleNum < 100) {
+                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red_circular_2));
+            } else if (App.bottleNum > 0 && App.bottleNum <= 9) {
+                tv_activity_index_count.setBackground(getResources().getDrawable(R.drawable.cl_red));
+            }
+            tv_activity_index_count.setText(String.valueOf(App.bottleNum));
+        }
+
+    }
     @Override
     public int getLayoutId() {
         return R.layout.activity_main_layout;
@@ -398,6 +428,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 if (bStart != 3) {
                     if (App.bottleNum == 0) {
                         tv_activity_index_count.setVisibility(View.GONE);
+                        setTotalCountView();
                     } else {
                         tv_activity_index_count.setVisibility(View.VISIBLE);
                     }
@@ -412,6 +443,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
                 } else if (bStart == 3) {
                     if (App.bottle2Num == 0) {
                         tv_activity_index_count.setVisibility(View.GONE);
+                        set1View();
                     } else {
                         tv_activity_index_count.setVisibility(View.VISIBLE);
                     }
@@ -471,7 +503,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         String model = Build.MODEL;
         if(model != null ) {
             if (model.toLowerCase().contains("huawei") || model.toUpperCase().contains("GRA-CL00")
-                    || model.equals("Redmi 4A") || model.equals("MI 4LTE")) {
+                    || model.equals("Redmi 4A")) {
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(iv_shape.getLayoutParams());
                 lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 lp.setMargins(0, dp2px(this, 125), dp2px(this, 100), 0);
@@ -521,7 +553,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
             String model = Build.MODEL;
             if(model != null ) {
                 if (model.toLowerCase().contains("huawei") || model.toUpperCase().contains("GRA-CL00")
-                        || model.equals("Redmi 4A") ||model.equals("MI 4LTE")) {
+                        || model.equals("Redmi 4A")) {
                     RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(iv_shape.getLayoutParams());
                     lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                     lp.setMargins(0, dp2px(this, 125), dp2px(this, 100), 0);
